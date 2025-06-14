@@ -33,6 +33,9 @@
             # Common system configuration
             ./modules/system
             
+            # Application modules
+            ./modules/git
+            
             # Host-specific hardware configuration
             (./hosts + "/${hostname}/hardware-configuration.nix")
             

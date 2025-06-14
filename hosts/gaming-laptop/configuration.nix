@@ -19,6 +19,13 @@
       useOSProber = true;
     };
   };
+  
+  # Enable the git module
+  modules.git = {
+    enable = true;
+    userName = "Krivoshapkin Eduard";
+    userEmail = "buttersus@mail.ru";
+  };
 
   # User configuration
   users.users.buttersus = {
