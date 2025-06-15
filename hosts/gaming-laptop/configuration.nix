@@ -12,9 +12,6 @@
   ## Modules ##
   #############
 
-  # Enable minimal Sway (Wayland) module for testing
-  modules.sway.enable = true;
-
   # Enable the base system module
   modules.system = {
     enable = true;
@@ -60,22 +57,39 @@
     enable = true;   
     enableXorgClipboard = true;
   };
+
+  # Enable Hyprland Wayland compositor
+  modules.hyprland = {
+    enable = true;
+    nvidia = false; # Set to true if you have an NVIDIA GPU
+    enableWaybar = true;
+    extraPackages = with pkgs; [
+      # Media and screenshots
+      grimblast
+      swappy
+      
+      # System utilities
+      networkmanagerapplet
+      
+      # Theming
+      bibata-cursors
+      gtk3
+    ];
+  };
   
   # Enable the TUI Greet module
   modules.tuigreet = {
     enable = true;
-    # Make sure we provide the full path to the specific session file, not just the directory
+    # Include both Sway and Hyprland session directories
     sessions = [
-      "${pkgs.sway}/share/wayland-sessions"
+      "${pkgs.hyprland}/share/wayland-sessions"
     ];
     settings = {
       showTime = true;
       rememberLastSession = true;
       rememberUser = true;
-      # Add any extra arguments if needed
-      extraArgs = [
-        "--cmd sway" # Default to sway if no other session is selected
-      ];
+      # Let the user choose between Sway and Hyprland
+      extraArgs = [];
     };
   };
 }
