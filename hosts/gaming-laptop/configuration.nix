@@ -60,4 +60,22 @@
     enable = true;   
     enableXorgClipboard = true;
   };
+  
+  # Enable the TUI Greet module
+  modules.tuigreet = {
+    enable = true;
+    # Make sure we provide the full path to the specific session file, not just the directory
+    sessions = [
+      "${pkgs.sway}/share/wayland-sessions"
+    ];
+    settings = {
+      showTime = true;
+      rememberLastSession = true;
+      rememberUser = true;
+      # Add any extra arguments if needed
+      extraArgs = [
+        "--cmd sway" # Default to sway if no other session is selected
+      ];
+    };
+  };
 }

@@ -12,12 +12,13 @@ in {
       settings = {
         PermitRootLogin = cfg.permitRootLogin;
         # Global SSH security settings
-        X11Forwarding = cfg.enableX11Forwarding;
-        X11DisplayOffset = 10;
-        X11UseLocalhost = true;
         AllowAgentForwarding = true;
         TCPKeepAlive = true;
         Compression = true;
+      } // lib.optionalAttrs cfg.enableX11Forwarding {
+        X11Forwarding = true;
+        X11DisplayOffset = 10;
+        X11UseLocalhost = true;
       };
 
       # Enable OpenSSH extra options
