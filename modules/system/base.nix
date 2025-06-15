@@ -72,6 +72,8 @@ in {
       }) cfg.userInformation
     );
 
+    home-manager.backupFileExtension = "hm-bak";
+
     home-manager.users = lib.mkMerge (
       map (user: lib.mkIf user.enableHomeManager {
         "${user.username}" = {

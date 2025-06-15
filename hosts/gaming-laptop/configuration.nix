@@ -92,4 +92,9 @@
       extraArgs = [];
     };
   };
+
+  # Enable firefox
+  modules.firefox = {
+    enable = true;
+  };
 }

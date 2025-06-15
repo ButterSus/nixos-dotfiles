@@ -25,7 +25,7 @@
           entries = builtins.readDir modulesPath;
           
           # Filter directories only (potential modules)
-          moduleDirs = lib.filterAttrs (name: type: type == "directory") entries;
+          moduleDirs = lib.filterAttrs (name: type: type == "directory" && name != "template") entries;
           
           # Create a list of module paths
           modulePaths = lib.mapAttrsToList
