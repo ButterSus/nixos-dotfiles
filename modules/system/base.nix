@@ -6,6 +6,7 @@ let
   cfg = config.modules.system;
 in {
   options.modules.system = {
+    enableHomeManagerCli = mkEnableOption "Install the Home Manager CLI tool (home-manager) system-wide";
     enable = mkEnableOption "Enable base system configuration";
 
     userInformation = mkOption {
@@ -101,7 +102,7 @@ in {
       coreutils
       curl
       wget
-    ];
+    ] ++ lib.optional cfg.enableHomeManagerCli pkgs.home-manager;
     
     # Enable OpenSSH by default for remote management
     services.openssh.enable = true;

@@ -15,6 +15,7 @@
   # Enable the base system module
   modules.system = {
     enable = true;
+    enableHomeManagerCli = true;
     hostName = "unixporn";
     timeZone = "Europe/Moscow";
     locale = "en_US.UTF-8";
