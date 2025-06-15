@@ -7,6 +7,28 @@ let
 in {
   options.modules.system = {
     enable = mkEnableOption "Enable base system configuration";
+
+    userInformation = mkOption {
+      type = types.listOf (types.submodule {
+        options = {
+          username = mkOption {
+            type = types.str;
+            description = "The username to create and configure.";
+          };
+          stateVersion = mkOption {
+            type = types.str;
+            default = "24.11";
+            description = "Home Manager state version for the user.";
+          };
+          enableHomeManager = mkOption {
+            type = types.bool;
+            default = true;
+            description = "Enable Home Manager for this user.";
+          };
+        };
+      });
+      description = "List of user information records for user and Home Manager setup.";
+    };
     
     stateVersion = mkOption {
       type = types.str;
@@ -41,6 +63,25 @@ in {
   };
   
   config = mkIf cfg.enable {
+    users.users = lib.mkMerge (
+      map (user: {
+        "${user.username}" = {
+          isNormalUser = true;
+          extraGroups = [ "wheel" ] ++ lib.optional cfg.networking.enableNetworkManager "networkmanager";
+        };
+      }) cfg.userInformation
+    );
+
+    home-manager.users = lib.mkMerge (
+      map (user: lib.mkIf user.enableHomeManager {
+        "${user.username}" = {
+          home.username = user.username;
+          home.homeDirectory = "/home/${user.username}";
+          home.stateVersion = user.stateVersion or cfg.stateVersion;
+          programs.home-manager.enable = true;
+        };
+      }) cfg.userInformation
+    );
     # Set basic system configuration
     networking = {
       hostName = cfg.hostName;

@@ -3,7 +3,17 @@
 {
   imports = [
     ./hardware-configuration.nix
+    # Modules are imported in flake.nix
   ];
+
+  primaryUser = "buttersus";
+  
+  #############
+  ## Modules ##
+  #############
+
+  # Enable minimal Sway (Wayland) module for testing
+  modules.sway.enable = true;
 
   # Enable the base system module
   modules.system = {
@@ -12,13 +22,14 @@
     timeZone = "Europe/Moscow";
     locale = "en_US.UTF-8";
     stateVersion = "24.11";
-    
+    userInformation = [
+      { username = config.primaryUser; stateVersion = "24.11"; enableHomeManager = true; }
+    ];
     # Boot configuration
     boot = {
       loaderType = "grub";
       useOSProber = true;
     };
-    
     # Network configuration
     networking = {
       enableNetworkManager = true;
@@ -37,25 +48,16 @@
     enable = true;
     port = 22; # Standard SSH port
     permitRootLogin = "no";
+    enableX11Forwarding = true;
     allowPasswordAuth = {
       local = true;    # Allow password auth for local connections
       remote = false;  # Disable password auth for remote connections
     };
   };
-
-  users.users.buttersus = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
-  };
-
-  # Home Manager configuration - kept minimal
-  home-manager.users.buttersus = {
-    # Home Manager needs a bit of information about the user
-    home.username = "buttersus";
-    home.homeDirectory = "/home/buttersus";
-    home.stateVersion = "24.11";
-    
-    # Let Home Manager manage itself
-    programs.home-manager.enable = true;
+  
+  # Enable the Neovim module
+  modules.nvim = {
+    enable = true;   
+    enableXorgClipboard = true;
   };
 }

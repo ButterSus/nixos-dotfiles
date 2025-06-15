@@ -1,5 +1,5 @@
 # SSH configuration module - implementation
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf;
@@ -12,7 +12,9 @@ in {
       settings = {
         PermitRootLogin = cfg.permitRootLogin;
         # Global SSH security settings
-        X11Forwarding = false;
+        X11Forwarding = cfg.enableX11Forwarding;
+        X11DisplayOffset = 10;
+        X11UseLocalhost = true;
         AllowAgentForwarding = true;
         TCPKeepAlive = true;
         Compression = true;

@@ -1,5 +1,5 @@
 # Git configuration module - fully declarative
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf;
@@ -7,7 +7,7 @@ let
 in {
   config = mkIf cfg.enable {
     # Home-manager Git configuration
-    home-manager.users.${username} = { ... }: {
+    home-manager.users.${config.primaryUser} = { ... }: {
       programs.git = {
         enable = true;
         userName = cfg.userName;
@@ -42,7 +42,7 @@ in {
           # Core configuration
           core = {
             pager = "delta";
-            editor = "nvim";
+            editor = if config.modules.nvim.enable then "nvim" else "nano";
             autocrlf = "input";
             excludeFiles = "~/.config/git/ignore";
           };
@@ -62,7 +62,7 @@ in {
           # Mergetool configuration
           mergetool = {
             keepBackup = false;
-            tool = "nvim";
+            tool = if config.modules.nvim.enable then "nvim" else "nano";
           };
           
           # HTTP buffer size

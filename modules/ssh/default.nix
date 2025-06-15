@@ -1,5 +1,5 @@
 # SSH module
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
@@ -37,7 +37,14 @@ in {
         description = "Whether to allow password authentication for remote connections";
       };
     };
+
+    enableX11Forwarding = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable X11 forwarding for SSH sessions (sets X11Forwarding in sshd config).";
+    };
   };
+
   
   config = mkIf cfg.enable {
     # Make sure OpenSSH is installed

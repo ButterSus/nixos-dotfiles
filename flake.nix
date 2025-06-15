@@ -35,16 +35,10 @@
           modulePaths;
       
       # Function to create system configurations
-      mkSystem = { 
-        system,
-        hostname, 
-        username ? "buttersus"
-      }:
+      mkSystem = { system, hostname }:
         lib.nixosSystem {
           inherit system;
-          specialArgs = { 
-            inherit inputs hostname username; 
-          };
+          specialArgs = { inherit inputs hostname; };
           modules = 
             # Auto-imported modules
             (importModules ./modules) ++
@@ -61,7 +55,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs hostname username; };
+                  extraSpecialArgs = { inherit inputs hostname; };
                 };
               }
             ];

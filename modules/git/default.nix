@@ -1,5 +1,5 @@
 # Git module
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
@@ -20,7 +20,8 @@ in {
     
     userEmail = mkOption {
       type = types.str;
-      default = "buttersus@mail.ru";
+      default = null;
+      example = "user@example.com";
       description = "Git user email";
     };
   };
