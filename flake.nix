@@ -18,6 +18,22 @@
     let
       lib = nixpkgs.lib;
       
+      # Auto-import all modules from the modules directory
+      importModules = modulesPath:
+        let
+          # Get all entries in the modules directory
+          entries = builtins.readDir modulesPath;
+          
+          # Filter directories only (potential modules)
+          moduleDirs = lib.filterAttrs (name: type: type == "directory") entries;
+          
+          # Create a list of module paths
+          modulePaths = lib.mapAttrsToList
+            (name: _: modulesPath + "/${name}")
+            moduleDirs;
+        in
+          modulePaths;
+      
       # Function to create system configurations
       mkSystem = { 
         system,
@@ -29,31 +45,26 @@
           specialArgs = { 
             inherit inputs hostname username; 
           };
-          modules = [
-            # Common system configuration
-            ./modules/system
+          modules = 
+            # Auto-imported modules
+            (importModules ./modules) ++
             
-            # Application modules
-            ./modules/git
-            
-            # Host-specific hardware configuration
-            (./hosts + "/${hostname}/hardware-configuration.nix")
-            
-            # Host-specific configuration
-            (./hosts + "/${hostname}/configuration.nix")
-            
-            # Home Manager configuration
-            home-manager.nixosModules.home-manager {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs hostname username; };
-                users.${username} = { ... }: {
-                  imports = [ ./modules/home ];
+            [
+              # Host-specific hardware configuration
+              (./hosts + "/${hostname}/hardware-configuration.nix")
+              
+              # Host-specific configuration
+              (./hosts + "/${hostname}/configuration.nix")
+              
+              # Home Manager configuration
+              home-manager.nixosModules.home-manager {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = { inherit inputs hostname username; };
                 };
-              };
-            }
-          ];
+              }
+            ];
         };
     in {
       # NixOS configurations

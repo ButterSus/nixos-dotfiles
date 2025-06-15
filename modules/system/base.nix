@@ -30,11 +30,22 @@ in {
       default = "en_US.UTF-8";
       description = "System locale";
     };
+    
+    networking = {
+      enableNetworkManager = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Whether to enable NetworkManager for network configuration";
+      };
+    };
   };
   
   config = mkIf cfg.enable {
     # Set basic system configuration
-    networking.hostName = cfg.hostName;
+    networking = {
+      hostName = cfg.hostName;
+      networkmanager.enable = cfg.networking.enableNetworkManager;
+    };
     time.timeZone = cfg.timeZone;
     i18n.defaultLocale = cfg.locale;
     

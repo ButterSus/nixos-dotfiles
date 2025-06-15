@@ -8,7 +8,7 @@
   # Enable the base system module
   modules.system = {
     enable = true;
-    hostName = "gaming-laptop";
+    hostName = "unixporn";
     timeZone = "Europe/Moscow";
     locale = "en_US.UTF-8";
     stateVersion = "24.11";
@@ -18,6 +18,11 @@
       loaderType = "grub";
       useOSProber = true;
     };
+    
+    # Network configuration
+    networking = {
+      enableNetworkManager = true;
+    };
   };
   
   # Enable the git module
@@ -26,8 +31,18 @@
     userName = "Krivoshapkin Eduard";
     userEmail = "buttersus@mail.ru";
   };
+  
+  # Enable the SSH module with local password authentication
+  modules.ssh = {
+    enable = true;
+    port = 22; # Standard SSH port
+    permitRootLogin = "no";
+    allowPasswordAuth = {
+      local = true;    # Allow password auth for local connections
+      remote = false;  # Disable password auth for remote connections
+    };
+  };
 
-  # User configuration
   users.users.buttersus = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
