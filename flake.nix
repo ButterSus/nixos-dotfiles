@@ -19,7 +19,7 @@
       lib = nixpkgs.lib;
       
       # Auto-import all modules from the modules directory
-      importModules = modulesPath:
+      importModules = modulesPath: filename:
         let
           # Get all entries in the modules directory
           entries = builtins.readDir modulesPath;
@@ -29,7 +29,7 @@
           
           # Create a list of module paths
           modulePaths = lib.mapAttrsToList
-            (name: _: modulesPath + "/${name}")
+            (name: _: modulesPath + "/${name}/${filename}.nix")
             moduleDirs;
         in
           modulePaths;
@@ -38,10 +38,10 @@
       mkSystem = { system, hostname }:
         lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs hostname; };
+          specialArgs = { inherit inputs hostname; isHMStandaloneContext = false; };
           modules = 
             # Auto-imported modules
-            (importModules ./modules) ++
+            (importModules ./modules "nixos") ++
             
             [
               # Host-specific hardware configuration
@@ -55,16 +55,37 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs hostname; };
                 };
               }
+            ];
+        };
+
+      # Function to create home-manager configurations
+      mkHomeConfiguration = { system, hostname }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          extraSpecialArgs = { inherit inputs hostname; isHMStandaloneContext = true; };
+          modules = 
+            # Auto-imported modules
+            (importModules ./modules "home") ++
+
+            [
+              # User's home configuration
+              (./hosts + "/${hostname}/home.nix")
             ];
         };
     in {
       # NixOS configurations
       nixosConfigurations = {
-        # Gaming laptop configuration
-        gaming-laptop = mkSystem {
+        "gaming-laptop" = mkSystem {
+          system = "x86_64-linux";
+          hostname = "gaming-laptop";
+        };
+      };
+      
+      # Standalone Home Manager configurations
+      homeConfigurations = {
+        "buttersus@gaming-laptop" = mkHomeConfiguration {
           system = "x86_64-linux";
           hostname = "gaming-laptop";
         };

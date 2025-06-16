@@ -1,11 +1,18 @@
-# TUI Greet module - implementation
 { config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf;
   cfg = config.modules.tuigreet;
 in {
+  imports = [
+    ./home.nix
+  ];
+  
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      greetd.tuigreet
+    ];
+
     # Configure proper VT allocation
     services.getty.autologinUser = lib.mkForce null; # Disable any autologin
     
@@ -49,10 +56,5 @@ in {
       TTYVHangup = true;
       TTYVTDisallocate = true;
     };
-
-    # Install tuigreet system-wide
-    environment.systemPackages = with pkgs; [
-      greetd.tuigreet
-    ];
   };
 }

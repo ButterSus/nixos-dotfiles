@@ -1,13 +1,13 @@
-# TUI Greet module - Graphical login screen using greetd and tuigreet
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, isHMStandaloneContext, ... }:
 
 let
-  inherit (lib) mkEnableOption mkOption types;
+  inherit (lib) mkIf mkEnableOption mkOption types;
+  cfg = config.modules.tuigreet;
+
+  # Core home configuration for this module (empty for tuigreet)
+  moduleHomeConfig = {};
+
 in {
-  imports = [
-    ./config.nix  # Implementation details
-  ];
-  
   options.modules.tuigreet = {
     enable = mkEnableOption "Enable TUI Greet for login";
     
@@ -50,4 +50,14 @@ in {
       description = "Settings for tuigreet";
     };
   };
+
+  # Conditionally apply the configuration
+  config = mkIf cfg.enable (
+    if isHMStandaloneContext then
+      moduleHomeConfig
+    else
+      {
+        home-manager.users.${config.primaryUser} = moduleHomeConfig;
+      }
+  );
 }

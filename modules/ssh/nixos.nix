@@ -1,11 +1,18 @@
-# SSH configuration module - implementation
 { config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf;
   cfg = config.modules.ssh;
 in {
+  imports = [
+    ./home.nix
+  ];
+
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      openssh
+    ];
+
     services.openssh = {
       enable = true;
       ports = [ cfg.port ];

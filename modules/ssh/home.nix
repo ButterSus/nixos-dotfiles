@@ -1,14 +1,13 @@
-# SSH module
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, isHMStandaloneContext, ... }:
 
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.ssh;
-in {
-  imports = [
-    ./config.nix  # SSH configuration
-  ];
 
+  # Core home configuration for this module (empty for ssh)
+  moduleHomeConfig = {};
+
+in {
   options.modules.ssh = {
     enable = mkEnableOption "Enable SSH server configuration";
     
@@ -45,11 +44,13 @@ in {
     };
   };
 
-  
-  config = mkIf cfg.enable {
-    # Make sure OpenSSH is installed
-    environment.systemPackages = with pkgs; [
-      openssh
-    ];
-  };
+  # Conditionally apply the configuration
+  config = mkIf cfg.enable (
+    if isHMStandaloneContext then
+      moduleHomeConfig
+    else
+      {
+        home-manager.users.${config.primaryUser} = moduleHomeConfig;
+      }
+  );
 }
