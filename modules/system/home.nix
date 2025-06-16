@@ -42,6 +42,14 @@ in {
       };
     };
     
+    extraCliTools = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Whether to install additional useful CLI tools like tree, ncdu.";
+      };
+    };
+
     boot = {
       loaderType = mkOption {
         type = types.enum [ "systemd-boot" "grub" ];

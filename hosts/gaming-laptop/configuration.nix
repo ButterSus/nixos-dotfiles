@@ -18,12 +18,14 @@
   ];
 
   # System configuration
+  modules.fonts = { enable = true; };
   modules.system = {
     enable = true;
     hostName = "unixporn";
     timeZone = "Europe/Moscow";
     locale = "en_US.UTF-8";
     stateVersion = "24.11";
+    extraCliTools.enable = true;
 
     # Boot configuration
     boot = {

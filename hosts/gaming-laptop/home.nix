@@ -38,11 +38,13 @@
     enableXorgClipboard = true;
   };
 
+  # Enable base Wayland utilities
+  modules.wayland.enable = true;
+
   # Enable Hyprland Wayland compositor
   modules.hyprland = {
     enable = true;
     nvidia = false; # Set to true if you have an NVIDIA GPU
-    enableWaybar = true;
     extraPackages = with pkgs; [
       # Media and screenshots
       grimblast
@@ -57,6 +59,9 @@
     ];
   };
   
+  # Enable Waybar status bar
+  modules.waybar.enable = true;
+
   # Enable firefox
   modules.firefox = {
     enable = true;

@@ -7,8 +7,7 @@ let
   # Build list of packages based on configuration
   hyprlandPackages = [
     cfg.package
-  ] ++ cfg.extraPackages
-    ++ lib.optional cfg.enableWaybar pkgs.waybar;
+  ] ++ cfg.extraPackages;
 in {
   imports = [
     ./home.nix

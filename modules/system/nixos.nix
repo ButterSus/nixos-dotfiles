@@ -13,7 +13,10 @@ in {
       coreutils
       curl
       wget
-    ];
+    ] ++ (lib.optionals cfg.extraCliTools.enable [
+      tree
+      ncdu
+    ]);
 
     users.users.${config.primaryUser} = {
       isNormalUser = true;
