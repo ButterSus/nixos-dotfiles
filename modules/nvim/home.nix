@@ -1,14 +1,11 @@
-{ config, lib, pkgs, isHMStandaloneContext, ... }:
+{ config, lib, pkgs, inputs, isHMStandaloneContext, ... }:
 
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.nvim;
 
-  # Fetch AstroNvim dotfiles
-  astroNvim = builtins.fetchGit {
-    url = "https://github.com/ButterSus/astronvim-dotfiles.git";
-    rev = "bf36a1664dfb05555901eb8351f8d4c9f1cb64ec";
-  };
+  # Get AstroNvim dotfiles from flake inputs
+  astroNvim = inputs.astronvim-dotfiles;
   nvimFiles = builtins.attrNames (builtins.readDir astroNvim);
   nvimDotfiles = builtins.listToAttrs (map (name: {
     name = ".config/nvim/${name}";

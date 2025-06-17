@@ -2,10 +2,17 @@
   description = "Minimal Modular NixOS Configuration";
 
   inputs = {
+    # Main NixOS flake
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    # Additional flake inputs (no need to specify these in parameters)
+    astronvim-dotfiles = {
+      url = "github:ButterSus/astronvim-dotfiles";
+      flake = false;
     };
   };
 
