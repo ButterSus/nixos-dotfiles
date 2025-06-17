@@ -1,5 +1,9 @@
 # My NixOS & Home Manager Configs
 
+<p align="center">
+  <img src="./pics/kaboom.png" height="200"/>
+</p>
+
 These are my personal NixOS and Home Manager dotfiles, built with Flakes.
 
 ## Key Things
