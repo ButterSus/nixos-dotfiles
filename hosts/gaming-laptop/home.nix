@@ -53,7 +53,6 @@
   # Enable the TUI Greet module
   modules.tuigreet = {
     enable = true;
-    # Include both Sway and Hyprland session directories
     sessions = [
       "${pkgs.hyprland}/share/wayland-sessions"
     ];
@@ -61,7 +60,6 @@
       showTime = true;
       rememberLastSession = true;
       rememberUser = true;
-      # Let the user choose between Sway and Hyprland
       extraArgs = [];
     };
   };
@@ -79,27 +77,11 @@
     enableXorgClipboard = true;
   };
 
-  # Enable base Wayland utilities
-  modules.wayland.enable = true;
-
   # Enable Hyprland Wayland compositor
-  modules.hyprland = {
-    enable = true;
-    nvidia = false; # Set to true if you have an NVIDIA GPU
-    extraPackages = with pkgs; [
-      # Media and screenshots
-      grimblast
-      swappy
-      
-      # System utilities
-      networkmanagerapplet
-      
-      # Theming
-      bibata-cursors
-      gtk3
-    ];
-  };
-  
+  modules.wayland.enable = true;
+  modules.wayland.activeCompositor = "hyprland";
+  modules.hyprland.enable = true;
+
   # Enable Waybar status bar
   modules.waybar.enable = true;
 

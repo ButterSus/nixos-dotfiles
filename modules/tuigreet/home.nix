@@ -1,19 +1,31 @@
 { config, lib, pkgs, isHMStandaloneContext, ... }:
 
+# TODO: Support more than just wayland
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.tuigreet;
 
-  # Core home configuration for this module (empty for tuigreet)
+  # Core home configuration for this module
   moduleHomeConfig = {};
 
 in {
   options.modules.tuigreet = {
+    assertions = [
+      {
+        assertion = cfg.enable -> config.modules.wayland.enable;
+        message = "Please enable wayland.";
+      }
+      {
+        assertion = cfg.enable -> config.modules.wayland.activeCompositor != "";
+        message = "Please set wayland.activeCompositor to a valid compositor.";
+      }
+    ];
+
     enable = mkEnableOption "Enable TUI Greet for login";
     
     sessions = mkOption {
       type = types.listOf types.path;
-      default = [];
+      default = [ "${pkgs.${config.modules.wayland.activeCompositor}}/share/wayland-sessions" ];
       example = [ "${pkgs.hyprland}/share/wayland-sessions" ];
       description = "Paths to session directories to be used by tuigreet";
     };

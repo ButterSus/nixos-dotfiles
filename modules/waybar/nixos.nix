@@ -1,15 +1,19 @@
 { config, lib, pkgs, ... }:
 
 let
-  inherit (lib) mkEnableOption;
+  inherit (lib) mkIf;
   cfg = config.modules.waybar;
 in
 {
-  imports = [ ./home.nix ];
-  config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.waybar ];
-    # Add other NixOS specific configurations for Waybar here if needed in the future
-    # NixOS specific configurations for Waybar would go here.
-    # For Waybar, most configuration is done via Home Manager, so this might remain empty.
+  # Import home.nix
+  imports = [
+    ./home.nix
+  ];
+
+  config = mkIf cfg.enable {
+    # System Packages
+    environment.systemPackages = with pkgs; [
+      waybar
+    ];
   };
 }

@@ -4,7 +4,7 @@ let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.system;
 
-  # Core home configuration for this module (empty for system)
+  # Core home configuration for this module
   moduleHomeConfig = {};
 
 in {

@@ -8,7 +8,7 @@ let
   moduleHomeConfig = {
     # User Specific Packages
     home.packages = with pkgs; [
-      someUserPackage # Placeholder for user-specific packages
+      someUserPackage
     ];
 
     # Home Manager Options for this module

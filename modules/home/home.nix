@@ -13,7 +13,6 @@ let
   };
 
 in {
-  # Keep primary user option here so it's compatible with standalone Home Manager
   options.primaryUser = lib.mkOption {
     type = lib.types.str;
     description = "The primary user of the system (used for primary-user-specific settings).";

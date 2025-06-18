@@ -1,19 +1,20 @@
 { config, lib, pkgs, inputs, isHMStandaloneContext, ... }:
 
+# TODO: Fix lua5.1 and luarocks issues
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.nvim;
 
   # Get AstroNvim dotfiles from flake inputs
-  astroNvim = inputs.astronvim-dotfiles;
-  nvimFiles = builtins.attrNames (builtins.readDir astroNvim);
+  nvimFiles = builtins.attrNames (builtins.readDir inputs.astronvim-dotfiles);
   nvimDotfiles = builtins.listToAttrs (map (name: {
     name = ".config/nvim/${name}";
-    value = { source = "${astroNvim}/${name}"; };
+    value = { source = "${inputs.astronvim-dotfiles}/${name}"; };
   }) nvimFiles);
 
   # Core home configuration for this module
   moduleHomeConfig = {
+    # User Specific Packages
     home.packages = with pkgs; [
       lazygit
       ripgrep

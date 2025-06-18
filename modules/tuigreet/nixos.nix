@@ -1,25 +1,33 @@
+# Inspired by: https://github.com/sjcobb2022/nixos-config/blob/main/hosts/common/optional/greetd.nix
 { config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf;
   cfg = config.modules.tuigreet;
+
 in {
+  # Import home.nix
   imports = [
     ./home.nix
   ];
   
   config = mkIf cfg.enable {
+    # System Packages
     environment.systemPackages = with pkgs; [
       greetd.tuigreet
     ];
 
-    # Configure proper VT allocation
-    services.getty.autologinUser = lib.mkForce null; # Disable any autologin
+    # Disable autologin
+    services.getty.autologinUser = lib.mkForce null;
     
     # Set up greetd service
     services.greetd = {
       enable = true;
-      vt = 7; # Use virtual terminal 7 (traditional display manager VT)
+      # Restart after failure
+      restart = true;
+      # Use virtual terminal 7 (traditional display manager VT)
+      vt = 7;
+
       settings = {
         default_session = {
           command = let
@@ -50,7 +58,8 @@ in {
       Type = "idle";
       StandardInput = "tty";
       StandardOutput = "tty";
-      StandardError = "journal"; # Prevent errors from spamming on screen
+      # Prevent errors from spamming on screen
+      StandardError = "journal"; 
       # Prevent bootlogs from spamming on screen
       TTYReset = true;
       TTYVHangup = true;

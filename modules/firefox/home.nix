@@ -1,3 +1,5 @@
+# Inspired by: https://github.com/oddlama/nix-config/blob/main/users/myuser/graphical/firefox.nix
+# And also: https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
 { config, lib, pkgs, isHMStandaloneContext, ... }:
 
 let

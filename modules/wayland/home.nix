@@ -4,16 +4,18 @@ let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.wayland;
 
-  # Core home configuration for this module (empty for now)
+  # Core home configuration for this module
   moduleHomeConfig = {};
 
 in {
   options.modules.wayland = {
     enable = mkEnableOption "Enable base Wayland configuration and dependencies";
+    
+    # This options helps to ensure that only one compositor is enabled
     activeCompositor = mkOption {
-      type = types.nullOr (types.enum [ "hyprland" "sway" ]); # Allow null or specific compositors
-      default = null;
-      description = "Specifies the primary active Wayland compositor (e.g., hyprland, sway). Set by compositor modules.";
+      type = types.string;
+      default = "";
+      description = "Specify the active Wayland compositor (e.g., hyprland, sway)";
     };
   };
 

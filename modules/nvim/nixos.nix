@@ -4,11 +4,13 @@ let
   inherit (lib) mkIf;
   cfg = config.modules.nvim;
 in {
+  # Import home.nix
   imports = [
     ./home.nix
   ];
 
   config = mkIf cfg.enable {
+    # System packages
     environment.systemPackages = with pkgs; [
       neovim
     ] ++ lib.optionals cfg.enableXorgClipboard [
