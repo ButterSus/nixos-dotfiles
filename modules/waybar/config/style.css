@@ -4,18 +4,18 @@
 }
 
 window#waybar {
-	background: #292b2e;
-	color: #fdf6e3;
+	background: #1e1e2e; /* base */
+	color: #cdd6f4;     /* text */
 }
 
 #custom-right-arrow-dark,
 #custom-left-arrow-dark {
-	color: #1a1a1a;
+	color: #11111b; /* crust */
 }
 #custom-right-arrow-light,
 #custom-left-arrow-light {
-	color: #292b2e;
-	background: #1a1a1a;
+	color: #1e1e2e; /* base */
+	background: #11111b; /* crust */
 }
 
 #workspaces,
@@ -28,40 +28,40 @@ window#waybar {
 #battery,
 #disk,
 #tray {
-	background: #1a1a1a;
+	background: #11111b; /* mantle */
 }
 
 #workspaces button {
 	padding: 0 2px;
-	color: #fdf6e3;
+	color: #cdd6f4; /* text */
 }
 #workspaces button.focused {
-	color: #268bd2;
+	color: #cba6f7; /* mauve accent */
 }
 #workspaces button:hover {
 	box-shadow: inherit;
 	text-shadow: inherit;
 }
 #workspaces button:hover {
-	background: #1a1a1a;
-	border: #1a1a1a;
+	background: #181825; /* mantle */
+	border: #181825;    /* mantle */
 	padding: 0 3px;
 }
 
 #pulseaudio {
-	color: #268bd2;
+	color: #89b4fa; /* blue */
 }
 #memory {
-	color: #2aa198;
+	color: #94e2d5; /* teal */
 }
 #cpu {
-	color: #6c71c4;
+	color: #cba6f7; /* mauve */
 }
 #battery {
-	color: #859900;
+	color: #a6e3a1; /* green */
 }
 #disk {
-	color: #b58900;
+	color: #f9e2af; /* yellow */
 }
 
 #clock,
