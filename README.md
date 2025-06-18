@@ -32,13 +32,7 @@ These are my personal NixOS and Home Manager dotfiles, built with Flakes.
 
 See the [guide in the hosts directory](./hosts/README.md).
 
-## Quick Dev Tip: Untracked Files
+## Notes
 
-Nix flakes ignore untracked files by default. If you're testing changes that aren't staged in Git yet, use the `--impure` flag:
-
-```bash
-sudo nixos-rebuild switch --flake .#hostname --impure
-# or for Home Manager:
-home-manager switch --flake .#hostname --impure
-```
-Don't forget to `git add` and commit your changes when they're ready!
+- All modules are using catppuccin color scheme, there is no plan to make it configurable.
+- I use AI to generate some configs, I'll be remaking them in the future.
