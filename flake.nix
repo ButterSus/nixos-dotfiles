@@ -9,6 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
+    # Overlays
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
     # Additional flake inputs (no need to specify these in parameters)
     astronvim-dotfiles = {
       url = "github:ButterSus/astronvim-dotfiles";
@@ -18,6 +24,10 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: let
     lib = nixpkgs.lib;
+    
+    overlays = with inputs; [
+      nur.overlays.default
+    ];
 
     importModules = modulesPath: filename: let
       entries = builtins.readDir modulesPath;
@@ -31,6 +41,7 @@
       modules = (importModules ./modules "nixos") ++ [
         (./hosts + "/${hostname}/hardware-configuration.nix")
         (./hosts + "/${hostname}/configuration.nix")
+        { nixpkgs.overlays = overlays; }
         home-manager.nixosModules.home-manager {
           home-manager = {
             useGlobalPkgs = true;
@@ -45,6 +56,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       extraSpecialArgs = { inherit inputs hostname; isHMStandaloneContext = true; };
       modules = (importModules ./modules "home") ++ [
+        { nixpkgs.overlays = overlays; }
         (./hosts + "/${hostname}/home.nix")
       ];
     };
