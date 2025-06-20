@@ -8,6 +8,12 @@
 
 {
   primaryUser = "buttersus";
+  
+  # Main theme
+  catppuccin = {
+    flavor = "mocha";
+    accent = "mauve";
+  };
 
   # Home Manager configuration
   modules.home = {
@@ -50,19 +56,22 @@
     };
   };
   
-  # Enable the TUI Greet module
-  modules.tuigreet = {
-    enable = true;
-    sessions = [
-      "${pkgs.hyprland}/share/wayland-sessions"
-    ];
-    settings = {
-      showTime = true;
-      rememberLastSession = true;
-      rememberUser = true;
-      extraArgs = [];
-    };
-  };
+  # # Enable the TUI Greet module
+  # modules.tuigreet = {
+  #   enable = true;
+  #   settings = {
+  #     showTime = true;
+  #     rememberLastSession = true;
+  #     rememberUser = true;
+  #     extraArgs = [];
+  #   };
+  # };
+
+  # Enable KDE Greet module
+  modules.sddm.enable = true;
+  
+  # Set gtk theme
+  modules.gtk.enable = true;
   
   # Enable the git module
   modules.git = {
@@ -74,13 +83,21 @@
   # Enable the Neovim module
   modules.nvim = {
     enable = true;   
-    enableXorgClipboard = true;
   };
 
-  # Enable Hyprland Wayland compositor
-  modules.wayland.enable = true;
-  modules.wayland.activeCompositor = "hyprland";
-  modules.hyprland.enable = true;
+  # Enable Wayland server
+  modules.wayland = {
+    enable = true;
+    activeCompositor = "hyprland";
+    enableWaypipe = true;
+  };
+
+  # Enable hyprland
+  modules.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+    layouts = [ "us" "ru" ];
+  };
 
   # Enable Waybar status bar
   modules.waybar.enable = true;

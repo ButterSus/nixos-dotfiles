@@ -4,6 +4,7 @@
   inputs = {
     # Main NixOS flake
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    catppuccin.url = "github:catppuccin/nix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,9 +21,14 @@
       url = "github:ButterSus/astronvim-dotfiles";
       flake = false;
     };
+    
+    sddm-astronaut-theme = {
+      url = "github:Keyitdev/sddm-astronaut-theme";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: let
+  outputs = { nixpkgs, catppuccin, home-manager, ... }@inputs: let
     lib = nixpkgs.lib;
     
     overlays = with inputs; [
@@ -42,6 +48,7 @@
         (./hosts + "/${hostname}/hardware-configuration.nix")
         (./hosts + "/${hostname}/configuration.nix")
         { nixpkgs.overlays = overlays; }
+        catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager {
           home-manager = {
             useGlobalPkgs = true;
@@ -56,8 +63,8 @@
       pkgs = nixpkgs.legacyPackages.${system};
       extraSpecialArgs = { inherit inputs hostname; isHMStandaloneContext = true; };
       modules = (importModules ./modules "home") ++ [
-        { nixpkgs.overlays = overlays; }
         (./hosts + "/${hostname}/home.nix")
+        { nixpkgs.overlays = overlays; }
       ];
     };
 

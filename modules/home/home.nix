@@ -1,4 +1,4 @@
-{ config, lib, pkgs, isHMStandaloneContext, ... }:
+{ config, lib, pkgs, inputs, isHMStandaloneContext, ... }:
 
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
@@ -10,6 +10,9 @@ let
     home.homeDirectory = "/home/${config.primaryUser}";
     home.stateVersion = cfg.stateVersion;
     programs.home-manager.enable = true;
+
+    # We put it here instead of flake.nix, since we need access to config.primaryUser
+    imports = [ inputs.catppuccin.homeModules.catppuccin ];
   };
 
 in {

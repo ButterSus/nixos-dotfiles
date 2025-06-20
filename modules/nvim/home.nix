@@ -5,11 +5,13 @@ let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.nvim;
 
+  inherit (inputs) astronvim-dotfiles;
+
   # Get AstroNvim dotfiles from flake inputs
-  nvimFiles = builtins.attrNames (builtins.readDir inputs.astronvim-dotfiles);
+  nvimFiles = builtins.attrNames (builtins.readDir astronvim-dotfiles);
   nvimDotfiles = builtins.listToAttrs (map (name: {
     name = ".config/nvim/${name}";
-    value = { source = "${inputs.astronvim-dotfiles}/${name}"; };
+    value = { source = "${astronvim-dotfiles}/${name}"; };
   }) nvimFiles);
 
   # Core home configuration for this module

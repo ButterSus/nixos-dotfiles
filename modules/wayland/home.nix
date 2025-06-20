@@ -13,10 +13,12 @@ in {
     
     # This options helps to ensure that only one compositor is enabled
     activeCompositor = mkOption {
-      type = types.string;
+      type = types.str;
       default = "";
       description = "Specify the active Wayland compositor (e.g., hyprland, sway)";
     };
+    
+    enableWaypipe = mkEnableOption "Enable Waypipe";
   };
 
   # Conditionally apply the configuration

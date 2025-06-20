@@ -35,6 +35,8 @@ in {
     
     system.stateVersion = cfg.stateVersion;
     
+    catppuccin.grub.enable = true;
+
     boot = {
       loader = if cfg.boot.loaderType == "systemd-boot" then {
         timeout = 3;
@@ -44,7 +46,7 @@ in {
           editor = false;
         };
         efi.canTouchEfiVariables = true;
-      } else {
+      } else if cfg.boot.loaderType == "grub" then {
         timeout = 3;
         grub = {
           enable = true;
@@ -53,7 +55,7 @@ in {
           useOSProber = cfg.boot.useOSProber;
         };
         efi.canTouchEfiVariables = true;
-      };
+      } else builtins.throw "Normally, this error should never occur";
     };
     
     nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -11,12 +11,26 @@ in {
   ];
 
   config = mkIf cfg.enable {
+    # System Packages
+    environment.systemPackages = with pkgs; [
+      hyprpicker    # Color picker
+      wl-clipboard  # Clipboard
+      hyprpaper     # Wallpaper manager
+    ];
+
+    services.seatd.enable = true;
+
     programs.hyprland = {
       enable = true;
       withUWSM = true;
       xwayland.enable = cfg.xwayland.enable;
     };
     
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    programs.hyprlock.enable = true;
+
+    # Idle daemon
+    services.hypridle = {
+      enable = true;
+    };
   };
 }

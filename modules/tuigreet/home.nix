@@ -12,6 +12,10 @@ in {
   options.modules.tuigreet = {
     assertions = [
       {
+        assertion = cfg.enable -> !config.modules.sddm.enable;
+        message = "Please disable sddm.";
+      }
+      {
         assertion = cfg.enable -> config.modules.wayland.enable;
         message = "Please enable wayland.";
       }
