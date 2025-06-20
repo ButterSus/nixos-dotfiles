@@ -1,15 +1,18 @@
-{ config, lib, pkgs, isHMStandaloneContext, ... }:
+{ config, lib, pkgs, inputs, isHMStandaloneContext, ... }:
 
 # TODO: Remake this module, add hyprpaper
 let
   inherit (lib) mkIf mkEnableOption mkOption types recursiveUpdate;
   cfg = config.modules.hyprland;
   
+  inherit (inputs) hyprland Hyprspace;
+  
   mainMod = "SUPER";
 
   moduleHomeConfig = recursiveUpdate {
     wayland.windowManager.hyprland = {
       enable = true;
+      package = hyprland.packages.${pkgs.system}.hyprland;
       xwayland.enable = cfg.xwayland.enable;
       systemd = {
         enable = true;
@@ -19,6 +22,9 @@ let
       settings = (import ./config/settings.nix { inherit lib config cfg; }) //
                  (import ./config/windowrules.nix) //
                  (import ./config/keybinds.nix { inherit mainMod; });
+      plugins = [
+        Hyprspace.packages.${pkgs.system}.Hyprspace
+      ];
     };
 
     # TODO: Move packages to modules
@@ -36,7 +42,6 @@ let
       # Screenshot utilities
       grim
       slurp
-      
     ];
   } (import ./config/theming.nix { inherit pkgs; });
 

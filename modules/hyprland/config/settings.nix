@@ -3,7 +3,6 @@
   # Environment variables (env)
   env = [
     "XDG_SESSION_TYPE,wayland"
-    "NIXOS_OZONE_WL,1"
     "MOZ_ENABLE_WAYLAND,1"
     "_JAVA_AWT_WM_NONREPARENTING,1"
     "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -52,10 +51,6 @@
   dwindle = {
     pseudotile = true;
     preserve_split = true;
-  };
-    
-  master = {
-    new_is_master = true;
   };
   
   debug = {

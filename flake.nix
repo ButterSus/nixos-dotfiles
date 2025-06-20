@@ -1,6 +1,6 @@
 {
   description = "Minimal Modular NixOS Configuration";
-
+  
   inputs = {
     # Main NixOS flake
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -16,6 +16,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
+    # Maybe, soon, I'll consider using stylix.
+    
     # Additional flake inputs (no need to specify these in parameters)
     astronvim-dotfiles = {
       url = "github:ButterSus/astronvim-dotfiles";
@@ -25,6 +27,18 @@
     sddm-astronaut-theme = {
       url = "github:Keyitdev/sddm-astronaut-theme";
       flake = false;
+    };
+    
+    hyprland = {  # Use latest hyprland version to use most recent plugins
+      type = "git";
+      submodules = true;
+      url = "https://github.com/hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";  # Don't duplicate
     };
   };
 

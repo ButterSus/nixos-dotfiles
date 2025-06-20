@@ -17,8 +17,6 @@ in {
       mako
     ];
 
-    services.seatd.enable = true;
-    services.dbus.enable = true;
     services.gnome.gnome-keyring.enable = true;
     environment.sessionVariables = {
       XDG_SESSION_TYPE = "wayland";

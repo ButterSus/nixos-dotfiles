@@ -19,6 +19,7 @@
     "${mainMod}, M        , exit"
     "${mainMod}, O        , exec, killall waybar || waybar"
     "${mainMod}, X        , exec, hyprpicker --autocopy"
+    "${mainMod}, G        , overview:toggle"
     "${mainMod}, Backspace, exec, hyprlock"
 
     # Move focus

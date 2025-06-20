@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
   inherit (lib) mkIf;
   cfg = config.modules.hyprland;
+  
+  inherit (inputs) hyprland;
 
 in {
   # Import home.nix
@@ -18,10 +20,9 @@ in {
       hyprpaper     # Wallpaper manager
     ];
 
-    services.seatd.enable = true;
-
     programs.hyprland = {
       enable = true;
+      package = hyprland.packages.${pkgs.system}.hyprland;
       withUWSM = true;
       xwayland.enable = cfg.xwayland.enable;
     };
