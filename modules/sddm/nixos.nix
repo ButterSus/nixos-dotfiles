@@ -69,6 +69,7 @@ in {
       settings = {
         General = {
           InputMethod = "qtvirtualkeyboard";
+          MinimumVT = 7;  # Unfortunately, it's ignored since sddm v0.20
         };
       };
       
