@@ -83,11 +83,13 @@
         
         # NixOS modules
         inputs.catppuccin.nixosModules.catppuccin
+        inputs.sops-nix.nixosModules.sops
 
         # Home Manager shared modules
         {
           home-manager.sharedModules = [
             inputs.catppuccin.homeModules.catppuccin
+            inputs.sops-nix.homeManagerModules.sops
           ];
         }
       ];
@@ -107,6 +109,7 @@
         {
           imports = [
             inputs.catppuccin.homeModules.catppuccin
+            inputs.sops-nix.homeManagerModules.sops
           ];
         }
       ];
