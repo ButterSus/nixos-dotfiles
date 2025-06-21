@@ -106,4 +106,6 @@
   modules.firefox = {
     enable = true;
   };
+  
+  modules.windsurf.enable = true;
 }
