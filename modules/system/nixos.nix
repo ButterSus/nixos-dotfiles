@@ -66,5 +66,8 @@ in {
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
+    
+    # Prevent closed lid from suspending
+    services.logind.lidSwitchExternalPower = "ignore";
   };
 }
