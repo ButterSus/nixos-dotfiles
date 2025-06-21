@@ -16,21 +16,41 @@ let
 
   # Core home configuration for this module
   moduleHomeConfig = {
-    # User Specific Packages
-    home.packages = with pkgs; [
-      lazygit
-      ripgrep
-      python3
-      bottom
-      lua
-      gnumake
-      clang
-      fd
-      git
-      luarocks
-    ];
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      extraPackages = with pkgs; [
+        # Runtime dependencies
+        gnumake
+        ripgrep
+        fzf  # Just in case, though not used in my config
+        clang  # Is better than gcc imho
+        luajit  # Faster than lua5_1
+        (python3.withPackages (ps: with ps; [ pip ]))
+        bottom
+        unzip
+        git
+        fd
+        luarocks
+        
+        # Tools (optional)
+        lazygit
+        
+        # Language servers
+        stylua
+        nixd
+        deadnix
+        statix
+      ];
+    };
+
     # Symlink all files from AstroNvim
     home.file = nvimDotfiles;
+    
+    # For conditional nix-specific fragment of NeoVim config
+    home.sessionVariables = {
+      "NIX_NEOVIM" = 1;
+    };
   };
 
 in {
