@@ -10,6 +10,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
+    # Secret provisioning
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
     # Overlays
     nur = {
       url = "github:nix-community/NUR";
@@ -42,7 +48,7 @@
     };
   };
 
-  outputs = { nixpkgs, catppuccin, home-manager, ... }@inputs: let
+  outputs = { nixpkgs, home-manager, ... }@inputs: let
     lib = nixpkgs.lib;
     
     overlays = with inputs; [
@@ -59,16 +65,30 @@
       inherit system;
       specialArgs = { inherit inputs hostname; isHMStandaloneContext = false; };
       modules = (importModules ./modules "nixos") ++ [
-        (./hosts + "/${hostname}/hardware-configuration.nix")
-        (./hosts + "/${hostname}/configuration.nix")
-        { nixpkgs.overlays = overlays; }
-        catppuccin.nixosModules.catppuccin
+        # Home Manager module configuration
         home-manager.nixosModules.home-manager {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "backup";
           };
+        }
+
+        # Per-host configuration
+        (./hosts + "/${hostname}/hardware-configuration.nix")
+        (./hosts + "/${hostname}/configuration.nix")
+
+        # Overlays
+        { nixpkgs.overlays = overlays; }
+        
+        # NixOS modules
+        inputs.catppuccin.nixosModules.catppuccin
+
+        # Home Manager shared modules
+        {
+          home-manager.sharedModules = [
+            inputs.catppuccin.homeModules.catppuccin
+          ];
         }
       ];
     };
@@ -77,8 +97,18 @@
       pkgs = nixpkgs.legacyPackages.${system};
       extraSpecialArgs = { inherit inputs hostname; isHMStandaloneContext = true; };
       modules = (importModules ./modules "home") ++ [
+        # Per-host configuration
         (./hosts + "/${hostname}/home.nix")
+
+        # Overlays
         { nixpkgs.overlays = overlays; }
+        
+        # Home Manager modules
+        {
+          imports = [
+            inputs.catppuccin.homeModules.catppuccin
+          ];
+        }
       ];
     };
 
