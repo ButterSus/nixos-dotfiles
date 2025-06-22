@@ -8,19 +8,6 @@
 
 {
   primaryUser = "buttersus";
-  
-  # Main theme
-  catppuccin = {
-    flavor = "mocha";
-    accent = "mauve";
-  };
-
-  # Home Manager configuration
-  modules.home = {
-    enable = true;
-    enableCli = true;
-    stateVersion = "24.11";
-  };
 
   # System configuration
   modules.fonts = { enable = true; };
@@ -42,6 +29,22 @@
     networking = {
       enableNetworkManager = true;
     };
+  };
+  
+  # Enable secrets decryption
+  modules.sops.enable = true;
+
+  # Main theme
+  catppuccin = {
+    flavor = "mocha";
+    accent = "mauve";
+  };
+
+  # Home Manager configuration
+  modules.home = {
+    enable = true;
+    enableCli = true;
+    stateVersion = "24.11";
   };
   
   # Enable the SSH module with local password authentication
