@@ -80,6 +80,25 @@ let
       ];
     };
 
+    # Secrets
+    sops = lib.optionalAttrs config.modules.sops.enable {
+      secrets.github_id_ed25519 = {
+        # Read-only for the user
+        mode = "0400";
+        path = "/home/${config.primaryUser}/.ssh/github_id_ed25519";
+      };
+    };
+
+    # SSH Configuration
+    programs.ssh.extraConfig = lib.optionalString config.modules.sops.enable
+      ''
+      Host github.com
+        HostName github.com
+        User git
+        IdentityFile /home/${config.primaryUser}/.ssh/github_id_ed25519
+        IdentitiesOnly yes
+      '';
+
     # Make sure git config directory exists
     home.file.".config/git/.keep".text = "";
   };
@@ -87,6 +106,13 @@ let
 in {
   # Module Options
   options.modules.git = {
+    assertions = [
+      {
+        assertion = (cfg.enable && config.modules.sops.enable) -> config.modules.ssh.enable;
+        message = "Please enable ssh module.";
+      }
+    ];
+
     enable = mkEnableOption "Enable Git with configuration";
 
     userName = mkOption {
