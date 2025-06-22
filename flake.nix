@@ -102,7 +102,7 @@
       extraSpecialArgs = { inherit inputs hostname; isHMStandaloneContext = true; };
       modules = (importModules ./modules "home") ++ [
         # Per-host configuration
-        (./hosts + "/${hostname}/home.nix")
+        (./hosts + "/${hostname}/configuration.nix")
 
         # Overlays
         { nixpkgs.overlays = overlays; }
