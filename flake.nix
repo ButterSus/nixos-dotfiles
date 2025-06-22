@@ -91,6 +91,8 @@
             inputs.catppuccin.homeModules.catppuccin
             inputs.sops-nix.homeManagerModules.sops
           ];
+          
+          modules.sops.defaultSopsFile = ./secrets/default.yaml;
         }
       ];
     };
@@ -111,6 +113,8 @@
             inputs.catppuccin.homeModules.catppuccin
             inputs.sops-nix.homeManagerModules.sops
           ];
+          
+          modules.sops.defaultSopsFile = ./secrets/default.yaml;
         }
       ];
     };
