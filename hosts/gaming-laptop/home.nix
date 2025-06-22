@@ -101,6 +101,9 @@
     xwayland.enable = true;
     layouts = [ "us" "ru" ];
   };
+  
+  # Enable fuzzel app launcher
+  modules.fuzzel.enable = true;
 
   # Enable Waybar status bar
   modules.waybar.enable = true;

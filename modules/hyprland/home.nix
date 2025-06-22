@@ -33,9 +33,6 @@ let
       # Terminal
       kitty
       
-      # Application launcher
-      wofi
-      
       # File manager
       xfce.thunar
       

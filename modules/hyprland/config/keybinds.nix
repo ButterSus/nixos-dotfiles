@@ -4,7 +4,7 @@
     # Applications
     "${mainMod}, Q, exec, kitty"
     "${mainMod}, B, exec, firefox"
-    "${mainMod}, D, exec, wofi --show drun"
+    "${mainMod}, D, exec, fuzzel"
     
     # Window Actions
     "${mainMod}      , P, pseudo"
