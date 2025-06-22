@@ -5,7 +5,14 @@ let
   cfg = config.modules.ssh;
 
   # Core home configuration for this module (empty for ssh)
-  moduleHomeConfig = {};
+  moduleHomeConfig = {
+    programs.ssh = {
+      enable = true;
+      addKeysToAgent = "yes";
+    };
+
+    services.ssh-agent.enable = true;
+  };
 
 in {
   options.modules.ssh = {
