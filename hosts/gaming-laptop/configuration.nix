@@ -123,6 +123,9 @@
   # Vesktop / Discord (Vencord)
   modules.vesktop.enable = true;
   
+  # MaterialGram
+  modules.materialgram.enable = true;
+  
   # Other applications
   modules.windsurf.enable = true;
   modules.steam.enable = true;

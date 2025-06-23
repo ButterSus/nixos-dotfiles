@@ -11,6 +11,8 @@
       "${mainMod}, D, exec, fuzzel")
     (lib.optionalString config.modules.vesktop.enable
       "${mainMod}, A, exec, vesktop")
+    (lib.optionalString config.modules.materialgram.enable
+      "${mainMod}, T, exec, materialgram")
     
     # Window Actions
     "${mainMod}      , P, pseudo"
