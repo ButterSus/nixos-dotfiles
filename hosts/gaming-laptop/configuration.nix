@@ -129,4 +129,5 @@
   # Other applications
   modules.windsurf.enable = true;
   modules.steam.enable = true;
+  modules.intellij-community.enable = true;
 }
