@@ -113,6 +113,11 @@
     enable = true;
   };
   
+  # Enable kitty
+  modules.kitty = {
+    enable = true;
+  };
+  
   # Other applications
   modules.windsurf.enable = true;
   modules.steam.enable = true;

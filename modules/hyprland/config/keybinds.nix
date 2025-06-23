@@ -1,10 +1,14 @@
-{ mainMod }:
+{ lib, config, cfg, mainMod, ... }:
+
 {
   bind = [
     # Applications
-    "${mainMod}, Q, exec, kitty"
-    "${mainMod}, B, exec, firefox"
-    "${mainMod}, D, exec, fuzzel"
+    (lib.optionalString config.modules.kitty.enable
+      "${mainMod}, Q, exec, kitty")
+    (lib.optionalString config.modules.firefox.enable
+      "${mainMod}, B, exec, firefox")
+    (lib.optionalString config.modules.fuzzel.enable
+      "${mainMod}, D, exec, fuzzel")
     
     # Window Actions
     "${mainMod}      , P, pseudo"
@@ -16,8 +20,10 @@
     "${mainMod}      , N, togglesplit"
     
     # Hyprland Other Actions
+    (lib.optionalString config.modules.waybar.enable
+      "${mainMod}, O, exec, killall waybar || waybar")
+
     "${mainMod}, M        , exit"
-    "${mainMod}, O        , exec, killall waybar || waybar"
     "${mainMod}, X        , exec, hyprpicker --autocopy"
     "${mainMod}, G        , overview:toggle"
     "${mainMod}, Backspace, exec, hyprlock"

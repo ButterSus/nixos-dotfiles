@@ -21,7 +21,7 @@ let
       };
       settings = (import ./config/settings.nix { inherit lib config cfg; }) //
                  (import ./config/windowrules.nix) //
-                 (import ./config/keybinds.nix { inherit mainMod; });
+                 (import ./config/keybinds.nix { inherit lib config cfg mainMod; });
       plugins = [
         Hyprspace.packages.${pkgs.system}.Hyprspace
       ];
@@ -30,9 +30,6 @@ let
     # TODO: Move packages to modules
     # User Specific Packages
     home.packages = with pkgs; [
-      # Terminal
-      kitty
-      
       # File manager
       xfce.thunar
       
