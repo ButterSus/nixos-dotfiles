@@ -13,6 +13,9 @@ in {
     # System Packages
     environment.systemPackages = with pkgs; [
       magnetic-catppuccin-gtk
+      
+      # gtk3 settings editor
+      nwg-look
     ];
   };
 }

@@ -16,6 +16,11 @@ let
     
     # Gtk is deprecated for catppuccin
     # catppuccin.gtk.enable = true;
+    
+    gtk.theme = {
+      package = pkgs.magnetic-catppuccin-gtk;
+      name = "Catppuccin-GTK-Dark";
+    };
   };
 
 in {
