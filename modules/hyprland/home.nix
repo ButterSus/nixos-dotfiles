@@ -37,7 +37,7 @@ let
       grim
       slurp
     ];
-  } (import ./config/theming.nix { inherit pkgs; });
+  } (import ./config/services.nix { inherit pkgs; });
 
 in {
   options.modules.hyprland = {

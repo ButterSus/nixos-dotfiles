@@ -15,9 +15,10 @@ in {
   config = mkIf cfg.enable {
     # System Packages
     environment.systemPackages = with pkgs; [
-      hyprpicker    # Color picker
-      wl-clipboard  # Clipboard
-      hyprpaper     # Wallpaper manager
+      hyprpicker       # Color picker
+      wl-clipboard     # Clipboard
+      hyprpaper        # Wallpaper manager
+      hyprpolkitagent  # Policy Kit
     ];
 
     programs.hyprland = {

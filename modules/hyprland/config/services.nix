@@ -37,6 +37,9 @@ in {
       ];
     };
   };
+  
+  # Policy kit
+  services.hyprpolkitagent.enable = true;
 
   # This cursor in my opinion is worse than bibata-cursors
   # catppuccin.cursors.enable = true;
