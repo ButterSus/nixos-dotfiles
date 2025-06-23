@@ -12,9 +12,7 @@ in {
   config = mkIf cfg.enable {
     # System Packages
     environment.systemPackages = with pkgs; [
-      (discord.override {
-        withVencord = true;
-      })
+      vesktop
     ];
   };
 }
