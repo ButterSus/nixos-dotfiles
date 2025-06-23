@@ -35,6 +35,11 @@
       flake = false;
     };
     
+    catppuccin-discord = {
+      url = "github:catppuccin/discord";
+      flake = false;
+    };
+    
     hyprland = {  # Use latest hyprland version to use most recent plugins
       type = "git";
       submodules = true;
