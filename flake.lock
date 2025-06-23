@@ -104,6 +104,22 @@
         "type": "github"
       }
     },
+    "catppuccin-qt5ct": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743247755,
+        "narHash": "sha256-wDj6kQ2LQyMuEvTQP6NifYFdsDLT+fMCe3Fxr8S783w=",
+        "owner": "catppuccin",
+        "repo": "qt5ct",
+        "rev": "cb585307edebccf74b8ae8f66ea14f21e6666535",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "qt5ct",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -529,6 +545,7 @@
         "astronvim-dotfiles": "astronvim-dotfiles",
         "catppuccin": "catppuccin",
         "catppuccin-discord": "catppuccin-discord",
+        "catppuccin-qt5ct": "catppuccin-qt5ct",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",

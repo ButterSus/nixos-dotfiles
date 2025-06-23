@@ -76,6 +76,9 @@
   # Set gtk theme
   modules.gtk.enable = true;
   
+  # Set qt5/qt6 theme
+  modules.qt.enable = true;
+  
   # Enable the git module
   modules.git = {
     enable = true;
