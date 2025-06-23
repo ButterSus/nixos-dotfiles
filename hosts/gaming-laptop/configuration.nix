@@ -79,6 +79,9 @@
   # Set qt5/qt6 theme
   modules.qt.enable = true;
   
+  # Gnome keyring
+  modules.gnome-keyring.enable = true;
+  
   # Enable the git module
   modules.git = {
     enable = true;
