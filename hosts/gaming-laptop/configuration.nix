@@ -84,9 +84,8 @@
   };
   
   # Enable the Neovim module
-  modules.nvim = {
-    enable = true;   
-  };
+  modules.nvim.enable = true;
+  modules.vim.enable = true;
 
   # Enable Wayland server
   modules.wayland = {
