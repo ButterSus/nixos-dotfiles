@@ -5,7 +5,13 @@ let
   cfg = config.modules.amnezia-vpn;
 
   # Core home configuration for this module
-  moduleHomeConfig = {};
+  moduleHomeConfig = {
+    sops = lib.optionalAttrs config.modules.sops.enable {
+      secrets.amnezia_vpn_key = {
+        mode = "0400";
+      };
+    };
+  };
 
 in {
   # Module Options

@@ -117,6 +117,9 @@
     enable = true;
   };
   
+  # Amnezia VPN
+  modules.amnezia-vpn.enable = true;
+  
   # Other applications
   modules.windsurf.enable = true;
   modules.steam.enable = true;

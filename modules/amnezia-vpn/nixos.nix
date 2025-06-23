@@ -11,8 +11,6 @@ in {
 
   config = mkIf cfg.enable {
     # System Packages
-    environment.systemPackages = with pkgs; [
-      amnezia-vpn
-    ];
+    programs.amnezia-vpn.enable = true;
   };
 }
