@@ -82,6 +82,9 @@
   # Gnome keyring
   modules.gnome-keyring.enable = true;
   
+  # Wayland logout menu
+  modules.wlogout.enable = true;
+  
   # Enable the git module
   modules.git = {
     enable = true;

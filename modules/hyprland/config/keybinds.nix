@@ -13,6 +13,8 @@
       "${mainMod}, A, exec, vesktop")
     (lib.optionalString config.modules.materialgram.enable
       "${mainMod}, T, exec, materialgram")
+    (lib.optionalString config.modules.wlogout.enable
+      "${mainMod}, Z, exec, wlogout")
     
     # Window Actions
     "${mainMod}      , P, pseudo"
