@@ -10,6 +10,9 @@ let
     home.homeDirectory = "/home/${config.primaryUser}";
     home.stateVersion = cfg.stateVersion;
     programs.home-manager.enable = true;
+    
+    # This line allows to use home.sessionVariables
+    programs.bash.enable = true;
   };
 
 in {
