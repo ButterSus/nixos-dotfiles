@@ -8,11 +8,11 @@ let
   inherit (inputs) astronvim-dotfiles;
 
   # Get AstroNvim dotfiles from flake inputs
-  nvimFiles = builtins.attrNames (builtins.readDir astronvim-dotfiles);
-  nvimDotfiles = builtins.listToAttrs (map (name: {
+  nvimFileNames = builtins.attrNames (builtins.readDir astronvim-dotfiles);
+  nvimFileConfigs = builtins.listToAttrs (map (name: {
     name = ".config/nvim/${name}";
     value = { source = "${astronvim-dotfiles}/${name}"; };
-  }) nvimFiles);
+  }) nvimFileNames);
 
   # Core home configuration for this module
   moduleHomeConfig = {
@@ -45,7 +45,7 @@ let
     };
 
     # Symlink all files from AstroNvim
-    home.file = nvimDotfiles;
+    home.file = nvimFileConfigs;
     
     # For conditional nix-specific fragment of NeoVim config
     home.sessionVariables = {
