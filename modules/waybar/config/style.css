@@ -28,15 +28,22 @@ window#waybar {
 #battery,
 #disk,
 #tray {
-	background: #11111b; /* mantle */
+	background: #11111b; /* crust */
 }
 
 #workspaces button {
 	padding: 0 2px;
 	color: #cdd6f4; /* text */
 }
-#workspaces button.focused {
-	color: #cba6f7; /* mauve accent */
+
+/* For both hyprland & sway */
+#workspaces button.focused,
+#workspaces button.active {
+	background: #cba6f7; /* mauve accent */
+	color: #11111b; /* crust */
+	border-radius: 0px; /* make it squared */
+	padding: 0 6px; /* add more horizontal padding */
+	margin: 0 1px; /* add a bit of margin between buttons */
 }
 #workspaces button:hover {
 	box-shadow: inherit;
