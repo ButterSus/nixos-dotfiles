@@ -104,13 +104,13 @@ let
           "browser.newtabpage.activity-stream.showSponsored" = false;
           "browser.newtabpage.activity-stream.system.showSponsored" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-          # Disable Firefox login
-          "identity.fxaccounts.enabled" = false;
-          "identity.fxaccounts.toolbar.enabled" = false;
-          "identity.fxaccounts.pairing.enabled" = false;
-          "identity.fxaccounts.commands.enabled" = false;
-          # Don't use firefox password manager
-          "browser.contentblocking.report.lockwise.enabled" = false;
+
+          # Enable Firefox login
+          "identity.fxaccounts.enabled" = true;
+          "identity.fxaccounts.toolbar.enabled" = true;
+          "identity.fxaccounts.pairing.enabled" = true;
+          "identity.fxaccounts.commands.enabled" = true;
+
           # Disable annoying web features
           "dom.push.enabled" = false;
           "dom.push.connection.enabled" = false;
@@ -148,8 +148,9 @@ let
           "app.normandy.enabled" = false;
           "app.shield.optoutstudies.enabled" = false;
 
-          # Disable bluetooth location
-          "beacon.enabled" = false;
+          # Enable bluetooth location (required for perplexity.ai)
+          "beacon.enabled" = true;
+
           # Disable geolocation alltogether
           "geo.enabled" = false;
           # Use strict privacy
