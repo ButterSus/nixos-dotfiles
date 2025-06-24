@@ -13,7 +13,7 @@ in {
     
     stateVersion = mkOption {
       type = types.str;
-      default = "24.11";
+      example = "24.11";
       description = "The NixOS state version for this deployment";
     };
     
@@ -24,7 +24,7 @@ in {
     
     timeZone = mkOption {
       type = types.str;
-      default = "Europe/Moscow";
+      example = "Europe/Moscow";
       description = "System timezone";
     };
     
@@ -37,7 +37,7 @@ in {
     networking = {
       enableNetworkManager = mkOption {
         type = types.bool;
-        default = true;
+        example = true;
         description = "Whether to enable NetworkManager for network configuration";
       };
     };

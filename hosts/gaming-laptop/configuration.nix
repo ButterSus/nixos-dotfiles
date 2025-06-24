@@ -14,7 +14,7 @@
   modules.system = {
     enable = true;
     hostName = "unixporn";
-    timeZone = "Europe/Moscow";
+    timeZone = "Asia/Yakutsk";
     locale = "en_US.UTF-8";
     stateVersion = "24.11";
     extraCliTools.enable = true;
