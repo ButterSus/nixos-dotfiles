@@ -110,7 +110,11 @@
           # Allow non-free packages
           nixpkgs.config.allowUnfree = true;
         }
-      ];
+      ]
+      
+      # Host-specific NixOS configuration (if exists)
+      ++ (lib.optional (builtins.pathExists (./hosts + "/${hostname}/nixos.nix"))
+          (./hosts + "/${hostname}/nixos.nix"));
     };
 
     mkHomeConfiguration = { system, hostname }: home-manager.lib.homeManagerConfiguration {
@@ -135,7 +139,11 @@
           # Allow non-free packages
           nixpkgs.config.allowUnfree = true;
         }
-      ];
+      ]
+      
+      # Host-specific Home Manager configuration (if exists)
+      ++ (lib.optional (builtins.pathExists (./hosts + "/${hostname}/home.nix"))
+          (./hosts + "/${hostname}/home.nix"));
     };
 
     findHosts = path: lib.attrNames (lib.filterAttrs (n: v: v == "directory") (builtins.readDir path));
