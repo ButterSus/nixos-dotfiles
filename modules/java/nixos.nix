@@ -12,6 +12,6 @@ in {
 
   config = mkIf cfg.enable {
     # System Packages
-    environment.systemPackages = cfg.packages;
+    environment.systemPackages = lib.attrValues cfg.packages;
   };
 }

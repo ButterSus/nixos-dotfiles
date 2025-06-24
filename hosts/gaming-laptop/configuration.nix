@@ -141,6 +141,8 @@
   # Minecraft Modding
   modules.java = {
     enable = true;
-    packages = with pkgs; [ jdk17 ];
+    packages = {
+      inherit (pkgs) jdk17;
+    };
   };
 }

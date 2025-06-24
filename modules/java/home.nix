@@ -4,12 +4,12 @@ let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.java;
   
-  # Helper function to create JDK symlinks
+  # Helper function to create JDK symlinks from attribute set
   createJdkLinks = packages: 
-    lib.listToAttrs (map (pkg: {
-      name = ".jdks/${pkg.name}";
+    lib.mapAttrs' (name: pkg: {
+      name = ".jdks/${name}";
       value = { source = pkg; };
-    }) packages);
+    }) packages;
 
   # Core home configuration for this module
   moduleHomeConfig = {
@@ -23,13 +23,22 @@ in {
     
     packages = mkOption {
       description = ''
-        Java packages to install. Example:
+        Java packages to install as an attribute set where the key becomes the symlink name.
+        Example:
         ```
-          modules.java.packages = with pkgs; [ openjdk11 openjdk17 openjdk21 ];
+          modules.java.packages = with pkgs; {
+            jdk11 = openjdk11;
+            jdk17 = openjdk17;
+            jdk21 = openjdk21;
+            graalvm = graalvm-ce;
+          };
         ```
       '';
-      default = [];
-      type = types.listOf types.package;
+      default = {};
+      
+      # We use attrsOf types.package to allow
+      # using variable names as keys
+      type = types.attrsOf types.package;
     };
   };
   
