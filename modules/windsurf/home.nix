@@ -5,7 +5,31 @@ let
   cfg = config.modules.windsurf;
 
   # Core home configuration for this module
-  moduleHomeConfig = {};
+  moduleHomeConfig = {
+    programs.vscode = {
+      enable = true;
+
+      # Its configs location actually depends on this package.
+      package = pkgs.windsurf;
+      
+      # Let only NixOS manage extensions
+      mutableExtensionsDir = false;
+      
+      profiles.default = {
+        # userSettings = { ... };
+      };
+    };
+    
+    # OS-Keyring fix: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/%40logins_39559/visual-studio-code-gnome-keyring-fix-for-codeium-and-probably-other-things-d3815217ef54&ved=2ahUKEwjjgorb34mOAxXCZ0EAHe6GHMQQFnoECBQQAQ&usg=AOvVaw1YYWRg8vb7N3DV2UsrETky
+    home.file.".windsurf/argv.json".text = lib.optionalString config.modules.gnome-keyring.enable
+      (builtins.toJSON {
+        # This field is needed to prevent error from vscode
+        enable-crash-reporter = true;
+
+        # This is the actual fix
+        password-store = "gnome-libsecret";
+      });
+  };
 
 in {
   # Module Options
