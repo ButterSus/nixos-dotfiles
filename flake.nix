@@ -30,6 +30,8 @@
       flake = false;
     };
     
+    minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";    
+
     sddm-astronaut-theme = {
       url = "github:Keyitdev/sddm-astronaut-theme";
       flake = false;
@@ -94,6 +96,7 @@
         # NixOS modules
         inputs.catppuccin.nixosModules.catppuccin
         inputs.sops-nix.nixosModules.sops
+        inputs.minegrub-world-sel-theme.nixosModules.default
 
         # Home Manager shared modules
         {

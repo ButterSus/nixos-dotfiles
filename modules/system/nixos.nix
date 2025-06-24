@@ -35,7 +35,7 @@ in {
     
     system.stateVersion = cfg.stateVersion;
     
-    catppuccin.grub.enable = true;
+    catppuccin.grub.enable = !cfg.boot.useMineGrubWorldSelTheme;
 
     boot = {
       loader = if cfg.boot.loaderType == "systemd-boot" then {
@@ -53,6 +53,41 @@ in {
           device = "nodev";
           efiSupport = true;
           useOSProber = cfg.boot.useOSProber;
+          minegrub-world-sel = lib.optionalAttrs cfg.boot.useMineGrubWorldSelTheme {
+            enable = true;
+            customIcons = [
+              {
+                name = "nixos";
+                lineTop = "For enjoyers.";
+                lineBottom = "Creative Mode, Cheats, Version: unstable";
+                imgName = "nixos";
+              }
+              {
+                name = "arch";
+                lineTop = "For chads.";
+                lineBottom = "Hardcore mode, No cheats, Version: rolling";
+                imgName = "arch";
+              }
+              {
+                name = "ubuntu";
+                lineTop = "It just works.";
+                lineBottom = "Average mode, No cheats, Version: old";
+                imgName = "ubuntu";
+              }
+              {
+                name = "windows";
+                lineTop = "Brr-brr patapim.";
+                lineBottom = "Weak mode, No cheats, Version: updates";
+                imgName = "windows";
+              }
+              {
+                name = "manjaro";
+                lineTop = "Use Arch Linux instead.";
+                lineBottom = "Weak mode, No cheats, Version: stable";
+                imgName = "manjaro";
+              }
+            ];
+          };
         };
         efi.canTouchEfiVariables = true;
       } else builtins.throw "Normally, this error should never occur";

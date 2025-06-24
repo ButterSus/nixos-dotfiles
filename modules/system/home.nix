@@ -62,6 +62,12 @@ in {
         default = false;
         description = "Whether to enable os-prober for GRUB to detect other operating systems";
       };
+      
+      useMineGrubWorldSelTheme = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Whether to use mine grub world sel theme";
+      };
     };
   };
 

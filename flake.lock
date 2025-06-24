@@ -462,6 +462,24 @@
         "type": "github"
       }
     },
+    "minegrub-world-sel-theme": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1750624954,
+        "narHash": "sha256-jPlW91gExGG2iB7gRC6g5hPeoWGIL8SkvTRGxyVuI88=",
+        "owner": "Lxtharia",
+        "repo": "minegrub-world-sel-theme",
+        "rev": "83a411e436dad064b61bcbfc71ab0a77d3652dad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lxtharia",
+        "repo": "minegrub-world-sel-theme",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1744463964,
@@ -479,6 +497,22 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1719317636,
+        "narHash": "sha256-bu0xbu2Z6DDzA9LGV81yJunIti6r7tjUImeR8orAL/I=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9c513fc6fb75142f6aec6b7545cb8af2236b80f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1749794982,
         "narHash": "sha256-Kh9K4taXbVuaLC0IL+9HcfvxsSUx8dPB5s5weJcc9pc=",
@@ -548,7 +582,8 @@
         "catppuccin-qt5ct": "catppuccin-qt5ct",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs_2",
+        "minegrub-world-sel-theme": "minegrub-world-sel-theme",
+        "nixpkgs": "nixpkgs_3",
         "nur": "nur",
         "sddm-astronaut-theme": "sddm-astronaut-theme",
         "sops-nix": "sops-nix"

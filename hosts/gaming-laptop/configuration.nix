@@ -23,6 +23,7 @@
     boot = {
       loaderType = "grub";
       useOSProber = true;
+      useMineGrubWorldSelTheme = true;
     };
 
     # Network configuration
