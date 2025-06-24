@@ -27,7 +27,7 @@
     
     # Hyprland Other Actions
     (lib.optionalString config.modules.waybar.enable
-      "${mainMod}, O, exec, killall waybar || waybar")
+      "${mainMod}, O, exec, pkill waybar || waybar")
 
     "${mainMod}, M        , exit"
     "${mainMod}, X        , exec, hyprpicker --autocopy"
