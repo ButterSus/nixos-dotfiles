@@ -137,4 +137,10 @@
   modules.windsurf.enable = true;
   modules.intellij-community.enable = true;
   modules.steam.enable = true;
+  
+  # Minecraft Modding
+  modules.java = {
+    enable = true;
+    packages = with pkgs; [ jdk17 ];
+  };
 }

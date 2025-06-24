@@ -10,6 +10,13 @@ let
 in {
   # Module Options
   options.modules.intellij-community = {
+    assertions = [
+      {
+        assertion = cfg.enable -> config.modules.java.enable;
+        message = "Intellij Community IDE module requires Java module to be enabled";
+      }
+    ];
+
     enable = mkEnableOption "Enable Intellij Community IDE module";
   };
   
