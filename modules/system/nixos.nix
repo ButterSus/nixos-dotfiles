@@ -104,8 +104,5 @@ in {
     
     # Prevent closed lid from suspending
     services.logind.lidSwitchExternalPower = "ignore";
-    
-    # Allow non-free packages
-    nixpkgs.config.allowUnfree = true;
   };
 }

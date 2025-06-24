@@ -106,6 +106,9 @@
           ];
           
           modules.sops.defaultSopsFile = ./secrets/default.yaml;
+          
+          # Allow non-free packages
+          nixpkgs.config.allowUnfree = true;
         }
       ];
     };
@@ -128,6 +131,9 @@
           ];
           
           modules.sops.defaultSopsFile = ./secrets/default.yaml;
+          
+          # Allow non-free packages
+          nixpkgs.config.allowUnfree = true;
         }
       ];
     };
