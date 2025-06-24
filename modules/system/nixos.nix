@@ -104,5 +104,14 @@ in {
     
     # Prevent closed lid from suspending
     services.logind.lidSwitchExternalPower = "ignore";
+    
+    # Write installed packages to file for debug
+    environment.etc."current-system-packages".text =
+      let
+        packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+        sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
+        formatted = builtins.concatStringsSep "\n" sortedUnique;
+      in
+        formatted;
   };
 }
