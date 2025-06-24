@@ -1,16 +1,19 @@
-# home.nix
+# configuration.nix
 #
-# This is the PRIMARY configuration file that contains ALL settings required
-# for Home Manager to run in standalone mode. This file can be used independently
-# with home-manager or imported into a NixOS configuration.
+# This is the PRIMARY configuration file that contains
+# all module settings. This file can't contain any code
+# besides module options. 
 
 { config, pkgs, lib, ... }:
 
 {
   primaryUser = "buttersus";
 
-  # System configuration
-  modules.fonts = { enable = true; };
+  ########################
+  # SYSTEM CONFIGURATION #
+  ########################
+
+  # Basic system settings
   modules.system = {
     enable = true;
     hostName = "unixporn";
@@ -32,26 +35,12 @@
     };
   };
   
-  # Enable secrets decryption
-  modules.sops.enable = true;
-
-  # Main theme
-  catppuccin = {
-    flavor = "mocha";
-    accent = "mauve";
-  };
-
-  # Home Manager configuration
-  modules.home = {
-    enable = true;
-    enableCli = true;
-    stateVersion = "24.11";
-  };
-  
-  # Enable the SSH module with local password authentication
+  # Security & System Services
+  modules.gnome-keyring.enable = true;
+  modules.sops.enable = true;  # Enable secrets decryption
   modules.ssh = {
     enable = true;
-    port = 22; # Standard SSH port
+    port = 22;
     permitRootLogin = "no";
     enableX11Forwarding = true;
     allowPasswordAuth = {
@@ -59,8 +48,43 @@
       remote = false;  # Disable password auth for remote connections
     };
   };
+
+  ######################
+  # HOME CONFIGURATION #
+  ######################
   
-  # # Enable the TUI Greet module
+  # Home Manager configuration
+  modules.home = {
+    enable = true;
+    enableCli = true;
+    stateVersion = "24.11";
+  };
+  
+  # Development tools
+  modules.git = {
+    enable = true;
+    userName = "Krivoshapkin Eduard";
+    userEmail = "buttersus@mail.ru";
+  };
+  modules.nvim.enable = true;
+  modules.vim.enable = true;
+  
+  ####################
+  # DESKTOP & THEMES #
+  ####################
+  
+  # Theme configuration
+  catppuccin = {
+    flavor = "mocha";
+    accent = "mauve";
+  };
+  
+  # Font configuration
+  modules.fonts = { enable = true; };
+  
+  # Display Manager
+  modules.sddm.enable = true;
+  # Commented out TUI greeter alternative
   # modules.tuigreet = {
   #   enable = true;
   #   settings = {
@@ -70,74 +94,47 @@
   #     extraArgs = [];
   #   };
   # };
-
-  # Enable KDE Greet module
-  modules.sddm.enable = true;
   
-  # Set gtk theme
-  modules.gtk.enable = true;
-  
-  # Set qt5/qt6 theme
-  modules.qt.enable = true;
-  
-  # Gnome keyring
-  modules.gnome-keyring.enable = true;
-  
-  # Wayland logout menu
-  modules.wlogout.enable = true;
-  
-  # Enable the git module
-  modules.git = {
-    enable = true;
-    userName = "Krivoshapkin Eduard";
-    userEmail = "buttersus@mail.ru";
-  };
-  
-  # Enable the Neovim module
-  modules.nvim.enable = true;
-  modules.vim.enable = true;
-
-  # Enable Wayland server
+  # Desktop Environment & Compositor
   modules.wayland = {
     enable = true;
     activeCompositor = "hyprland";
     enableWaypipe = true;
   };
-
-  # Enable hyprland
   modules.hyprland = {
     enable = true;
     xwayland.enable = true;
     layouts = [ "us" "ru" ];
   };
   
-  # Enable fuzzel app launcher
-  modules.fuzzel.enable = true;
-
-  # Enable Waybar status bar
-  modules.waybar.enable = true;
-
-  # Enable firefox
+  # Desktop UI Components
+  modules.wlogout.enable = true;  # Wayland logout menu
+  modules.fuzzel.enable = true;   # App launcher
+  modules.waybar.enable = true;   # Status bar
+  
+  # Theme Integration
+  modules.gtk.enable = true;      # GTK theming
+  modules.qt.enable = true;       # Qt5/Qt6 theming
+  
+  ################
+  # APPLICATIONS #
+  ################
+  
+  # Internet & Communication
   modules.firefox = {
     enable = true;
   };
+  modules.amnezia-vpn.enable = true;
+  modules.vesktop.enable = true;     # Discord with Vencord
+  modules.materialgram.enable = true; # Telegram client
   
-  # Enable kitty
+  # Terminal
   modules.kitty = {
     enable = true;
   };
   
-  # Amnezia VPN
-  modules.amnezia-vpn.enable = true;
-  
-  # Vesktop / Discord (Vencord)
-  modules.vesktop.enable = true;
-  
-  # MaterialGram
-  modules.materialgram.enable = true;
-  
-  # Other applications
+  # Development & Gaming
   modules.windsurf.enable = true;
-  modules.steam.enable = true;
   modules.intellij-community.enable = true;
+  modules.steam.enable = true;
 }
