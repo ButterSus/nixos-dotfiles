@@ -15,7 +15,7 @@ in {
       openssh
     ];
     
-    programs.ssh.startAgent = true;
+    programs.ssh.startAgent = !config.modules.gnome-keyring.enable;
 
     services.openssh = {
       enable = true;

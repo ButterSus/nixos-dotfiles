@@ -8,10 +8,10 @@ let
   moduleHomeConfig = {
     programs.ssh = {
       enable = true;
-      addKeysToAgent = "yes";
+      addKeysToAgent = if config.modules.gnome-keyring.enable then "no" else "yes";
     };
 
-    services.ssh-agent.enable = true;
+    services.ssh-agent.enable = !config.modules.gnome-keyring.enable;
   };
 
 in {
