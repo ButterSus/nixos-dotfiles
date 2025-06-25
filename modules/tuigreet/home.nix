@@ -6,10 +6,7 @@ let
   cfg = config.modules.tuigreet;
 
   # Core home configuration for this module
-  moduleHomeConfig = {};
-
-in {
-  options.modules.tuigreet = {
+  moduleHomeConfig = {
     assertions = [
       {
         assertion = cfg.enable -> !config.modules.sddm.enable;
@@ -24,7 +21,10 @@ in {
         message = "Please set wayland.activeCompositor to a valid compositor.";
       }
     ];
+  };
 
+in {
+  options.modules.tuigreet = {
     enable = mkEnableOption "Enable TUI Greet for login";
     
     sessions = mkOption {

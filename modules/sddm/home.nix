@@ -5,18 +5,18 @@ let
   cfg = config.modules.sddm;
 
   # Core home configuration for this module
-  moduleHomeConfig = {};
-
-in {
-  # Module Options
-  options.modules.sddm = {
+  moduleHomeConfig = {
     assertions = [
       {
         assertion = cfg.enable -> !config.modules.tuigreet.enable;
         message = "Please disable tuigreet.";
       }
     ];
+  };
 
+in {
+  # Module Options
+  options.modules.sddm = {
     enable = mkEnableOption "Enable sddm module";
   };
   

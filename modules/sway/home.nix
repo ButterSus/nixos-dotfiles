@@ -5,10 +5,7 @@ let
   cfg = config.modules.sway;
 
   # Core home configuration for this module
-  moduleHomeConfig = {};
-
-in {
-  options.modules.sway = {
+  moduleHomeConfig = {
     assertions = [
       {
         assertion = cfg.enable -> config.modules.wayland.enable;
@@ -19,7 +16,10 @@ in {
         message = "Please set wayland.activeCompositor to 'sway'.";
       }
     ];
+  };
 
+in {
+  options.modules.sway = {
     enable = mkEnableOption "Minimal Sway (Wayland compositor) configuration";
   };
 

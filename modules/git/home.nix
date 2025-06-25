@@ -6,6 +6,13 @@ let
 
   # Core home configuration for this module
   moduleHomeConfig = {
+    assertions = [
+      {
+        assertion = (cfg.enable && config.modules.sops.enable) -> config.modules.ssh.enable;
+        message = "Please enable ssh module.";
+      }
+    ];
+
     programs.git = {
       enable = true;
       userName = cfg.userName;
@@ -106,13 +113,6 @@ let
 in {
   # Module Options
   options.modules.git = {
-    assertions = [
-      {
-        assertion = (cfg.enable && config.modules.sops.enable) -> config.modules.ssh.enable;
-        message = "Please enable ssh module.";
-      }
-    ];
-
     enable = mkEnableOption "Enable Git with configuration";
 
     userName = mkOption {

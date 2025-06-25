@@ -10,6 +10,17 @@ let
   mainMod = "SUPER";
 
   moduleHomeConfig = recursiveUpdate {
+    assertions = [
+      {
+        assertion = cfg.enable -> config.modules.wayland.enable;
+        message = "Please enable wayland.";
+      }
+      {
+        assertion = cfg.enable -> config.modules.wayland.activeCompositor == "hyprland";
+        message = "Please set wayland.activeCompositor to 'hyprland'.";
+      }
+    ];
+
     wayland.windowManager.hyprland = {
       enable = true;
       package = hyprland.packages.${pkgs.system}.hyprland;
@@ -41,17 +52,6 @@ let
 
 in {
   options.modules.hyprland = {
-    assertions = [
-      {
-        assertion = cfg.enable -> config.modules.wayland.enable;
-        message = "Please enable wayland.";
-      }
-      {
-        assertion = cfg.enable -> config.modules.wayland.activeCompositor == "hyprland";
-        message = "Please set wayland.activeCompositor to 'hyprland'.";
-      }
-    ];
-
     enable = mkEnableOption "Enable Hyprland Wayland compositor";
 
     xwayland = {

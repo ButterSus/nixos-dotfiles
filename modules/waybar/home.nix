@@ -6,6 +6,13 @@ let
 
   # Core home configuration for this module
   moduleHomeConfig = {
+    assertions = [
+      {
+        assertion = cfg.enable -> config.modules.wayland.enable;
+        message = "Please enable wayland.";
+      }
+    ];
+
     programs.waybar.enable = true;
 
     # Dynamically generate the config by replacing placeholders in the template
@@ -26,13 +33,6 @@ let
 
 in {
   options.modules.waybar = {
-    assertions = [
-      {
-        assertion = cfg.enable -> config.modules.wayland.enable;
-        message = "Please enable wayland.";
-      }
-    ];
-
     enable = mkEnableOption "Enable Waybar status bar";
   };
 
