@@ -135,6 +135,7 @@
   
   # Development & Gaming
   modules.windsurf.enable = true;
+  modules.jetbrains-ide.enable = true;
   modules.intellij-community.enable = true;
   modules.steam.enable = true;
   

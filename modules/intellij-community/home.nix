@@ -5,18 +5,22 @@ let
   cfg = config.modules.intellij-community;
 
   # Core home configuration for this module
-  moduleHomeConfig = {};
-
-in {
-  # Module Options
-  options.modules.intellij-community = {
+  moduleHomeConfig = {
     assertions = [
+      {
+        assertion = cfg.enable -> config.modules.jetbrains-ide.enable;
+        message = "Please enable JetBrains IDE module";
+      }
       {
         assertion = cfg.enable -> config.modules.java.enable;
         message = "Intellij Community IDE module requires Java module to be enabled";
       }
     ];
+  };
 
+in {
+  # Module Options
+  options.modules.intellij-community = {
     enable = mkEnableOption "Enable Intellij Community IDE module";
   };
   

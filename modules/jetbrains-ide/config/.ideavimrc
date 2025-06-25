@@ -1,0 +1,272 @@
+" ============================================================================
+" IdeaVim Configuration
+" ============================================================================
+
+" ============================================================================
+" Leader Key
+" ============================================================================
+let mapleader = " "
+let maplocalleader = ","
+nnoremap <Space> <Nop>
+xnoremap <Space> <Nop>
+
+" ============================================================================
+" General Settings
+" ============================================================================
+set ideastatusicon=gray
+set noswapfile
+set showmode
+set cmdheight=0
+
+" Numbers
+set number
+set relativenumber
+
+" Scrolling & Display
+set scrolloff=10
+set sidescrolloff=8
+set splitkeep=screen
+set cursorline
+set cursorlineopt=number
+
+" Indentation & Tabs
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
+set breakindent
+set smartindent
+set autoindent
+
+" Splits
+set splitright
+set splitbelow
+
+" Clipboard
+set clipboard+=unnamedplus
+
+" Search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Bells
+set visualbell
+set noerrorbells
+
+" IdeaVim Specific
+set ideacopypreprocess
+set ideaglobalmode
+set ideajoin
+
+" ============================================================================
+" Plugins
+" ============================================================================
+set NERDTree
+set surround
+set commentary
+set exchange
+set highlightedyank
+set matchit
+set argtextobj
+set textobj-indent
+set textobj-entire
+set multiple-cursors
+set mini-ai
+set functiontextobj
+set ReplaceWithRegister
+set vim-paragraph-motion
+set textobj-variable-segment
+
+" Plugin Configuration
+let g:argtextobj_pairs="[:],(:),<:>"
+
+" ============================================================================
+" Navigation Mappings
+" ============================================================================
+
+" File Explorer
+nmap <leader>e :NERDTree<CR>
+
+" Tab Navigation
+nnoremap <Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprev<CR>
+
+" Split Navigation
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+" Center screen on search
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" VCS & Error Navigation
+nmap ]g <Action>(VcsShowNextChangeMarker)
+nmap [g <Action>(VcsShowPrevChangeMarker)
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+
+" Method Navigation
+nmap [f <Action>(MethodUp)
+nmap ]f <Action>(MethodDown)
+
+" ============================================================================
+" Window & Tab Management
+" ============================================================================
+
+" Split Creation
+nmap \\ :split <CR>
+nmap \| :vsplit <CR>
+
+" Split Resizing
+nmap - <Action>(StretchSplitToLeft)
+nmap = <Action>(StretchSplitToRight)
+nmap _ <Action>(StretchSplitToBottom)
+nmap + <Action>(StretchSplitToTop)
+
+" Tab & Buffer Management
+nmap <leader>c <Action>(CloseContent)
+nmap <leader>q <Action>(CloseAllEditors)
+nmap <leader>bc <Action>(CloseAllEditorsButActive)
+
+" Split Options
+nmap <leader>o <Action>(ShowNavBar)
+nmap <leader>n <Action>(ChangeSplitOrientation)
+
+" ============================================================================
+" Editing Mappings
+" ============================================================================
+
+" Indentation in Visual Mode
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
+" Move Lines
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+vnoremap <leader>j :m '>+1<CR>gv=gv
+vnoremap <leader>k :m '<-2<CR>gv=gv
+
+" Formatting
+nmap <leader>lf <Action>(ReformatCode)
+vmap <leader>lf <Action>(ReformatCode)
+
+" Folding
+nnoremap Z <Action>(CollapseRegionRecursively)
+nnoremap z <Action>(ExpandRegionRecursively)
+
+" Clear Search Highlight
+nmap <Esc> :noh<CR>
+
+" ============================================================================
+" LSP & Code Actions
+" ============================================================================
+
+" Go To Definitions
+nmap gd <Action>(GotoDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gr <Action>(ShowUsages)
+
+" Code Actions
+nmap <leader>la <Action>(ShowIntentionActions)
+vmap <leader>la <Action>(ShowIntentionActions)
+
+" Refactoring
+nmap <leader>lr <Action>(RenameElement)
+nmap <leader>ls <Action>(ChangeSignature)
+nmap <leader>li <Action>(Inline)
+nmap <leader>le <Action>(Refactorings.QuickListPopupAction)
+
+" ============================================================================
+" Find & Search
+" ============================================================================
+nmap <leader>fo <Action>(RecentFiles)
+nmap <leader>fw <Action>(FindInPath)
+nmap <leader>fa <Action>(GotoAction)
+nmap <leader>ff <Action>(GotoFile)
+nmap <leader>fs <Action>(GotoSymbol)
+nmap <leader>fc <Action>(GotoClass)
+nmap <leader>fd <Action>(ActivateProblemsViewToolWindow)
+nmap <leader>fT <Action>(ActivateTODOToolWindow)
+
+" ============================================================================
+" Run
+" ============================================================================
+nmap <leader>rc <Action>(ContextRun)
+nmap <leader>rx <Action>(ChooseRunConfiguration)
+nmap <leader>rr <Action>(Rerun)
+nmap <leader>rt <Action>(RunTests)
+nmap <leader>rs <Action>(Stop)
+
+" ============================================================================
+" Git Integration
+" ============================================================================
+nmap <leader>gr <Action>(ChangesView.Revert)
+vmap <leader>gr <Action>(Vcs.RollbackChangedLines)
+nmap <leader>gr <Action>(Vcs.ApplySelectedChanges)
+vmap <leader>gs <Action>(Vcs.ApplySelectedChanges)
+nmap <leader>gt <Action>(ActivateCommitToolWindow)
+nmap <leader>gg <Action>(ActivateVersionControlToolWindow)
+nmap <leader>gl <Action>(Vcs.Show.Log)
+nmap <leader>gh <Action>(Vcs.ShowTabbedFileHistory)
+nmap <leader>gb <Action>(Git.Branches)
+nmap <leader>gB <Action>(Annotate)
+nmap <leader>gc <Action>(Vcs.ApplySelectedChanges)
+nmap <leader>gf <Action>(Git.Fetch)
+
+" ============================================================================
+" UI & Appearance Toggles
+" ============================================================================
+nmap <leader>un <Action>(EditorToggleShowLineNumbers)
+nmap <leader>uZ <Action>(ToggleDistractionFreeMode)
+nmap <leader>ud <Action>(ActivateProblemsViewToolWindow)
+nmap <leader>ui <Action>(ToggleInlayHintsGloballyAction)
+nmap <leader>uw <Action>(EditorToggleUseSoftWraps)
+
+" ============================================================================
+" Tools & Utilities
+" ============================================================================
+
+" Theme & Appearance
+nmap <leader>ft <Action>(ChangeLaf)
+nmap <leader>fk <Action>(ChangeKeymap)
+
+" File History
+nmap <leader>fh <Action>(LocalHistory.ShowHistory)
+
+" Tool Windows
+nmap <leader>fn <Action>(ActivateNotificationsToolWindow)
+nmap <leader>lS <Action>(ActivateStructureToolWindow)
+nmap <leader>tt <Action>(ActivateTerminalToolWindow)
+
+" System
+nmap <leader>Q <Action>(Exit)
+
+" Escape button
+nnoremap <C-c> <Esc>
+
+" ============================================================================
+" Debug
+" ============================================================================
+nnoremap <Leader>dx :action ChooseDebugConfiguration<CR>
+nnoremap <Leader>db :action ToggleLineBreakpoint<CR>
+nnoremap <Leader>ds :action StepOver<CR>
+nnoremap <Leader>dr :action Resume<CR>
+nnoremap <Leader>dc :action RunToCursor<CR>
+nnoremap <Leader>do :action StepOut<CR>
+nnoremap <Leader>di :action SmartStepInto<CR>
+nnoremap <Leader>dg :action ShowExecutionPoint<CR>
+nnoremap <Leader>dm :action XDebugger.MuteBreakpoints<CR>
+nnoremap <Leader>dp :action Debugger.PopFrame<CR>
+nnoremap <Leader>dt :action Debugger.ForceEarlyReturn<CR>
+nnoremap <Leader>de :action EvaluateExpression<CR>
+
+" ============================================================================
+" Vim
+" ============================================================================
+nmap <leader>vc :e ~/.ideavimrc<CR>
+nmap <leader>vt <Action>(VimFindActionIdAction)
+nmap <leader>va <Action>(VimActions)
