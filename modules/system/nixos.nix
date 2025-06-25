@@ -18,6 +18,8 @@ in {
     ] ++ (lib.optionals cfg.extraCliTools.enable [
       tree
       ncdu
+      htop
+      fastfetch
     ]);
 
     users.users.${config.primaryUser} = {
