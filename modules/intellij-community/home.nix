@@ -22,6 +22,12 @@ in {
   # Module Options
   options.modules.intellij-community = {
     enable = mkEnableOption "Enable Intellij Community IDE module";
+    
+    extraPlugins = mkOption {
+      type = types.listOf types.str;
+      default = [];
+      description = "Extra plugins to add to the IDE";
+    };
   };
   
   # Conditionally apply the configuration

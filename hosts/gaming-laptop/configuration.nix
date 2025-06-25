@@ -136,14 +136,19 @@
   # Development & Gaming
   modules.windsurf.enable = true;
   modules.jetbrains-ide.enable = true;
-  modules.intellij-community.enable = true;
+  modules.intellij-community = {
+    enable = true;
+    extraPlugins = [
+      "minecraft-development"
+    ];
+  };
   modules.steam.enable = true;
   
   # Minecraft Modding
   modules.java = {
     enable = true;
     packages = {
-      inherit (pkgs) jdk17;
+      inherit (pkgs) jdk17 jdk21;
     };
   };
 }

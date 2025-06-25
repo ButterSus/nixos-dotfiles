@@ -14,10 +14,14 @@ in {
     environment.systemPackages = with pkgs; [
       # Patched plugins can be found here: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/jetbrains/plugins/plugins.json
 
-      # It seems jetbrains.plugins.addPlugins is currently unstable,
-      # so we are not able to use it properly.
-      # Recommended approach: Use builtin idea-community sync
-      jetbrains.idea-community
+      # This way of adding plugins can easily break.
+      # If it breaks, please install plugins via jetbrains sync
+      # and replace the whole content below with just idea-community
+      (jetbrains.plugins.addPlugins jetbrains.idea-community-bin ([
+        "ideavim"
+        "catppuccin-theme"
+        "catppuccin-icons"
+      ] ++ cfg.extraPlugins))
     ];
   };
 }
