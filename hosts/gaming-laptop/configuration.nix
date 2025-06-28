@@ -151,4 +151,8 @@
       inherit (pkgs) jdk17 jdk21;
     };
   };
+  
+  # Video Editing
+  modules.obs-studio.enable = true;
+  modules.kden-live.enable = true;
 }
