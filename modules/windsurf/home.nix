@@ -14,9 +14,23 @@ let
       
       # Let only NixOS manage extensions
       mutableExtensionsDir = false;
-      
+
       profiles.default = {
-        # userSettings = { ... };
+        # List of extensions to install
+        extensions = with pkgs.vscode-extensions; [
+          bbenoist.nix
+          asvetliakov.vscode-neovim
+          catppuccin.catppuccin-vsc-icons
+          catppuccin.catppuccin-vsc
+        ];
+      
+        userSettings = {
+          "workbench.colorTheme" = "Catppuccin Mocha";
+          "workbench.iconTheme" = "catppuccin-mocha";
+          "extensions.experimental.affinity" = {
+            "asvetliakov.vscode-neovim" = 1;
+          };
+        };
       };
     };
     
