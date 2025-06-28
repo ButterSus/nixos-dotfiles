@@ -7,15 +7,8 @@ let
 
   inherit (inputs) astronvim-dotfiles;
 
-  # Get AstroNvim dotfiles from flake inputs
-  nvimFileNames = builtins.attrNames (builtins.readDir astronvim-dotfiles);
-  nvimFileConfigs = builtins.listToAttrs (map (name: {
-    name = ".config/nvim/${name}";
-    value = { source = "${astronvim-dotfiles}/${name}"; };
-  }) nvimFileNames);
-
   # Core home configuration for this module
-  moduleHomeConfig = {
+  moduleHomeConfig = { lib, ... }: {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
@@ -44,8 +37,20 @@ let
       ];
     };
 
-    # Symlink all files from AstroNvim
-    home.file = nvimFileConfigs;
+    # Smart nvim config activation:
+    # - If nvim config doesn't exist, copy from flake
+    # - If nvim config exists, skip
+    # Therefore, config is fully mutable
+    home.activation.nvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ ! -d /home/${config.primaryUser}/.config/nvim ]; then
+        echo "No nvim config found, copying from flake..."
+        mkdir -p /home/${config.primaryUser}/.config/nvim
+        cp -r ${astronvim-dotfiles}/* /home/${config.primaryUser}/.config/nvim/
+        chmod -R u+w /home/${config.primaryUser}/.config/nvim
+      else
+        echo "Nvim config already exists, skipping..."
+      fi
+    '';
     
     # For conditional nix-specific fragment of NeoVim config
     home.sessionVariables = {
