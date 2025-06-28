@@ -15,6 +15,8 @@
       "${mainMod}, T, exec, materialgram")
     (lib.optionalString config.modules.wlogout.enable
       "${mainMod}, Z, exec, wlogout")
+    (lib.optionalString config.modules.cliphist.enable
+      "${mainMod}, W, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy")
     
     # Window Actions
     "${mainMod}      , P, pseudo"

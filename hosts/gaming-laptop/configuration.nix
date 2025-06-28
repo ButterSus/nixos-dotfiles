@@ -111,6 +111,7 @@
   modules.wlogout.enable = true;  # Wayland logout menu
   modules.fuzzel.enable = true;   # App launcher
   modules.waybar.enable = true;   # Status bar
+  modules.cliphist.enable = true; # Clipboad Manager
   
   # Theme Integration
   modules.gtk.enable = true;      # GTK theming
