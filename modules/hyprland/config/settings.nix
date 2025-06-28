@@ -59,6 +59,8 @@
   
   misc = {
     disable_splash_rendering = true;  
+    # Anime girls prohibited
+    disable_hyprland_logo = true;
   };
   
   exec-once = lib.optionals config.modules.waybar.enable [
