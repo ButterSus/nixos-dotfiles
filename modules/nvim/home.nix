@@ -9,31 +9,87 @@ let
 
   # Core home configuration for this module
   moduleHomeConfig = { lib, ... }: {
+    home.sessionVariables = {
+      VISUAL = "nvim";
+      EDITOR = "nvim";
+
+      # For conditional nix-specific fragment of NeoVim config
+      "NIX_NEOVIM" = 1;
+    };
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;
       extraPackages = with pkgs; [
-        # Runtime dependencies
+        # [Optional] LuaJit
+        luajit
+
+        # Build tools
         gnumake
+        clang
+        
+        # Tools:
+        # https://docs.astronvim.com/
+        tree-sitter  # tree-sitter's auto_install feature
+
         ripgrep
-        fzf  # Just in case, though not used in my config
-        clang  # Is better than gcc imho
-        luajit  # Faster than lua5_1
-        (python3.withPackages (ps: with ps; [ pip ]))
+        lazygit
+        gdu
         bottom
+        (pkgs.python3.withPackages (python-pkgs:
+          with python-pkgs; [
+            pip
+            debugpy  # astrocommunity.pack.python
+          ]))
         unzip
-        git
-        fd
+        
+        # luarocks
         luarocks
         
-        # Tools (optional)
-        lazygit
-        
-        # Language servers
-        stylua
+        # astrocommunity.pack.nix
         nixd
         deadnix
         statix
+        alejandra
+        
+        # astrocommunity.pack.lua
+        stylua
+        luajitPackages.lua-lsp
+        selene
+        
+        # astrocommunity.pack.python
+        basedpyright
+        black
+        isort
+        
+        # astrocommunity.pack.typst
+        tinymist
+        
+        # astrocommunity.pack.verilog
+        verible
+        verilator
+        
+        # astrocommunity.pack.cpp
+        clang-tools
+        
+        # astrocommunity.pack.json
+        vscode-langservers-extracted
+        
+        # astrocommunity.pack.bash
+        bash-language-server
+        shfmt
+        shellcheck
+        bashdb
+        
+        # astrocommunity.pack.fish
+        fish
+        
+        # astrocommunity.pack.hyprland
+        hyprls
+        
+        # astrocommunity.pack.markdown
+        marksman
+        prettierd
       ];
     };
 
@@ -51,11 +107,6 @@ let
         echo "Nvim config already exists, skipping..."
       fi
     '';
-    
-    # For conditional nix-specific fragment of NeoVim config
-    home.sessionVariables = {
-      "NIX_NEOVIM" = 1;
-    };
   };
 
 in {
