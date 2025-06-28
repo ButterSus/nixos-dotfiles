@@ -8,6 +8,17 @@ let
   moduleHomeConfig = {
     programs.fuzzel = {
       enable = true;
+      settings = {
+        main = {
+          horizontal-pad = 4;
+          vertical-pad = 4;
+        };
+        
+        border = {
+          radius = 0;
+          width = 2;
+        };
+      };
     };
 
     catppuccin.fuzzel.enable = true;
