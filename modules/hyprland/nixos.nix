@@ -19,6 +19,7 @@ in {
       wl-clipboard     # Clipboard
       hyprpaper        # Wallpaper manager
       hyprpolkitagent  # Policy Kit
+      brightnessctl    # Backlight control
     ];
 
     programs.hyprland = {

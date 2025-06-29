@@ -1,7 +1,20 @@
 { lib, config, cfg, mainMod, ... }:
 
 {
+  # Repetetive keybinds
+  binde = [
+    # Volume and Brightness
+    ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
+    ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
+    ", XF86MonBrightnessUp, exec, brightnessctl s 5%+"
+    ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+  ];
+
+  # Keybinds
   bind = [
+    # Volume and Brightness
+    ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+
     # Applications
     (lib.optionalString config.modules.kitty.enable
       "${mainMod}, Q, exec, kitty")
@@ -94,7 +107,8 @@
     "${mainMod} SHIFT, comma , movetoworkspacesilent, -1"
     "${mainMod} SHIFT, period, movetoworkspacesilent, +1"
   ];
-  
+
+  # Mouse keybinds
   bindm = [
     # Move and resize windows
     "${mainMod}, mouse:272, movewindow"
