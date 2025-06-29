@@ -132,6 +132,7 @@
   modules.amnezia-vpn.enable = true;
   modules.vesktop.enable = true;     # Discord with Vencord
   modules.materialgram.enable = true; # Telegram client
+  modules.youtube-music.enable = true; # Music? Yes, please!
   
   # Terminal
   modules.kitty = {
