@@ -49,6 +49,10 @@
     };
   };
 
+  # Audio & Bluetooth
+  modules.pipewire.enable = true;
+  modules.bluetooth.enable = true;
+
   ######################
   # HOME CONFIGURATION #
   ######################

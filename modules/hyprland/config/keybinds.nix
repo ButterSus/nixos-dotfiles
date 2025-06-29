@@ -17,6 +17,8 @@
       "${mainMod}, Z, exec, wlogout")
     (lib.optionalString config.modules.cliphist.enable
       "${mainMod}, W, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy")
+    (lib.optionalString config.modules.bluetooth.enable
+      "${mainMod}, Y, exec, overskride")
     
     # Window Actions
     "${mainMod}      , P, pseudo"
