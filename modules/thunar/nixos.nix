@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkIf;
-  cfg = config.modules.gtk;
+  cfg = config.modules.thunar;
 in {
   # Import home.nix
   imports = [
@@ -12,14 +12,14 @@ in {
   config = mkIf cfg.enable {
     # System Packages
     environment.systemPackages = with pkgs; [
-      # Colour scheme
-      magnetic-catppuccin-gtk
+      xfce.thunar
       
-      # Icon theme
-      papirus-icon-theme
-      
-      # Settings editor
-      nwg-look
+      # Extensions
+      xfce.thunar-volman
+      xfce.thunar-archive-plugin
     ];
+    
+    # Trash support
+    services.gvfs.enable = true;
   };
 }

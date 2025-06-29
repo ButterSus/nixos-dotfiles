@@ -9,6 +9,8 @@
       "${mainMod}, B, exec, firefox")
     (lib.optionalString config.modules.fuzzel.enable
       "${mainMod}, D, exec, fuzzel")
+    (lib.optionalString config.modules.thunar.enable
+      "${mainMod}, E, exec, thunar")
     (lib.optionalString config.modules.vesktop.enable
       "${mainMod}, A, exec, vesktop")
     (lib.optionalString config.modules.materialgram.enable

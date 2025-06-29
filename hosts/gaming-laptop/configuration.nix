@@ -116,6 +116,7 @@
   modules.fuzzel.enable = true;   # App launcher
   modules.waybar.enable = true;   # Status bar
   modules.cliphist.enable = true; # Clipboad Manager
+  modules.thunar.enable = true;   # File manager
   
   # Theme Integration
   modules.gtk.enable = true;      # GTK theming

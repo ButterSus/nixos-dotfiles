@@ -13,6 +13,10 @@ let
 
     # Enable gtk
     gtk.enable = true;
+    gtk.iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus";
+    };
     
     # Gtk is deprecated for catppuccin
     # catppuccin.gtk.enable = true;

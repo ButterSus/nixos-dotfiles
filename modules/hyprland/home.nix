@@ -37,17 +37,6 @@ let
         Hyprspace.packages.${pkgs.system}.Hyprspace
       ];
     };
-
-    # TODO: Move packages to modules
-    # User Specific Packages
-    home.packages = with pkgs; [
-      # File manager
-      xfce.thunar
-      
-      # Screenshot utilities
-      grim
-      slurp
-    ];
   } (import ./config/services.nix { inherit pkgs; });
 
 in {
