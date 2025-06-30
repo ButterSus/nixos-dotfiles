@@ -24,8 +24,6 @@
       "${mainMod}, D, exec, fuzzel")
     (lib.optionalString config.modules.thunar.enable
       "${mainMod}, E, exec, thunar")
-    (lib.optionalString config.modules.vesktop.enable
-      "${mainMod}, A, exec, vesktop")
     (lib.optionalString config.modules.materialgram.enable
       "${mainMod}, T, exec, materialgram")
     (lib.optionalString config.modules.wlogout.enable
@@ -34,8 +32,13 @@
       "${mainMod}, W, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy")
     (lib.optionalString config.modules.youtube-music.enable
       "${mainMod}, Y, exec, youtube-music")
+    
+    (lib.optionalString config.modules.vesktop.enable
+      "${mainMod} SHIFT, D, exec, vesktop")
     (lib.optionalString config.modules.bluetooth.enable
-      "${mainMod}, U, exec, overskride")
+      "${mainMod} SHIFT, O, exec, overskride")
+    (lib.optionalString config.modules.whatsie.enable
+      "${mainMod} SHIFT, W, exec, whatsie")
     
     # Window Actions
     "${mainMod}      , P, pseudo"
