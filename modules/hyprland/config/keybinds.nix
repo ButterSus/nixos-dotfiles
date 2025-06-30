@@ -54,6 +54,7 @@
     "${mainMod}, X        , exec, hyprpicker --autocopy"
     "${mainMod}, G        , overview:toggle"
     "${mainMod}, Backspace, exec, hyprlock"
+    "${mainMod}, S        , togglespecialworkspace"
 
     # Move focus
     "${mainMod}, h, movefocus, l"
@@ -96,6 +97,9 @@
     "${mainMod} SHIFT, 8, movetoworkspacesilent, 8"
     "${mainMod} SHIFT, 9, movetoworkspacesilent, 9"
     "${mainMod} SHIFT, 0, movetoworkspacesilent, 10"
+    
+    # Move window to special workspace
+    "${mainMod} SHIFT, S, movetoworkspacesilent, special"
 
     # Scroll through existing workspaces
     "${mainMod}, mouse_down, workspace, -1"
