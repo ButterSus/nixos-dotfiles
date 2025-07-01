@@ -6,6 +6,11 @@
 
 These are my personal NixOS and Home Manager dotfiles, built with Flakes.
 
+## Problems to solve
+
++ Linux-dependent code. Some of paths are hardcoded to use either /home directory or ~/.config, which is not suitable for MacOS.
++ Standalone home-manager packages. For now most of the packages are managed via nixos-rebuild, and if you don't have one, there is no way to build it on linux.
+
 ## Key Things
 
 *   **Modular:** Settings are split into modules for easier management.
