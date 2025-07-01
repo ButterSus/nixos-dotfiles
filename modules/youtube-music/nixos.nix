@@ -13,6 +13,9 @@ in {
     # System Packages
     environment.systemPackages = with pkgs; [
       youtube-music
+      
+      # MPRIS shortcuts
+      playerctl
     ];
   };
 }

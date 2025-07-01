@@ -45,8 +45,14 @@
       "${mainMod} SHIFT, P, exec, pwvucontrol")
     (lib.optionalString config.modules.youtube-music.enable
       "${mainMod} SHIFT, Y, exec, youtube-music")
-      
-    
+
+    # MPRIS: Youtube Music shortcuts
+  ] ++ (lib.optionals config.modules.youtube-music.enable [
+      "${mainMod} CTRL, M     , exec, playerctl --player=YoutubeMusic play-pause"
+      "${mainMod} CTRL, comma , exec, playerctl --player=YoutubeMusic previous"
+      "${mainMod} CTRL, period, exec, playerctl --player=YoutubeMusic next"
+  ]) ++ [
+
     # Window Actions
     "${mainMod}      , P, pseudo"
     "${mainMod}      , V, togglefloating"
