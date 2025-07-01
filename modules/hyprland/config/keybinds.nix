@@ -41,6 +41,9 @@
       "${mainMod} SHIFT, W, exec, whatsie")
     (lib.optionalString config.modules.pipewire.enable
       "${mainMod} SHIFT, P, exec, pwvucontrol")
+    (lib.optionalString config.modules.youtube-music.enable
+      "${mainMod} SHIFT, Y, exec, youtube-music")
+      
     
     # Window Actions
     "${mainMod}      , P, pseudo"
