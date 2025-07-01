@@ -115,5 +115,8 @@ in {
         formatted = builtins.concatStringsSep "\n" sortedUnique;
       in
         formatted;
+    
+    # Disable webcam
+     boot.blacklistedKernelModules = [ "uvcvideo" ];
   };
 }
