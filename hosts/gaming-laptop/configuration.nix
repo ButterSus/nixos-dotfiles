@@ -135,6 +135,7 @@
   modules.materialgram.enable = true;  # Telegram client
   modules.whatsie.enable = true;       # WhatsApp client
   modules.youtube-music.enable = true; # Music? Yes, please!
+  modules.qbittorrent.enable = true;   # Torrent client
   
   # Terminal
   modules.kitty = {

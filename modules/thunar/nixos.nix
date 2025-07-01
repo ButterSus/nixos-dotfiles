@@ -18,6 +18,11 @@ in {
       xfce.thunar-volman
       xfce.thunar-archive-plugin
     ];
+    
+    # Set Thunar as default file manager
+    xdg.mime.defaultApplications = {
+      "inode/directory" = "Thunar.desktop";
+    };
 
     # Support filesystems
     boot.supportedFilesystems = [ "ntfs" ];

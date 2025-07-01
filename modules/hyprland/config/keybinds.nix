@@ -33,6 +33,8 @@
     (lib.optionalString config.modules.youtube-music.enable
       "${mainMod}, Y, exec, youtube-music")
     
+    (lib.optionalString config.modules.qbittorrent.enable
+      "${mainMod} SHIFT, Q, exec, qbittorrent")
     (lib.optionalString config.modules.vesktop.enable
       "${mainMod} SHIFT, D, exec, vesktop")
     (lib.optionalString config.modules.bluetooth.enable
