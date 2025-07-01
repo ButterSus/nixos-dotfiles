@@ -138,10 +138,9 @@
   modules.qbittorrent.enable = true;   # Torrent client
   
   # Terminal
-  modules.kitty = {
-    enable = true;
-  };
-  
+  modules.zsh.enable = true;
+  modules.kitty.enable = true;  
+
   # Development & Gaming
   modules.windsurf.enable = true;
   modules.jetbrains-ide.enable = true;
