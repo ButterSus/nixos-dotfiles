@@ -10,9 +10,6 @@ let
     home.sessionVariables = {
       VISUAL = "nvim";
       EDITOR = "nvim";
-
-      # For conditional nix-specific fragment of NeoVim config
-      "NIX_NEOVIM" = 1;
     };
 
     programs.neovim = {
@@ -24,7 +21,7 @@ let
 
         # Build tools
         gnumake
-        clang
+        gcc
         
         # Tools:
         # https://docs.astronvim.com/
@@ -41,55 +38,74 @@ let
           ]))
         unzip
         
-        # luarocks
+        # LSP build tools
+        go
+        nodejs
+
+        # Plugin specific dependencies
         luarocks
+        pkg-config
+        imagemagick
+        imagemagick.dev
+
+        ## LSPs that should be installed by system:
+        ## (commented out ones are installed via Mason.nvim)
         
-        # astrocommunity.pack.nix
+        # This list is manually updated.
+        # Check out for required LSPs here: https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack
+        # Check out for LSP configs here: https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
+        # Use :Mason to see list of LSPs managed by Mason.nvim
+
+        # # astrocommunity.pack.nix
         nixd
         deadnix
         statix
         alejandra
-        
+
         # astrocommunity.pack.lua
-        stylua
-        luajitPackages.lua-lsp
-        selene
-        
+        # stylua
+        # luajitPackages.lua-lsp
+        # selene
+
         # astrocommunity.pack.python
-        basedpyright
-        black
-        isort
-        
+        # basedpyright
+        # black
+        # isort
+
         # astrocommunity.pack.typst
-        tinymist
-        
+        # tinymist
+
         # astrocommunity.pack.verilog
-        verible
+        # verible
         verilator
-        
+
         # astrocommunity.pack.cpp
-        clang-tools
-        
+        clang-tools  # clang-format
+
         # astrocommunity.pack.json
-        vscode-langservers-extracted
-        
+        vscode-langservers-extracted  # jsonls
+
         # astrocommunity.pack.bash
-        bash-language-server
-        shfmt
-        shellcheck
+        # bash-language-server
+        # shfmt
+        # shellcheck
         bashdb
-        
+
         # astrocommunity.pack.fish
         fish
-        
+
         # astrocommunity.pack.hyprland
-        hyprls
-        
+        # hyprls
+
         # astrocommunity.pack.markdown
-        marksman
-        prettierd
+        # marksman
+        # prettierd
       ];
     };
+
+    home.sessionVariables.PKG_CONFIG_PATH = ''
+      ${pkgs.imagemagick.dev}/lib/pkgconfig:$PKG_CONFIG_PATH
+    '';
 
     # Smart nvim config activation:
     # - If nvim config doesn't exist, clone from github

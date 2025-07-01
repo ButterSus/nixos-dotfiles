@@ -20,5 +20,12 @@ in {
     ];
 
     programs.neovim.enable = true;
+
+    # Some LSPs require runtime libraries
+    programs.nix-ld.enable = true;
+    programs.nix-ld.libraries = with pkgs; [
+      glibc
+      gcc
+    ];
   };
 }
