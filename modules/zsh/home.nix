@@ -17,6 +17,9 @@ let
         # Join to zero-plugin club, pure minimum ¬‿¬
         plugins = [];
         theme = "ys";
+        extraConfig = ''
+          zstyle ':completion:*' insert-tab false
+        '';
       };
     };
   };
