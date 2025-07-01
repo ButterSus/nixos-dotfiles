@@ -43,7 +43,7 @@ let
         nodejs
 
         # Plugin specific dependencies
-        luarocks
+        luajitPackages.luarocks
         pkg-config
         imagemagick
         imagemagick.dev
