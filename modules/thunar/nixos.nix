@@ -18,8 +18,15 @@ in {
       xfce.thunar-volman
       xfce.thunar-archive-plugin
     ];
+
+    # Support filesystems
+    boot.supportedFilesystems = [ "ntfs" ];
     
     # Trash support
     services.gvfs.enable = true;
+    
+    # External drives
+    services.udisks2.enable = true;
+    services.devmon.enable = true;
   };
 }
