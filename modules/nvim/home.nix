@@ -123,7 +123,7 @@ in {
   # Conditionally apply the configuration
   config = mkIf cfg.enable (
     if isHMStandaloneContext then
-      moduleHomeConfig
+      moduleHomeConfig { inherit lib; }
     else
       {
         home-manager.users.${config.primaryUser} = moduleHomeConfig;
