@@ -39,6 +39,8 @@
       "${mainMod} SHIFT, O, exec, overskride")
     (lib.optionalString config.modules.whatsie.enable
       "${mainMod} SHIFT, W, exec, whatsie")
+    (lib.optionalString config.modules.pipewire.enable
+      "${mainMod} SHIFT, P, exec, pwvucontrol")
     
     # Window Actions
     "${mainMod}      , P, pseudo"
