@@ -6,7 +6,16 @@ let
 
   # Core home configuration for this module
   moduleHomeConfig = {
-    programs.kitty.enable = true;
+    programs.kitty = {
+      enable = true;
+      font = {
+        size = 14;
+        name = "JetBrainsMono Nerd Font";
+      };
+      settings = {
+        placement_strategy = "top-left";
+      };
+    };
     catppuccin.kitty.enable = true;
   };
 
