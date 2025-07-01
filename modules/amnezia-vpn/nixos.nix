@@ -10,7 +10,6 @@ in {
   ];
 
   config = mkIf cfg.enable {
-    # System Packages
     programs.amnezia-vpn.enable = true;
   };
 }
