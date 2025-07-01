@@ -110,6 +110,7 @@
     xwayland.enable = true;
     layouts = [ "us" "ru" ];
   };
+  modules.xdg.enable = true;
   
   # Desktop UI Components
   modules.wlogout.enable = true;  # Wayland logout menu
