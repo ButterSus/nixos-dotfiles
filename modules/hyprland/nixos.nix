@@ -20,6 +20,7 @@ in {
       hyprpaper        # Wallpaper manager
       hyprpolkitagent  # Policy Kit
       brightnessctl    # Backlight control
+      hyprshot         # Screenshot tool
     ];
 
     programs.hyprland = {

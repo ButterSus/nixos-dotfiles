@@ -72,6 +72,11 @@
     "${mainMod}, Backspace, exec, hyprlock"
     "${mainMod}, S        , togglespecialworkspace"
 
+    # Screenshot  
+    ", PRINT, exec, hyprshot -m output"
+    "${mainMod}, PRINT    , exec, hyprshot -m window"
+    "${mainMod} SHIFT, PRINT, exec, hyprshot -m region"
+
     # Move focus
     "${mainMod}, h, movefocus, l"
     "${mainMod}, l, movefocus, r"
