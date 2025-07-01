@@ -1,11 +1,9 @@
-{ config, lib, pkgs, inputs, isHMStandaloneContext, ... }:
+{ config, lib, pkgs, isHMStandaloneContext, ... }:
 
 # TODO: Fix lua5.1 and luarocks issues
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.nvim;
-
-  inherit (inputs) astronvim-dotfiles;
 
   # Core home configuration for this module
   moduleHomeConfig = { lib, ... }: {
@@ -94,14 +92,18 @@ let
     };
 
     # Smart nvim config activation:
-    # - If nvim config doesn't exist, copy from flake
+    # - If nvim config doesn't exist, clone from github
     # - If nvim config exists, skip
     # Therefore, config is fully mutable
     home.activation.nvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      # Make git from home-manager available
+      export PATH="${pkgs.git}/bin:$PATH"
+
       if [ ! -d /home/${config.primaryUser}/.config/nvim ]; then
-        echo "No nvim config found, copying from flake..."
+        echo "No nvim config found, cloning from github..."
         mkdir -p /home/${config.primaryUser}/.config/nvim
-        cp -r ${astronvim-dotfiles}/* /home/${config.primaryUser}/.config/nvim/
+        git clone https://github.com/ButterSus/astronvim-dotfiles.git \
+          /home/${config.primaryUser}/.config/nvim
         chmod -R u+w /home/${config.primaryUser}/.config/nvim
       else
         echo "Nvim config already exists, skipping..."

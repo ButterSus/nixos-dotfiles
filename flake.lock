@@ -54,22 +54,6 @@
         "type": "github"
       }
     },
-    "astronvim-dotfiles": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1749484032,
-        "narHash": "sha256-JBCNHO8ZmsN4DPsL4OyNefgPUG+5I5vxIgWPMUEP7qY=",
-        "owner": "ButterSus",
-        "repo": "astronvim-dotfiles",
-        "rev": "bf36a1664dfb05555901eb8351f8d4c9f1cb64ec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ButterSus",
-        "repo": "astronvim-dotfiles",
-        "type": "github"
-      }
-    },
     "catppuccin": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -576,7 +560,6 @@
     "root": {
       "inputs": {
         "Hyprspace": "Hyprspace",
-        "astronvim-dotfiles": "astronvim-dotfiles",
         "catppuccin": "catppuccin",
         "catppuccin-discord": "catppuccin-discord",
         "catppuccin-qt5ct": "catppuccin-qt5ct",

@@ -25,11 +25,6 @@
     # Maybe, soon, I'll consider using stylix.
     
     # Additional flake inputs (no need to specify these in parameters)
-    astronvim-dotfiles = {
-      url = "github:ButterSus/astronvim-dotfiles";
-      flake = false;
-    };
-    
     minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";    
 
     sddm-astronaut-theme = {
