@@ -26,6 +26,7 @@ in {
     programs.nix-ld.libraries = with pkgs; [
       glibc
       gcc
+      icu
     ];
   };
 }
