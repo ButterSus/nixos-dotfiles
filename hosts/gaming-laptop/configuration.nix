@@ -145,6 +145,7 @@
   # Development & Gaming
   modules.windsurf.enable = true;
   modules.jetbrains-ide.enable = true;
+  modules.zola.enable = true;
   modules.intellij-community = {
     enable = true;
     extraPlugins = [
