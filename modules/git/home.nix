@@ -127,6 +127,8 @@ in {
       example = "user@example.com";
       description = "Git user email";
     };
+
+    enableGithubCli = mkEnableOption "Enable Github CLI";
   };
 
   # Conditionally apply the configuration

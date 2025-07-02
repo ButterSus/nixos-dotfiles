@@ -14,6 +14,8 @@ in {
     environment.systemPackages = with pkgs; [
       git
       delta
+    ] ++ lib.optionals cfg.enableGithubCli [
+      gh
     ];
   };
 }

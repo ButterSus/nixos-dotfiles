@@ -69,6 +69,7 @@
     enable = true;
     userName = "Krivoshapkin Eduard";
     userEmail = "buttersus@mail.ru";
+    enableGithubCli = true;
   };
   modules.nvim.enable = true;
   modules.vim.enable = true;
