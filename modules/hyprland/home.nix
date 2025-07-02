@@ -1,6 +1,5 @@
 { config, lib, pkgs, inputs, isHMStandaloneContext, ... }:
 
-# TODO: Remake this module, add hyprpaper
 let
   inherit (lib) mkIf mkEnableOption mkOption types recursiveUpdate;
   cfg = config.modules.hyprland;
