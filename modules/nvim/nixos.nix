@@ -24,6 +24,8 @@ in {
     # Some LSPs require runtime libraries
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [
+      # This list is manually updated whenever I see any runtime errors
+      # Check ~/.local/state/nvim/lsp.log regularly
       glibc
       gcc
       icu
