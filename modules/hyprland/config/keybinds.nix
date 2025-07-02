@@ -40,7 +40,7 @@
     (lib.optionalString config.modules.vesktop.enable
       "${mainMod} SHIFT, D, exec, vesktop")
     (lib.optionalString config.modules.bluetooth.enable
-      "${mainMod} SHIFT, O, exec, overskride")
+      "${mainMod} SHIFT, B, exec, bluedevil-wizard")
     (lib.optionalString config.modules.whatsie.enable
       "${mainMod} SHIFT, W, exec, whatsie")
     (lib.optionalString config.modules.pipewire.enable

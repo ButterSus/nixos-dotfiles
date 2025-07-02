@@ -13,7 +13,9 @@ in {
     # System Packages
     environment.systemPackages = with pkgs; [
       # GUI
-      overskride
+
+      # (Overskride causes some trouble with NixOS, I've replaced it)
+      kdePackages.bluedevil
       
       # TUI
       bluetui
