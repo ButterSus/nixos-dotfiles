@@ -72,6 +72,11 @@ let
         # black
         # isort
 
+        # astrocommunity.pack.kotlin
+        kotlin
+        # kotlin-language-server
+        # ktlint
+
         # astrocommunity.pack.typst
         # tinymist
 
