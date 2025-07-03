@@ -168,7 +168,7 @@ nmap <Esc> :noh<CR>
 " Go To Definitions
 nmap gd <Action>(GotoDeclaration)
 nmap gi <Action>(GotoImplementation)
-nmap gr <Action>(ShowUsages)
+nmap gr <Action>(FindUsages)
 
 " Code Actions
 nmap <leader>la <Action>(ShowIntentionActions)

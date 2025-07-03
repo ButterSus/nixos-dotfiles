@@ -13,6 +13,9 @@ in {
     # System Packages
     environment.systemPackages = with pkgs; [
       windsurf
+
+      # For AI plugins
+      nodejs
     ];
   };
 }
