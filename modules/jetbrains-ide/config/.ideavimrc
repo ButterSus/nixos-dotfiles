@@ -75,7 +75,6 @@ set textobj-entire
 set multiple-cursors
 set mini-ai
 set functiontextobj
-set ReplaceWithRegister
 set vim-paragraph-motion
 set textobj-variable-segment
 
