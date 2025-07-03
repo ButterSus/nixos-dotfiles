@@ -77,6 +77,10 @@ let
         # kotlin-language-server
         # ktlint
 
+        # astrocommunity.pack.java
+        # jdt-language-server
+        # lemminx
+
         # astrocommunity.pack.typst
         # tinymist
 
