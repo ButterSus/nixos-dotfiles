@@ -35,14 +35,13 @@ let
     };
     
     # OS-Keyring fix: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/%40logins_39559/visual-studio-code-gnome-keyring-fix-for-codeium-and-probably-other-things-d3815217ef54&ved=2ahUKEwjjgorb34mOAxXCZ0EAHe6GHMQQFnoECBQQAQ&usg=AOvVaw1YYWRg8vb7N3DV2UsrETky
-    home.file.".windsurf/argv.json".text = lib.optionalString config.modules.gnome-keyring.enable
-      (builtins.toJSON {
-        # This field is needed to prevent error from vscode
-        enable-crash-reporter = true;
-
-        # This is the actual fix
-        password-store = "gnome-libsecret";
-      });
+    home.file.".windsurf/argv.json".text = builtins.toJSON ({
+      # This field is needed to prevent error from vscode
+      enable-crash-reporter = true;
+    } // lib.optionalAttrs config.modules.gnome-keyring.enable {
+      # This is the actual fix
+      password-store = "gnome-libsecret";
+    });
   };
 
 in {
@@ -61,4 +60,4 @@ in {
       }
   );
 }
-    
+
