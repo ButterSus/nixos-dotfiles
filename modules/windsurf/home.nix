@@ -31,6 +31,20 @@ let
             "asvetliakov.vscode-neovim" = 1;
           };
         };
+
+        keybindings = [
+          # Replace <ctrl-F> with <ctrl-alt-F> in terminal
+          {
+            key = "ctrl+alt+f";
+            command = "workbench.action.terminal.focusFind";
+            when = "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported";
+          }
+          {
+            key = "ctrl+f";
+            command = "-workbench.action.terminal.focusFind";
+            when = "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported";
+          }
+        ];
       };
     };
     
