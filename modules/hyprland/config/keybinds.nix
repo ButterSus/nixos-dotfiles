@@ -47,6 +47,8 @@
       "${mainMod} SHIFT, P, exec, pwvucontrol")
     (lib.optionalString config.modules.youtube-music.enable
       "${mainMod} SHIFT, Y, exec, youtube-music")
+    (lib.optionalString config.modules.youtube-music.enable
+      "${mainMod} SHIFT, S, exec, steam")
 
     # MPRIS: Youtube Music shortcuts
   ] ++ (lib.optionals config.modules.youtube-music.enable [
