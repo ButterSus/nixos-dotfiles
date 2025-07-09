@@ -154,6 +154,7 @@
     ];
   };
   modules.steam.enable = true;
+  modules.kolour-paint.enable = true;
   
   # Minecraft Modding
   modules.java = {
