@@ -132,6 +132,7 @@
   modules.firefox = {
     enable = true;
   };
+  modules.zapret.enable = false;
   modules.amnezia-vpn.enable = true;
   modules.vesktop.enable = true;       # Discord with Vencord
   modules.materialgram.enable = true;  # Telegram client
