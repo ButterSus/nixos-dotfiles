@@ -156,6 +156,7 @@
   };
   modules.steam.enable = true;
   modules.kolour-paint.enable = true;
+  modules.prism-launcher.enable = true;
   
   # Minecraft Modding
   modules.java = {
