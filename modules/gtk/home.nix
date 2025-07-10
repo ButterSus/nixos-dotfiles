@@ -12,19 +12,30 @@ let
     };
 
     # Enable gtk
-    gtk.enable = true;
-    gtk.iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus";
+    gtk = {
+      enable = true;
+      iconTheme = {
+        package = pkgs.papirus-icon-theme;
+        name = "Papirus";
+      };
+      theme = {
+        package = pkgs.magnetic-catppuccin-gtk;
+        name = "Catppuccin-GTK-Dark";
+      };
+
+      # Add GTK4 config
+      gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
+      };
+      
+      # Also for GTK3
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
+      };
     };
     
     # Gtk is deprecated for catppuccin
     # catppuccin.gtk.enable = true;
-    
-    gtk.theme = {
-      package = pkgs.magnetic-catppuccin-gtk;
-      name = "Catppuccin-GTK-Dark";
-    };
   };
 
 in {
