@@ -13,6 +13,7 @@ in {
     # System packages
     environment.systemPackages = with pkgs; [
       neovim
+      neovide
     ] ++ lib.optionals cfg.enableXorgClipboard [
       xclip
       xorg.xauth
