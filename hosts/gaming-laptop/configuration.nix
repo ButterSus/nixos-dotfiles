@@ -119,6 +119,7 @@
   modules.waybar.enable = true;   # Status bar
   modules.cliphist.enable = true; # Clipboad Manager
   modules.thunar.enable = true;   # File manager
+  modules.vlc.enable = true;      # Media Player
   
   # Theme Integration
   modules.gtk.enable = true;      # GTK theming
