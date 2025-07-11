@@ -71,7 +71,7 @@
     mkSystem = { system, hostname }: lib.nixosSystem {
       inherit system;
       specialArgs = { inherit inputs hostname; isHMStandaloneContext = false; };
-      modules = (importModules ./modules "nixos") ++ [
+      modules = importModules ./modules "nixos" ++ [
         # Home Manager module configuration
         home-manager.nixosModules.home-manager {
           home-manager = {
@@ -108,14 +108,14 @@
       ]
       
       # Host-specific NixOS configuration (if exists)
-      ++ (lib.optional (builtins.pathExists (./hosts + "/${hostname}/nixos.nix"))
-          (./hosts + "/${hostname}/nixos.nix"));
+      ++ lib.optional (builtins.pathExists (./hosts + "/${hostname}/nixos.nix"))
+          (./hosts + "/${hostname}/nixos.nix");
     };
 
     mkHomeConfiguration = { system, hostname }: home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
       extraSpecialArgs = { inherit inputs hostname; isHMStandaloneContext = true; };
-      modules = (importModules ./modules "home") ++ [
+      modules = importModules ./modules "home" ++ [
         # Per-host configuration
         (./hosts + "/${hostname}/configuration.nix")
 
@@ -137,8 +137,8 @@
       ]
       
       # Host-specific Home Manager configuration (if exists)
-      ++ (lib.optional (builtins.pathExists (./hosts + "/${hostname}/home.nix"))
-          (./hosts + "/${hostname}/home.nix"));
+      ++ lib.optional (builtins.pathExists (./hosts + "/${hostname}/home.nix"))
+          (./hosts + "/${hostname}/home.nix");
     };
 
     findHosts = path: lib.attrNames (lib.filterAttrs (n: v: v == "directory") (builtins.readDir path));

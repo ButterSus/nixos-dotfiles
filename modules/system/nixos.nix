@@ -15,12 +15,12 @@ in {
       coreutils
       curl
       wget
-    ] ++ (lib.optionals cfg.extraCliTools.enable [
+    ] ++ lib.optionals cfg.extraCliTools.enable [
       tree
       ncdu
       htop
       fastfetch
-    ]);
+    ];
 
     users.users.${config.primaryUser} = {
       isNormalUser = true;

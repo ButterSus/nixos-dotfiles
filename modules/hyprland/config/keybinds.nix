@@ -53,11 +53,11 @@
       "${mainMod} SHIFT, N, exec, neovide")
 
     # MPRIS: Youtube Music shortcuts
-  ] ++ (lib.optionals config.modules.youtube-music.enable [
+  ] ++ lib.optionals config.modules.youtube-music.enable [
       "${mainMod} CTRL, M     , exec, playerctl --player=YoutubeMusic play-pause"
       "${mainMod} CTRL, comma , exec, playerctl --player=YoutubeMusic previous"
       "${mainMod} CTRL, period, exec, playerctl --player=YoutubeMusic next"
-  ]) ++ [
+  ] ++ [
 
     # Window Actions
     "${mainMod}      , P, pseudo"

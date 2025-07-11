@@ -29,9 +29,9 @@ let
         # Fix systemd services
         variables = [ "--all" ];
       };
-      settings = (import ./config/settings.nix { inherit lib config cfg; }) //
-                 (import ./config/windowrules.nix) //
-                 (import ./config/keybinds.nix { inherit lib config cfg mainMod; });
+      settings = import ./config/settings.nix { inherit lib config cfg; } //
+                 import ./config/windowrules.nix //
+                 import ./config/keybinds.nix { inherit lib config cfg mainMod; };
       plugins = [
         Hyprspace.packages.${pkgs.system}.Hyprspace
       ];
