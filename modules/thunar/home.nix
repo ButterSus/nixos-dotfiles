@@ -9,6 +9,13 @@ let
     xdg.mimeApps.defaultApplications = {
       "inode/directory" = "thunar.desktop";
     };
+
+    xdg.configFile."xfce4/helpers.rc".text = lib.concatStringsSep "\n" (
+      lib.optional config.modules.kitty.enable ''
+        TerminalEmulator=kitty
+        TerminalEmulatorDismissed=true"
+      ''
+    );
   };
 
 in {
