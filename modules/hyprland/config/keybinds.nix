@@ -47,7 +47,7 @@
       "${mainMod} SHIFT, P, exec, pwvucontrol")
     (lib.optionalString config.modules.youtube-music.enable
       "${mainMod} SHIFT, Y, exec, youtube-music")
-    (lib.optionalString config.modules.youtube-music.enable
+    (lib.optionalString config.modules.steam.enable
       "${mainMod} SHIFT, S, exec, steam")
     (lib.optionalString config.modules.nvim.enable
       "${mainMod} SHIFT, S, exec, neovide")
