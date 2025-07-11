@@ -50,7 +50,7 @@
     (lib.optionalString config.modules.steam.enable
       "${mainMod} SHIFT, S, exec, steam")
     (lib.optionalString config.modules.nvim.enable
-      "${mainMod} SHIFT, S, exec, neovide")
+      "${mainMod} SHIFT, N, exec, neovide")
 
     # MPRIS: Youtube Music shortcuts
   ] ++ (lib.optionals config.modules.youtube-music.enable [
