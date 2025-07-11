@@ -21,7 +21,7 @@ in {
     
     # Set Thunar as default file manager
     xdg.mime.defaultApplications = {
-      "inode/directory" = "Thunar.desktop";
+      "inode/directory" = "thunar.desktop";
     };
 
     # Support filesystems

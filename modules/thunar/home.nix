@@ -5,7 +5,11 @@ let
   cfg = config.modules.thunar;
 
   # Core home configuration for this module
-  moduleHomeConfig = {};
+  moduleHomeConfig = {
+    xdg.mimeApps.defaultApplications = {
+      "inode/directory" = "thunar.desktop";
+    };
+  };
 
 in {
   # Module Options
