@@ -8,8 +8,8 @@ let
   # Core home configuration for this module
   moduleHomeConfig = { lib, ... }: {
     home.sessionVariables = {
-      VISUAL = "nvim";
       EDITOR = "nvim";
+      VISUAL = "neovide";
     };
 
     programs.neovim = {
