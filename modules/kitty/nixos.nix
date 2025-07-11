@@ -14,5 +14,10 @@ in {
     environment.systemPackages = with pkgs; [
       kitty
     ];
+
+    xdg.mime.defaultApplications = {
+      "application/x-terminal-emulator" = "kitty.desktop";
+      "x-scheme-handler/terminal" = "kitty.desktop";
+    };
   };
 }

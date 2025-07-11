@@ -6,6 +6,10 @@ let
 
   # Core home configuration for this module
   moduleHomeConfig = {
+    home.sessionVariables = {
+      TERMINAL = "kitty";
+    };
+
     programs.kitty = {
       enable = true;
       font = {
@@ -16,7 +20,13 @@ let
         placement_strategy = "top-left";
       };
     };
+
     catppuccin.kitty.enable = true;
+
+    xdg.mimeApps.defaultApplications = {
+      "application/x-terminal-emulator" = "kitty.desktop";
+      "x-scheme-handler/terminal" = "kitty.desktop";
+    };
   };
 
 in {
