@@ -67,4 +67,8 @@
   exec-once = lib.optionals config.modules.waybar.enable [
     "waybar"
   ];
+
+  workspace = [
+    "special:scratchpad, gapsout:40"
+  ];
 }
