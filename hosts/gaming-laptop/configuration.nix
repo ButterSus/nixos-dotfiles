@@ -165,6 +165,7 @@
     packages = {
       inherit (pkgs) jdk17 jdk21;
     };
+    enableGradle = true;
   };
   
   # Video Editing

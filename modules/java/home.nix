@@ -40,6 +40,8 @@ in {
       # using variable names as keys
       type = types.attrsOf types.package;
     };
+
+    enableGradle = mkEnableOption "Enable gradle build tool";
   };
   
   # Conditionally apply the configuration
@@ -52,4 +54,4 @@ in {
       }
   );
 }
-    
+

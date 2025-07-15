@@ -12,6 +12,10 @@ in {
 
   config = mkIf cfg.enable {
     # System Packages
-    environment.systemPackages = lib.attrValues cfg.packages;
+    environment.systemPackages = with pkgs;
+      lib.attrValues cfg.packages
+      ++ lib.optionals cfg.enableGradle [
+        gradle
+      ];
   };
 }

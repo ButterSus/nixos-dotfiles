@@ -14,8 +14,7 @@ let
       history.size = 10000;
       oh-my-zsh = {
         enable = true;
-        # Join to zero-plugin club, pure minimum ¬‿¬
-        plugins = [];
+        plugins = [ "gradle" ];
         theme = "ys";
         extraConfig = ''
           zstyle ':completion:*' insert-tab false
