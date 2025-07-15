@@ -79,9 +79,13 @@
     "${mainMod}, S        , togglespecialworkspace, scratchpad"
 
     # Screenshot  
-    ", PRINT, exec, hyprshot -m output"
-    "${mainMod}, PRINT    , exec, hyprshot -m window"
-    "${mainMod} SHIFT, PRINT, exec, hyprshot -m region"
+    ", PRINT, exec, hyprshot -m output --clipboard-only"
+    "${mainMod}, PRINT    , exec, hyprshot -m window --clipboard-only"
+    "${mainMod} SHIFT, PRINT, exec, hyprshot -m region --clipboard-only"
+
+    "ALT, PRINT, exec, hyprshot -m output --raw | swappy -f -"
+    "${mainMod} ALT, PRINT    , exec, hyprshot -m window --raw | swappy -f -"
+    "${mainMod} ALT SHIFT, PRINT, exec, hyprshot -m region --raw | swappy -f -"
 
     # Move focus
     "${mainMod}, h, movefocus, l"

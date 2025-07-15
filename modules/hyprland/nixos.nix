@@ -21,6 +21,7 @@ in {
       hyprpolkitagent  # Policy Kit
       brightnessctl    # Backlight control
       hyprshot         # Screenshot tool
+      swappy           # Image editing tool
     ];
 
     programs.hyprland = {
