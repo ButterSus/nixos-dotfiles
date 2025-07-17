@@ -17,9 +17,19 @@ in {
 
     xdg.portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-      ];
+      extraPortals = with pkgs;
+        lib.mkForce [
+          xdg-desktop-portal-hyprland
+
+          # Needed to run Display Manager (+fallback)
+          xdg-desktop-portal-gtk
+        ];
+
+      # TODO: Make it adapt depending on desktop environment
+      # (for now it's hardcoded as hyprland)
+      config.common = {
+        default = [ "hyprland" "gtk" ];
+      };
     };
   };
 }
