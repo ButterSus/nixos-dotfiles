@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-recent, ... }:
 
 let
   inherit (lib) mkIf;
@@ -12,7 +12,7 @@ in {
   config = mkIf cfg.enable {
     # System Packages
     environment.systemPackages = with pkgs; [
-      windsurf
+      pkgs-recent.windsurf
 
       # For AI plugins
       nodejs

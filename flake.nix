@@ -2,21 +2,30 @@
   description = "Minimal Modular NixOS Configuration";
   
   inputs = {
-    # Main NixOS flake
+    ## Main NixOS flakes
+
+    # This is used for 90% system packages, needs
+    # to be updated every few months
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # This input can be updated whenever you want,
+    # it's used for proprietary software that requires the
+    # most recent version (e.g. windsurf)
+    nixpkgs-recent.url = "github:nixos/nixpkgs/nixos-unstable";
+
     catppuccin.url = "github:catppuccin/nix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-    # Secret provisioning
+
+    ## Secret provisioning
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    # Overlays
+    ## Overlays
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +33,7 @@
     
     # Maybe, soon, I'll consider using stylix.
     
-    # Additional flake inputs (no need to specify these in parameters)
+    ## Additional flake inputs (no need to specify these in parameters)
     minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";    
 
     sddm-astronaut-theme = {
@@ -55,7 +64,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: let
+  outputs = { nixpkgs, nixpkgs-recent, home-manager, ... }@inputs: let
     lib = nixpkgs.lib;
     
     overlays = with inputs; [
@@ -70,7 +79,15 @@
 
     mkSystem = { system, hostname }: lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs hostname; isHMStandaloneContext = false; };
+      specialArgs = { 
+        inherit inputs hostname;
+        pkgs-recent = import nixpkgs-recent {
+          inherit system;
+          overlays = overlays;
+          config.allowUnfree = true;
+        };
+        isHMStandaloneContext = false;
+      };
       modules = importModules ./modules "nixos" ++ [
         # Home Manager module configuration
         home-manager.nixosModules.home-manager {
@@ -114,6 +131,11 @@
 
     mkHomeConfiguration = { system, hostname }: home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-recent = import nixpkgs-recent {
+        inherit system;
+        overlays = overlays;
+        config.allowUnfree = true;
+      };
       extraSpecialArgs = { inherit inputs hostname; isHMStandaloneContext = true; };
       modules = importModules ./modules "home" ++ [
         # Per-host configuration

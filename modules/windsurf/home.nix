@@ -1,4 +1,4 @@
-{ config, lib, pkgs, isHMStandaloneContext, ... }:
+{ config, lib, pkgs, pkgs-recent, isHMStandaloneContext, ... }:
 
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
@@ -9,15 +9,15 @@ let
     programs.vscode = {
       enable = true;
 
-      # Its configs location actually depends on this package.
-      package = pkgs.windsurf;
+      # Its config location actually depends on this package.
+      package = pkgs-recent.windsurf;
       
       # Let only NixOS manage extensions
       mutableExtensionsDir = false;
 
       profiles.default = {
         # List of extensions to install
-        extensions = with pkgs.vscode-extensions; [
+        extensions = with pkgs-recent.vscode-extensions; [
           bbenoist.nix
           asvetliakov.vscode-neovim
           catppuccin.catppuccin-vsc-icons

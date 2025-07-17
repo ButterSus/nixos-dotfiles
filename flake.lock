@@ -480,6 +480,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-recent": {
+      "locked": {
+        "lastModified": 1752480373,
+        "narHash": "sha256-JHQbm+OcGp32wAsXTE/FLYGNpb+4GLi5oTvCxwSoBOA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "62e0f05ede1da0d54515d4ea8ce9c733f12d9f08",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1719317636,
@@ -567,6 +583,7 @@
         "hyprland": "hyprland",
         "minegrub-world-sel-theme": "minegrub-world-sel-theme",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-recent": "nixpkgs-recent",
         "nur": "nur",
         "sddm-astronaut-theme": "sddm-astronaut-theme",
         "sops-nix": "sops-nix"
