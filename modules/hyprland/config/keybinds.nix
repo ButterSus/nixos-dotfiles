@@ -8,6 +8,12 @@
     ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
     ", XF86MonBrightnessUp, exec, brightnessctl s 5%+"
     ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+
+    # Resize window
+    "${mainMod} ALT, h, resizeactive, -10 0"
+    "${mainMod} ALT, l, resizeactive,  10 0"
+    "${mainMod} ALT, k, resizeactive, 0  10"
+    "${mainMod} ALT, j, resizeactive, 0 -10"
   ];
 
   # Keybinds
