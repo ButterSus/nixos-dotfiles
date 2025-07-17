@@ -7,6 +7,10 @@
   ];
 
   config = {
+    environment.systemPackages = with pkgs; [
+      iverilog
+    ];
+
     # My internal partition
     fileSystems."/media/recordings" = {
       device = "/dev/disk/by-uuid/2eb3790e-d83f-4ecc-9e4a-675a88b9d5c5";
