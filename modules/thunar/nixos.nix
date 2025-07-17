@@ -10,14 +10,14 @@ in {
   ];
 
   config = mkIf cfg.enable {
-    # System Packages
-    environment.systemPackages = with pkgs; [
-      xfce.thunar
-      
-      # Extensions
-      xfce.thunar-volman
-      xfce.thunar-archive-plugin
-    ];
+    programs.xfconf.enable = true;
+    programs.thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
     
     # Set Thunar as default file manager
     xdg.mime.defaultApplications = {
@@ -27,8 +27,11 @@ in {
     # Support filesystems
     boot.supportedFilesystems = [ "ntfs" ];
     
-    # Trash support
+    # Mount, trash, and other functionalities
     services.gvfs.enable = true;
+
+    # Thumnail support for images
+    services.tumbler.enable = true;
     
     # External drives
     services.udisks2.enable = true;
