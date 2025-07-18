@@ -4,40 +4,30 @@
   <img src="./pics/kaboom.png" height="200"/>
 </p>
 
-These are my personal NixOS and Home Manager dotfiles, built with Flakes.
+Personal NixOS and Home Manager dotfiles with Flakes.
 
-## Problems to solve
+## Key Features
 
-+ Linux-dependent code. Some of paths are hardcoded to use either /home directory or ~/.config, which is not suitable for MacOS.
-+ Standalone home-manager packages. For now most of the packages are managed via nixos-rebuild, and if you don't have one, there is no way to build it on linux.
+* **Modular:** Settings split into modules
+* **Auto-Discovers Hosts:** New machines in `hosts/` detected automatically
+* **Per-Host System Arch:** Each host specifies architecture in `hosts/hostname/system.nix`
+* **Dual Mode:** Works for full NixOS or standalone Home Manager
 
-## Key Things
+## Quick Start
 
-*   **Modular:** Settings are split into modules for easier management.
-*   **Auto-Discovers Hosts:** New machines/profiles in `hosts/` are picked up automatically.
-*   **Per-Host System Arch:** Each host specifies its architecture (e.g., `x86_64-linux`) in `hosts/your-hostname/system.nix`.
-*   **Dual Mode:** Works for full NixOS setups (with Home Manager) or standalone Home Manager.
+```bash
+# Full NixOS + Home Manager
+sudo nixos-rebuild switch --flake .#hostname
 
-## How to Apply
-
-1.  **NixOS System (includes Home Manager):**
-    ```bash
-    sudo nixos-rebuild switch --flake .#hostname
-    ```
-    *(Replace `hostname` with yours, e.g., `gaming-laptop`)*
-
-2.  **Standalone Home Manager:**
-    (For just user configs, e.g., on non-NixOS or a separately managed user)
-    ```bash
-    home-manager switch --flake .#hostname
-    ```
-    *(Replace `hostname` with yours, e.g., `gaming-laptop`)*
-
-## Adding a New Machine/Profile
-
-See the [guide in the hosts directory](./hosts/README.md).
+# Standalone Home Manager
+home-manager switch --flake .#hostname
+```
 
 ## Notes
 
-- All modules are using catppuccin color scheme, there is no plan to make it configurable.
-- I use AI to generate some configs, I'll be remaking them in the future.
+- Uses catppuccin theme (not configurable)
+- Current state version: 24.11
+- See [hosts/README.md](./hosts/README.md) for adding machines
+- See [modules/README.md](./modules/README.md) for module details
+- **Linux Only:** Currently hardcoded for Linux with Unix paths, not compatible with macOS
+- **Wayland Focus:** Primary testing done on Hyprland/Wayland; some modules may be Hyprland-specific
