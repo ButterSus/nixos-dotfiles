@@ -142,7 +142,10 @@
   modules.qbittorrent.enable = true;   # Torrent client
   
   # Terminal
-  modules.zsh.enable = true;
+  modules.zsh = {
+    enable = true;
+    extraPlugins = [ "gradle" "bazel" ];
+  };
   modules.kitty.enable = true;  
 
   # Development & Gaming

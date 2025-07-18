@@ -14,7 +14,7 @@ let
       history.size = 10000;
       oh-my-zsh = {
         enable = true;
-        plugins = [ "gradle" ];
+        plugins = cfg.extraPlugins;
         theme = "ys";
         extraConfig = ''
           zstyle ':completion:*' insert-tab false
@@ -27,6 +27,12 @@ in {
   # Module Options
   options.modules.zsh = {
     enable = mkEnableOption "Enable ZShell module";
+
+    extraPlugins = mkOption {
+      type = types.listOf types.str;
+      default = [];
+      description = "Extra plugins to add to oh-my-zsh";
+    };
   };
   
   # Conditionally apply the configuration
