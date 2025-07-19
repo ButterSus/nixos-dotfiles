@@ -9,6 +9,7 @@
   config = {
     environment.systemPackages = with pkgs; [
       iverilog
+      surfer
     ];
 
     # My internal partition
