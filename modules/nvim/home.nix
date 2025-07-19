@@ -64,7 +64,7 @@ let
 
         # astrocommunity.pack.lua
         # stylua
-        # luajitPackages.lua-lsp
+        luajitPackages.lua-lsp
         # selene
 
         # astrocommunity.pack.python
