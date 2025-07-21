@@ -12,5 +12,9 @@ in {
   config = mkIf cfg.enable {
     # System Options
     programs.firefox.enable = true;
+
+    xdg.mime.defaultApplications = {
+      "application/pdf" = "firefox.desktop";
+    };
   };
 }

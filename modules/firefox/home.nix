@@ -20,6 +20,10 @@ let
 
   # Core home configuration for this module
   moduleHomeConfig = {
+    xdg.mimeApps.defaultApplications = {
+      "application/pdf" = "firefox.desktop";
+    };
+
     # Home Manager Options for this module
     programs.firefox = {
       enable = true;
