@@ -47,6 +47,7 @@ let
         pkg-config
         imagemagick
         imagemagick.dev
+        ghostscript
 
         ## LSPs that should be installed by system:
         ## (commented out ones are installed via Mason.nvim)
