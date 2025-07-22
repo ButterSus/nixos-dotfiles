@@ -65,5 +65,7 @@ in {
       TTYVHangup = true;
       TTYVTDisallocate = true;
     };
+
+    boot.kernelParams = [ "loglevel=3" ]; # 3=errors only, 1=criticals only
   };
 }
