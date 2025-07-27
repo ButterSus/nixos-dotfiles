@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, cfg, ... }:
 
 let
   # Tip: Use this prompt to get hash:
@@ -6,13 +6,13 @@ let
   # xargs nix hash convert --hash-algo sha256
 
   hyprpaper-background = pkgs.fetchurl {
-    url = "https://wallpaperswide.com/download/just_chillin-wallpaper-1920x1080.jpg";
-    hash = "sha256-quI/tSunJFmBpCEfHnWj6egfQN5rpOq/BSggDxb3mtc=";
+    url = cfg.backgrounds.hyprpaper.url;
+    hash = cfg.backgrounds.hyprpaper.hash;
   };
   
   hyprlock-background = pkgs.fetchurl {
-    url = "https://wallpaperswide.com/download/spongebob_house_patrick-wallpaper-1920x1080.jpg";
-    hash = "sha256-E5mnXfyIiNW3QtWS9Hb1lhYDvTuDU5Edw965yoOTDZ8=";
+    url = cfg.backgrounds.hyprlock.url;
+    hash = cfg.backgrounds.hyprlock.hash;
   };
   
 in {

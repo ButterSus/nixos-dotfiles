@@ -36,7 +36,7 @@ let
         Hyprspace.packages.${pkgs.system}.Hyprspace
       ];
     };
-  } (import ./config/services.nix { inherit pkgs; });
+  } (import ./config/services.nix { inherit pkgs cfg; });
 
 in {
   options.modules.hyprland = {
@@ -54,6 +54,48 @@ in {
       type = types.listOf types.str;
       default = [ "us" ];
       description = "List of keyboard layouts";
+    };
+    
+    backgrounds = {
+      hyprpaper = mkOption {
+        type = types.submodule {
+          options = {
+            url = mkOption {
+              type = types.str;
+              example = "https://wallpaperswide.com/download/just_chillin-wallpaper-1920x1080.jpg";
+              description = "URL for the hyprpaper background image";
+            };
+            
+            hash = mkOption {
+              type = types.str;
+              example = "sha256-quI/tSunJFmBpCEfHnWj6egfQN5rpOq/BSggDxb3mtc=";
+              description = "SHA256 hash of the hyprpaper background image";
+            };
+          };
+        };
+        default = {};
+        description = "Configuration for hyprpaper background";
+      };
+      
+      hyprlock = mkOption {
+        type = types.submodule {
+          options = {
+            url = mkOption {
+              type = types.str;
+              example = "https://wallpaperswide.com/download/spongebob_house_patrick-wallpaper-1920x1080.jpg";
+              description = "URL for the hyprlock background image";
+            };
+            
+            hash = mkOption {
+              type = types.str;
+              example = "sha256-E5mnXfyIiNW3QtWS9Hb1lhYDvTuDU5Edw965yoOTDZ8=";
+              description = "SHA256 hash of the hyprlock background image";
+            };
+          };
+        };
+        default = {};
+        description = "Configuration for hyprlock background";
+      };
     };
   };
 

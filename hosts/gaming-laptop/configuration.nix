@@ -110,6 +110,16 @@
     enable = true;
     xwayland.enable = true;
     layouts = [ "us" "ru" ];
+    backgrounds = {
+      hyprpaper = {
+        url = "https://wallpaperswide.com/download/just_chillin-wallpaper-1920x1080.jpg";
+        hash = "sha256-quI/tSunJFmBpCEfHnWj6egfQN5rpOq/BSggDxb3mtc=";
+      };
+      hyprlock = {
+        url = "https://wallpaperswide.com/download/spongebob_house_patrick-wallpaper-1920x1080.jpg";
+        hash = "sha256-E5mnXfyIiNW3QtWS9Hb1lhYDvTuDU5Edw965yoOTDZ8=";
+      };
+    };
   };
   modules.xdg.enable = true;
   
