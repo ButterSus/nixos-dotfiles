@@ -150,6 +150,7 @@
   modules.whatsie.enable = true;       # WhatsApp client
   modules.youtube-music.enable = true; # Music? Yes, please!
   modules.qbittorrent.enable = true;   # Torrent client
+  modules.gparted.enable = true;
   
   # Terminal
   modules.zsh = {
