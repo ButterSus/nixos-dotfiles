@@ -1,19 +1,22 @@
-{ pkgs, cfg, ... }:
+{ lib, pkgs, cfg, ... }:
 
 let
   # Tip: Use this prompt to get hash:
   # $ nix-prefetch-url <url> |
   # xargs nix hash convert --hash-algo sha256
 
-  hyprpaper-background = pkgs.fetchurl {
+  hyprpaperEnabled = cfg.backgrounds.hyprpaper ? url && cfg.backgrounds.hyprpaper ? hash;
+  hyprlockEnabled = cfg.backgrounds.hyprlock ? url && cfg.backgrounds.hyprlock ? hash;
+  
+  hyprpaper-background = if hyprpaperEnabled then pkgs.fetchurl {
     url = cfg.backgrounds.hyprpaper.url;
     hash = cfg.backgrounds.hyprpaper.hash;
-  };
+  } else null;
   
-  hyprlock-background = pkgs.fetchurl {
+  hyprlock-background = if hyprlockEnabled then pkgs.fetchurl {
     url = cfg.backgrounds.hyprlock.url;
     hash = cfg.backgrounds.hyprlock.hash;
-  };
+  } else null;
   
 in {
   # Better hyprland cursor
@@ -25,8 +28,8 @@ in {
   
   # Wallpaper manager
   services.hyprpaper = {
-    enable = true;
-    settings = {
+    enable = hyprpaperEnabled;
+    settings = lib.optionalAttrs hyprpaperEnabled {
       splash = false;
       ipc = true; # Enable IPC for dynamic wallpaper changes if needed
       preload = [
@@ -46,8 +49,8 @@ in {
   
   # Lock screen 
   programs.hyprlock = {
-    enable = true;
-    settings = {
+    enable = hyprlockEnabled;
+    settings = lib.optionalAttrs hyprlockEnabled {
       background = [
         {
           path = builtins.toString hyprlock-background;
@@ -57,5 +60,5 @@ in {
       ];
     };
   };
-  catppuccin.hyprlock.enable = true;
+  catppuccin.hyprlock.enable = hyprlockEnabled;
 }
