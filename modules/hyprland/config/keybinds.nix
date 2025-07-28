@@ -22,49 +22,49 @@
     ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
     # Applications
-    (lib.optionalString config.modules.kitty.enable
-      "${mainMod}, Q, exec, kitty")
-    (lib.optionalString config.modules.firefox.enable
-      "${mainMod}, B, exec, firefox")
-    (lib.optionalString config.modules.fuzzel.enable
-      "${mainMod}, D, exec, fuzzel")
-    (lib.optionalString config.modules.thunar.enable
-      "${mainMod}, E, exec, thunar")
-    (lib.optionalString config.modules.materialgram.enable
-      "${mainMod}, T, exec, materialgram")
-    (lib.optionalString config.modules.wlogout.enable
-      "${mainMod}, Z, exec, wlogout")
-    (lib.optionalString config.modules.cliphist.enable
-      "${mainMod}, W, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy")
-    (lib.optionalString config.modules.youtube-music.enable
-      "${mainMod}, Y, exec, youtube-music")
-    
-    (lib.optionalString config.modules.qbittorrent.enable
-      "${mainMod} SHIFT, Q, exec, qbittorrent")
-    (lib.optionalString config.modules.amnezia-vpn.enable
-      "${mainMod} SHIFT, A, exec, AmneziaVPN")
-    (lib.optionalString config.modules.vesktop.enable
-      "${mainMod} SHIFT, D, exec, vesktop")
-    (lib.optionalString config.modules.bluetooth.enable
-      "${mainMod} SHIFT, B, exec, bluedevil-wizard")
-    (lib.optionalString config.modules.whatsie.enable
-      "${mainMod} SHIFT, W, exec, whatsie")
-    (lib.optionalString config.modules.pipewire.enable
-      "${mainMod} SHIFT, P, exec, pwvucontrol")
-    (lib.optionalString config.modules.youtube-music.enable
-      "${mainMod} SHIFT, Y, exec, youtube-music")
-    (lib.optionalString config.modules.steam.enable
-      "${mainMod} SHIFT, S, exec, steam")
-    (lib.optionalString config.modules.nvim.enable
-      "${mainMod} SHIFT, N, exec, neovide")
-
+  ] 
+  ++ lib.optional config.modules.kitty.enable 
+    "${mainMod}, Q, exec, kitty"
+  ++ lib.optional config.modules.firefox.enable 
+    "${mainMod}, B, exec, firefox"
+  ++ lib.optional config.modules.fuzzel.enable 
+    "${mainMod}, D, exec, fuzzel"
+  ++ lib.optional config.modules.thunar.enable 
+    "${mainMod}, E, exec, thunar"
+  ++ lib.optional config.modules.materialgram.enable 
+    "${mainMod}, T, exec, materialgram"
+  ++ lib.optional config.modules.wlogout.enable 
+    "${mainMod}, Z, exec, wlogout"
+  ++ lib.optional config.modules.cliphist.enable 
+    "${mainMod}, W, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
+  ++ lib.optional config.modules.youtube-music.enable 
+    "${mainMod}, Y, exec, youtube-music"
+  
+  ++ lib.optional config.modules.qbittorrent.enable 
+    "${mainMod} SHIFT, Q, exec, qbittorrent"
+  ++ lib.optional config.modules.amnezia-vpn.enable 
+    "${mainMod} SHIFT, A, exec, AmneziaVPN"
+  ++ lib.optional config.modules.vesktop.enable 
+    "${mainMod} SHIFT, D, exec, vesktop"
+  ++ lib.optional config.modules.bluetooth.enable 
+    "${mainMod} SHIFT, B, exec, bluedevil-wizard"
+  ++ lib.optional config.modules.whatsie.enable 
+    "${mainMod} SHIFT, W, exec, whatsie"
+  ++ lib.optional config.modules.pipewire.enable 
+    "${mainMod} SHIFT, P, exec, pwvucontrol"
+  ++ lib.optional config.modules.youtube-music.enable 
+    "${mainMod} SHIFT, Y, exec, youtube-music"
+  ++ lib.optional config.modules.steam.enable 
+    "${mainMod} SHIFT, S, exec, steam"
+  ++ lib.optional config.modules.nvim.enable 
+    "${mainMod} SHIFT, N, exec, neovide"
+  ++ lib.optionals config.modules.youtube-music.enable [
     # MPRIS: Youtube Music shortcuts
-  ] ++ lib.optionals config.modules.youtube-music.enable [
-      "${mainMod} CTRL, M     , exec, playerctl --player=YoutubeMusic play-pause"
-      "${mainMod} CTRL, comma , exec, playerctl --player=YoutubeMusic previous"
-      "${mainMod} CTRL, period, exec, playerctl --player=YoutubeMusic next"
-  ] ++ [
-
+    "${mainMod} CTRL, M     , exec, playerctl --player=YoutubeMusic play-pause"
+    "${mainMod} CTRL, comma , exec, playerctl --player=YoutubeMusic previous"
+    "${mainMod} CTRL, period, exec, playerctl --player=YoutubeMusic next"
+  ]
+  ++ [
     # Window Actions
     "${mainMod}      , P, pseudo"
     "${mainMod}      , V, togglefloating"
@@ -74,10 +74,11 @@
     "${mainMod} SHIFT, C, forcekillactive"
     "${mainMod}      , N, togglesplit"
     
+  ]
+  ++ lib.optional config.modules.waybar.enable
     # Hyprland Other Actions
-    (lib.optionalString config.modules.waybar.enable
-      "${mainMod}, O, exec, pkill waybar || waybar")
-
+    "${mainMod}, O, exec, pkill waybar || waybar"
+  ++ [
     "${mainMod}, M        , exit"
     "${mainMod}, X        , exec, hyprpicker --autocopy"
     "${mainMod}, G        , overview:toggle"
