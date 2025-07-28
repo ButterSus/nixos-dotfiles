@@ -5,6 +5,7 @@
 keys:
   - &admin_buttersus age1efmu87qgg6gw0knvdnszc34ucjhce0xaz9ukynx3y2z5xzj40edqhkvw3r
   - &user_gaming-laptop age1xycswvqjcgj6pxvu5880zuu9ck5fa3qf7hrunvulxwtalyf6qvwsfm7hqr
+  - &user_thinkpad age190zxq9xhfj8d2zqyrsy7jn2cfz5t683e7ln2p0tym27pn06kwfsqvypjwp
 creation_rules:
     # For now, I have only one group of secrets
   - path_regex: secrets/[^/]+$
@@ -12,6 +13,7 @@ creation_rules:
     - age:
       - *admin_buttersus
       - *user_gaming-laptop
+      - *user_thinkpad
       pgp:
       # Use PGP on untrusted devices
       # Empty for now
