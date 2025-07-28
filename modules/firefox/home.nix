@@ -289,7 +289,7 @@ let
           default = "ddg";
           order = [ "ddg" ];
           engines = {
-            "Google".metaData.hidden = true;
+            "google".metaData.hidden = true;
           };
         };
         # Apply one-line firefox theme
