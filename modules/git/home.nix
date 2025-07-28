@@ -88,13 +88,25 @@ let
     };
 
     # Secrets
-    sops = lib.optionalAttrs config.modules.sops.enable {
-      secrets.github_id_ed25519 = {
-        # Read-only for the user
-        mode = "0400";
-        path = "/home/${config.primaryUser}/.ssh/github_id_ed25519";
+    sops.secrets = 
+      lib.optionalAttrs config.modules.sops.enable {
+        github_id_ed25519 = {
+          # Read-only for the user
+          mode = "0400";
+          path = "/home/${config.primaryUser}/.ssh/github_id_ed25519";
+        };
+      }
+      // lib.optionalAttrs (config.modules.sops.enable && cfg.enableGithubCli) {
+        github_pat = {
+          mode = "0400";
+          path = "/home/${config.primaryUser}/.config/git/github_pat";
+        };
       };
-    };
+
+    home.sessionVariables = 
+      lib.optionalAttrs (config.modules.sops.enable && cfg.enableGithubCli) {
+        GITHUB_TOKEN = "$(cat \"/home/${config.primaryUser}/.config/git/github_pat\")";
+      };
 
     # SSH Configuration
     programs.ssh.extraConfig = lib.optionalString config.modules.sops.enable
