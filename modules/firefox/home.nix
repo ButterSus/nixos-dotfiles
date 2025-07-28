@@ -55,7 +55,7 @@ let
           #####################
 
           # Resume previous session
-          "browser.statup.page" = 3;
+          "browser.startup.page" = 3;
           # Don't restore default bookmarks
           "browser.bookmarks.restore_default_bookmarks" = false;
 
@@ -87,12 +87,6 @@ let
           "browser.topsites.contile.enabled" = false;
           # Disable Form Filling
           "browser.formfill.enable" = false;
-          # Disable Search Suggestions
-          "browser.search.suggest.enabled" = false;
-          "browser.search.suggest.enabled.private" = false;
-          # Disable Search Suggestions in URL Bar
-          "browser.urlbar.suggest.searches" = false;
-          "browser.urlbar.showSearchSuggestionsFirst" = false;
           # Disable Top Stories
           "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
           "browser.newtabpage.activity-stream.feeds.snippets" = false;
@@ -107,13 +101,13 @@ let
           # Disable Sponsored
           "browser.newtabpage.activity-stream.showSponsored" = false;
           "browser.newtabpage.activity-stream.system.showSponsored" = false;
-          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+            "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
 
-          # Enable Firefox login
-          "identity.fxaccounts.enabled" = true;
-          "identity.fxaccounts.toolbar.enabled" = true;
-          "identity.fxaccounts.pairing.enabled" = true;
-          "identity.fxaccounts.commands.enabled" = true;
+          # Disable Firefox login
+          "identity.fxaccounts.enabled" = false;
+          "identity.fxaccounts.toolbar.enabled" = false;
+          "identity.fxaccounts.pairing.enabled" = false;
+          "identity.fxaccounts.commands.enabled" = false;
 
           # Disable annoying web features
           "dom.push.enabled" = false;
@@ -131,6 +125,38 @@ let
           #############
           ## PRIVACY ##
           #############
+
+          # Set DuckDuckGo as default search engine - use the exact engine name (deprecated)
+          "browser.search.defaultenginename" = "DuckDuckGo";
+          "browser.search.selectedEngine" = "DuckDuckGo";
+          
+          # Alternative approach - use search order preference (deprecated)
+          "browser.search.order.1" = "DuckDuckGo";
+          
+          # Disable search suggestions
+          "browser.search.suggest.enabled" = false;
+          "browser.search.suggest.enabled.private" = false;
+          
+          # URL bar settings
+          "browser.urlbar.placeholderName" = "DuckDuckGo";
+          "browser.urlbar.placeholderName.private" = "DuckDuckGo";
+          "browser.urlbar.suggest.searches" = false;
+          "browser.urlbar.showSearchSuggestionsFirst" = false;
+
+          # Geolocation
+          "browser.search.geoSpecificDefaults" = false;
+          "browser.search.geoSpecificDefaults.url" = "";
+
+          # Complete password management disable
+          "signon.rememberSignons" = false;                    # Don't ask to save passwords
+          "signon.autofillForms" = false;                      # Don't autofill login forms  
+          "signon.generation.enabled" = false;                 # Don't generate passwords
+          "signon.management.page.breach-alerts.enabled" = false; # No breach alerts
+          "signon.firefoxRelay.feature" = "disabled";         # Disable Firefox Relay integration
+          
+          # Ensure no region-specific search defaults
+          "browser.search.region" = "US";
+          "browser.search.isUS" = true;
 
           # Disable telemetry
           "toolkit.telemetry.unified" = false;
@@ -161,11 +187,14 @@ let
           "browser.contentblocking.category" = "strict";
 
           # Additional protection
+          "privacy.globalprivacycontrol.enabled" = true;
           "privacy.donottrackheader.enabled" = true;
           "privacy.trackingprotection.enabled" = true;
           "privacy.trackingprotection.socialtracking.enabled" = true;
           "privacy.userContext.enabled" = true;
           "privacy.userContext.ui.enabled" = true;
+          "dom.security.https_only_mode" = true;
+          "dom.security.https_only_mode_ever_enabled" = true;
           
           ####################
           ## USER INTERFACE ##
@@ -252,6 +281,16 @@ let
           # Unfortunately, extension settings are really hard to set
           # the "Nix way". So we must set them manually via GUI.
           # https://github.com/nix-community/home-manager/pull/6389
+        };
+        
+        # Use DuckDuckGo, please!
+        search = {
+          force = true;
+          default = "ddg";
+          order = [ "ddg" ];
+          engines = {
+            "Google".metaData.hidden = true;
+          };
         };
         # Apply one-line firefox theme
         userChrome = builtins.readFile ./userChrome.css;
