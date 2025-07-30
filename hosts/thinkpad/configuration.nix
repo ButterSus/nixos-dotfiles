@@ -88,17 +88,16 @@
   modules.fonts = { enable = true; };
   
   # Display Manager
-  modules.sddm.enable = true;
-  # Commented out TUI greeter alternative
-  # modules.tuigreet = {
-  #   enable = true;
-  #   settings = {
-  #     showTime = true;
-  #     rememberLastSession = true;
-  #     rememberUser = true;
-  #     extraArgs = [];
-  #   };
-  # };
+  # modules.sddm.enable = true;
+  modules.tuigreet = {
+    enable = true;
+    settings = {
+      showTime = true;
+      rememberLastSession = true;
+      rememberUser = true;
+      extraArgs = [];
+    };
+  };
   
   # Desktop Environment & Compositor
   modules.wayland = {
@@ -160,7 +159,7 @@
   modules.alacritty.enable = true;  
 #
   # Development & Gaming
-# modules.windsurf.enable = true;
+  modules.windsurf.enable = true;
 # modules.jetbrains-ide.enable = true;
   modules.zola.enable = true;
 # modules.intellij-community = {
