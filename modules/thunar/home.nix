@@ -10,9 +10,13 @@ let
       "inode/directory" = "thunar.desktop";
     };
 
-    xdg.configFile."xfce4/helpers.rc".text = lib.concatStringsSep "\n" (
+    xdg.configFile."xfce4/helpers.rc".text = lib.concatLines (
       lib.optional config.modules.kitty.enable ''
         TerminalEmulator=kitty
+        TerminalEmulatorDismissed=true"
+      ''
+      ++ lib.optional config.modules.alacritty.enable ''
+        TerminalEmulator=alacritty
         TerminalEmulatorDismissed=true"
       ''
     );

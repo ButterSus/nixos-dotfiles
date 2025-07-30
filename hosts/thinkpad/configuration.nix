@@ -157,7 +157,7 @@
     enable = true;
 #   extraPlugins = [ "gradle" "bazel" ];
   };
-  modules.kitty.enable = true;  
+  modules.alacritty.enable = true;  
 #
   # Development & Gaming
 # modules.windsurf.enable = true;

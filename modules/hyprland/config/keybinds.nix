@@ -25,6 +25,8 @@
   ] 
   ++ lib.optional config.modules.kitty.enable 
     "${mainMod}, Q, exec, kitty"
+  ++ lib.optional config.modules.alacritty.enable 
+    "${mainMod}, Q, exec, alacritty"
   ++ lib.optional config.modules.firefox.enable 
     "${mainMod}, B, exec, firefox"
   ++ lib.optional config.modules.fuzzel.enable 
