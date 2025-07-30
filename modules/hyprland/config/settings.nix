@@ -12,7 +12,7 @@
 
   # Configure monitor layout
   monitor = [
-    "eDP-1   , preferred, auto       , 1.0"
+    "eDP-1   , preferred, auto       , ${builtins.toString cfg.scale}"
     "HDMI-A-1, preferred, auto-right , 1.0"
   ];
 
@@ -24,6 +24,10 @@
       natural_scroll = false;  # Sorry, not a fan of natural scroll
       disable_while_typing = false;  # I play games!
     };
+  };
+
+  xwayland = {
+    force_zero_scaling = true;
   };
     
   general = {

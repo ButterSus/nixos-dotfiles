@@ -119,6 +119,7 @@
         hash = "sha256-p5Pr+w2XowwtLIwG+OW3UrnROlMHokj7DymO32K1d7o=";
       };
     };
+    scale = 1.25;
   };
   modules.xdg.enable = true;
   

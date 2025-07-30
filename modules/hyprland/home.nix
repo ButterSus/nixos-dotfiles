@@ -97,6 +97,12 @@ in {
         description = "Configuration for hyprlock background";
       };
     };
+
+    scale = mkOption {
+      type = types.float;
+      default = 1.0;
+      description = "Scale for eDP-1 monitor";
+    };
   };
 
   config = mkIf cfg.enable (
