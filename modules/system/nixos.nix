@@ -117,6 +117,13 @@ in {
         formatted;
     
     # Disable webcam
-     boot.blacklistedKernelModules = [ "uvcvideo" ];
+    boot.blacklistedKernelModules = [ "uvcvideo" ];
+
+    # Hibernate when running low
+    services.upower = {
+      enable = true;
+      percentageCritical = 5;
+      criticalPowerAction = "Hibernate";
+    };
   };
 }
