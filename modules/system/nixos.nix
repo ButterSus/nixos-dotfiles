@@ -125,5 +125,8 @@ in {
       percentageCritical = 5;
       criticalPowerAction = "Hibernate";
     };
+
+    # Use catppuccin theme for tty
+    catppuccin.tty.enable = true;
   };
 }
