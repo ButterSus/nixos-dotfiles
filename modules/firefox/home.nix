@@ -6,16 +6,21 @@ let
   inherit (lib) mkIf mkEnableOption mkOption types;
   cfg = config.modules.firefox;
   
-  # List of extensions
+  # List of extensions, you can browse them here:
+  # https://nur.nix-community.org/repos/rycee/
   extensions = with pkgs.nur.repos.rycee.firefox-addons; [
     ublock-origin
     vimium-c
     i-dont-care-about-cookies
+    firefox-color
+
+    # NOTE: You'll manually need to override colors:
+    # https://github.com/catppuccin/dark-reader?tab=readme-ov-file#usage
     darkreader
-    
-    # Catppuccin
-    catppuccin-mocha-mauve
-    catppuccin-web-file-icons
+
+    # NOTE: You'll manually need to add catppuccin userstyles:
+    # https://github.com/catppuccin/userstyles/blob/main/docs/USAGE.md
+    stylus
   ];
 
   # Core home configuration for this module
@@ -195,93 +200,29 @@ let
           "privacy.userContext.ui.enabled" = true;
           "dom.security.https_only_mode" = true;
           "dom.security.https_only_mode_ever_enabled" = true;
-          
+
           ####################
           ## USER INTERFACE ##
           ####################
 
-          # This JSON string defines the placement of all toolbar items.
-          # We place only the urlbar and extensions button on the nav-bar.
-          # Other items are moved to the overflow menu.
-          "browser.uiCustomization.state" = ''
-          {
-            "placements": {
-              "widget-overflow-fixed-list": [
-                "downloads-button",
-                "history-panelmenu",
-                "find-button",
-                "fxa-toolbar-menu-button",
-                "firefox-view-button",
-                "preferences-button",
-                "stop-reload-button",
-                "home-button"
-              ],
-              "unified-extensions-area": [
-                "vimium-c_gdh1995_cn-browser-action",
-                "jid1-kkzogwgsw3ao4q_jetpack-browser-action"
-              ],
-              "nav-bar": [
-                "urlbar-container",
-                "unified-extensions-button",
-                "vertical-spacer",
-                "forward-button",
-                "back-button"
-              ],
-              "toolbar-menubar": [
-                "menubar-items"
-              ],
-              "TabsToolbar": [
-                "tabbrowser-tabs",
-                "new-tab-button",
-                "alltabs-button"
-              ],
-              "vertical-tabs": [],
-              "PersonalToolbar": []
-            },
-            "seen": [
-              "save-to-pocket-button",
-              "developer-button",
-              "unified-extensions-button",
-              "vimium-c_gdh1995_cn-browser-action",
-              "jid1-kkzogwgsw3ao4q_jetpack-browser-action"
-            ],
-            "dirtyAreaCache": [
-              "nav-bar",
-              "toolbar-menubar",
-              "TabsToolbar",
-              "PersonalToolbar",
-              "widget-overflow-fixed-list",
-              "unified-extensions-area",
-              "vertical-tabs"
-            ],
-            "currentVersion": 22,
-            "newElementCount": 1
-          }
-          '';
-
-          # Enable userChrome.css
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-          # Enable compact mode in UI
-          "browser.compactmode.show" = true;
-          # Set compact density
-          "browser.uidensity" = 1;
           # Hide bookmarks in toolbar
           "browser.toolbars.bookmarks.visibility" = "never";
-          # Hide sidebar
-          "sidebar.visibility" = "hide-sidebar";
-
-          # Set theme
-          "extensions.activeThemeID" = "{76aabc99-c1a8-4c1e-832b-d4f2941d5a7a}";
-          "extensions.extensions.activeThemeID" = "{76aabc99-c1a8-4c1e-832b-d4f2941d5a7a}";
+          # Force dark theme if possible
+          "layout.css.prefers-color-scheme.content-override" = 0;
         };
+
+        # Extensions from NUR
         extensions = {
-          # Extensions from NUR
           packages = extensions;
+          force = true;
 
-          # Unfortunately, extension settings are really hard to set
-          # the "Nix way". So we must set them manually via GUI.
-          # https://github.com/nix-community/home-manager/pull/6389
+          settings = {
+          };
         };
+
+        # Unfortunately, extension settings are really hard to set
+        # the "Nix way". So we must set them manually via GUI.
+        # https://github.com/nix-community/home-manager/pull/6389
         
         # Use DuckDuckGo, please!
         search = {
@@ -292,9 +233,22 @@ let
             "google".metaData.hidden = true;
           };
         };
-        # Apply one-line firefox theme
-        userChrome = builtins.readFile ./userChrome.css;
       };
+    };
+
+    # Apply textfox firefox theme
+    textfox = {
+      enable = true;
+      profile = config.primaryUser;
+      config = {
+        displaySidebarTools = true;
+        displayNavButtons = true;
+      };
+    };
+
+    catppuccin.firefox.profiles.${config.primaryUser} = {
+      enable = true;
+      force = true;
     };
   };
 

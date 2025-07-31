@@ -62,6 +62,8 @@
       url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";  # Don't duplicate
     };
+
+    textfox.url = "github:adriankarlen/textfox";
   };
 
   outputs = { nixpkgs, nixpkgs-recent, home-manager, ... }@inputs: let
@@ -115,6 +117,7 @@
           home-manager.sharedModules = [
             inputs.catppuccin.homeModules.catppuccin
             inputs.sops-nix.homeManagerModules.sops
+            inputs.textfox.homeManagerModules.default
           ];
           
           modules.sops.defaultSopsFile = ./secrets/default.yaml;
@@ -149,6 +152,7 @@
           imports = [
             inputs.catppuccin.homeModules.catppuccin
             inputs.sops-nix.homeManagerModules.sops
+            inputs.textfox.homeManagerModules.default
           ];
           
           modules.sops.defaultSopsFile = ./secrets/default.yaml;
