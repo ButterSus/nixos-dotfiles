@@ -10,6 +10,10 @@ in {
   ];
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      kdePackages.ark
+    ];
+
     programs.xfconf.enable = true;
     programs.thunar = {
       enable = true;
