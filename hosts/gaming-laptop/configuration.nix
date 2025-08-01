@@ -88,17 +88,18 @@
   modules.fonts = { enable = true; };
   
   # Display Manager
-  modules.sddm.enable = true;
-  # Commented out TUI greeter alternative
-  # modules.tuigreet = {
-  #   enable = true;
-  #   settings = {
-  #     showTime = true;
-  #     rememberLastSession = true;
-  #     rememberUser = true;
-  #     extraArgs = [];
-  #   };
-  # };
+  modules.tuigreet = {
+    enable = true;
+    settings = {
+      showTime = true;
+      rememberLastSession = true;
+      rememberUser = true;
+      extraArgs = [];
+    };
+  };
+
+  # Commented out SDDM greeter alternative
+  # modules.sddm.enable = true;
   
   # Desktop Environment & Compositor
   modules.wayland = {
