@@ -60,6 +60,8 @@
     "${mainMod} SHIFT, S, exec, steam"
   ++ lib.optional config.modules.nvim.enable 
     "${mainMod} SHIFT, N, exec, neovide"
+  ++ lib.optional config.modules.kden-live.enable 
+    "${mainMod} SHIFT, K, exec, kdenlive"
   ++ lib.optionals config.modules.youtube-music.enable [
     # MPRIS: Youtube Music shortcuts
     "${mainMod} CTRL, M     , exec, playerctl --player=YoutubeMusic play-pause"
