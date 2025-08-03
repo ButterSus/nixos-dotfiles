@@ -112,6 +112,9 @@ nmap [d <Action>(GotoPreviousError)
 nmap [f <Action>(MethodUp)
 nmap ]f <Action>(MethodDown)
 
+" Search selection
+xmap // y/<C-R>"<CR>N
+
 " ============================================================================
 " Window & Tab Management
 " ============================================================================
@@ -131,6 +134,7 @@ nmap <leader>c <Action>(CloseContent)
 nmap <leader>q <Action>(CloseAllEditors)
 nmap <leader>bc <Action>(CloseAllEditorsButActive)
 nmap <leader>bC <Action>(CloseAllEditors)
+nmap <leader>X <Action>(CloseProject)
 
 " Split Options
 nmap <leader>o <Action>(ShowNavBar)
@@ -188,8 +192,8 @@ nmap <leader>fw <Action>(FindInPath)
 nmap <leader>fa <Action>(GotoAction)
 nmap <leader>ff <Action>(GotoFile)
 nmap <leader>fs <Action>(GotoSymbol)
-nmap <leader>fc <Action>(GotoClass)
-nmap <leader>fd <Action>(ActivateProblemsViewToolWindow)
+nmap <leader>fc mzviw<Action>(FindSelectionInPath)<Esc>`z
+nmap <leader>fC <Action>(GotoClass)
 nmap <leader>fT <Action>(ActivateTODOToolWindow)
 
 " ============================================================================
