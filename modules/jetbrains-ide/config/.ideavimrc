@@ -130,6 +130,7 @@ nmap + <Action>(StretchSplitToTop)
 nmap <leader>c <Action>(CloseContent)
 nmap <leader>q <Action>(CloseAllEditors)
 nmap <leader>bc <Action>(CloseAllEditorsButActive)
+nmap <leader>bC <Action>(CloseAllEditors)
 
 " Split Options
 nmap <leader>o <Action>(ShowNavBar)
