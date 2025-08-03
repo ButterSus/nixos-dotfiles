@@ -134,12 +134,15 @@
 
     mkHomeConfiguration = { system, hostname }: home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-recent = import nixpkgs-recent {
-        inherit system;
-        overlays = overlays;
-        config.allowUnfree = true;
+      extraSpecialArgs = { 
+        inherit inputs hostname;
+        isHMStandaloneContext = true;
+        pkgs-recent = import nixpkgs-recent {
+          inherit system;
+          overlays = overlays;
+          config.allowUnfree = true;
+        };
       };
-      extraSpecialArgs = { inherit inputs hostname; isHMStandaloneContext = true; };
       modules = importModules ./modules "home" ++ [
         # Per-host configuration
         (./hosts + "/${hostname}/configuration.nix")
