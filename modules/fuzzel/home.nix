@@ -12,11 +12,13 @@ let
         main = {
           horizontal-pad = 4;
           vertical-pad = 4;
+          dpi-aware = "yes";
+          font="JetbrainsMonoNL Nerd Font:size=10";
         };
         
         border = {
           radius = 0;
-          width = 2;
+          width = 4;
         };
       };
     };
