@@ -23,6 +23,8 @@
     touchpad = {
       natural_scroll = false;  # Sorry, not a fan of natural scroll
       disable_while_typing = false;  # I play games!
+      tap-and-drag = true;
+      drag_lock = 0;  # I hate you, "drag_lock = 2", you've been bullying me for 2 months.
     };
   };
 
