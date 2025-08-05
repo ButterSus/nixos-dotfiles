@@ -62,6 +62,8 @@
     "${mainMod} SHIFT, N, exec, neovide"
   ++ lib.optional config.modules.kden-live.enable 
     "${mainMod} SHIFT, K, exec, kdenlive"
+  ++ lib.optional config.modules.rnote.enable 
+    "${mainMod} SHIFT, R, exec, rnote"
   ++ lib.optionals config.modules.youtube-music.enable [
     # MPRIS: Youtube Music shortcuts
     "${mainMod} CTRL, M     , exec, playerctl --player=YoutubeMusic play-pause"

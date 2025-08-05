@@ -84,7 +84,7 @@
     accent = "mauve";
   };
   
-  # # Font configuration
+  # Font configuration
   modules.fonts = { enable = true; };
   
   # Display Manager
@@ -161,6 +161,7 @@
 #
   # Development & Gaming
   modules.windsurf.enable = true;
+  modules.rnote.enable = true;
 # modules.jetbrains-ide.enable = true;
   modules.zola.enable = true;
 # modules.intellij-community = {
