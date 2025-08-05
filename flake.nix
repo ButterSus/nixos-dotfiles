@@ -63,7 +63,10 @@
       inputs.hyprland.follows = "hyprland";  # Don't duplicate
     };
 
-    textfox.url = "github:adriankarlen/textfox";
+    textfox = {
+      url = "github:ButterSus/textfox";
+      inputs.nur.follows = "nur";
+    };
   };
 
   outputs = { nixpkgs, nixpkgs-recent, home-manager, ... }@inputs: let

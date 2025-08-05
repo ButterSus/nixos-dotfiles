@@ -549,30 +549,14 @@
         "flake-parts": "flake-parts",
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "treefmt-nix": "treefmt-nix"
+        ]
       },
       "locked": {
-        "lastModified": 1750237017,
-        "narHash": "sha256-N+716O0Wgrs3px24zm8Kvh2W8j6HEdfxw1jHBpSnQvU=",
+        "lastModified": 1754412850,
+        "narHash": "sha256-eMgLKG45S8GMdkYCM4ZkwphnjL1b6yGGMZVHGhuNRGs=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "8d9894966f0c06b8e36f1ed1268ca3f080094302",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
-    "nur_2": {
-      "locked": {
-        "lastModified": 1729125404,
-        "narHash": "sha256-2ZtXYNBPi9Ejeb2Heqh+yFTBcstapvtna8Vyl/ugb7w=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "7aafd5f0d772efbd2e611c132cc290c3508fe049",
+        "rev": "9817af5f151e75144ef32d657f55eaf116a2f5d6",
         "type": "github"
       },
       "original": {
@@ -690,40 +674,21 @@
     "textfox": {
       "inputs": {
         "nixpkgs": "nixpkgs_4",
-        "nur": "nur_2"
-      },
-      "locked": {
-        "lastModified": 1751562345,
-        "narHash": "sha256-6PiU3y2JniuAkHNsLdUgZGTq5LpgkxCGS/1ehr+ZMjc=",
-        "owner": "adriankarlen",
-        "repo": "textfox",
-        "rev": "b981cdb7f8c38d082ca1646855ec4192c9e1d5dd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "adriankarlen",
-        "repo": "textfox",
-        "type": "github"
-      }
-    },
-    "treefmt-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nur",
-          "nixpkgs"
+        "nur": [
+          "nur"
         ]
       },
       "locked": {
-        "lastModified": 1733222881,
-        "narHash": "sha256-JIPcz1PrpXUCbaccEnrcUS8jjEb/1vJbZz5KkobyFdM=",
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "rev": "49717b5af6f80172275d47a418c9719a31a78b53",
+        "lastModified": 1754416561,
+        "narHash": "sha256-zDfYb0SWjJdij5gvFwdQWC+a68aN8JX/zU8Jr0IeZMc=",
+        "owner": "ButterSus",
+        "repo": "textfox",
+        "rev": "12f1bed4613fe7ebec4f003ec09a4b433b8f7284",
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "treefmt-nix",
+        "owner": "ButterSus",
+        "repo": "textfox",
         "type": "github"
       }
     },
