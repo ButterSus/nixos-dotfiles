@@ -42,6 +42,12 @@ let
             layout = "infinite";
             snap_positions = false;
           };
+          pens_config = {
+            selector_config = {
+              style = "polygon";
+              resize_lock_aspectratio = true;
+            };
+          };
         };
         show-scrollbars = false;
       };
