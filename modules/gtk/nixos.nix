@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-recent, ... }:
 
 let
   inherit (lib) mkIf;
@@ -13,7 +13,7 @@ in {
     # System Packages
     environment.systemPackages = with pkgs; [
       # Colour scheme
-      magnetic-catppuccin-gtk
+      pkgs-recent.magnetic-catppuccin-gtk
       
       # Icon theme
       papirus-icon-theme
