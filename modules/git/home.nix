@@ -103,10 +103,26 @@ let
         };
       };
 
-    home.sessionVariables = 
-      lib.optionalAttrs (config.modules.sops.enable && cfg.enableGithubCli) {
-        GITHUB_TOKEN = "$(cat \"/home/${config.primaryUser}/.config/git/github_pat\")";
-      };
+    home.shellAliases = lib.optionalAttrs (config.modules.sops.enable && cfg.enableGithubCli) {
+      gh = ''GITHUB_TOKEN="$(cat /home/${config.primaryUser}/.config/git/github_pat 2>/dev/null || echo \'\')" ${pkgs.gh}/bin/gh'';
+    };
+
+    # WARN: Very unsafe method below, since environment variables can be easily
+    # exposed by random program in logs. You get it. You better not do it.
+
+    # programs.bash.initExtra = lib.optionalString 
+    #   (config.modules.sops.enable && cfg.enableGithubCli) ''
+    #     if [ -f "/home/${config.primaryUser}/.config/git/github_pat" ]; then
+    #       export GITHUB_TOKEN="$(cat "/home/${config.primaryUser}/.config/git/github_pat")"
+    #     fi
+    #   '';
+    #
+    # programs.zsh.initContent = lib.optionalString
+    #   (config.modules.sops.enable && cfg.enableGithubCli && config.modules.zsh.enable) ''
+    #     if [ -f "/home/${config.primaryUser}/.config/git/github_pat" ]; then
+    #       export GITHUB_TOKEN="$(cat "/home/${config.primaryUser}/.config/git/github_pat")"
+    #     fi
+    #   '';
 
     # SSH Configuration
     programs.ssh.extraConfig = lib.optionalString config.modules.sops.enable
