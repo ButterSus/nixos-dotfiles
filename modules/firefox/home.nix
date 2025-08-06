@@ -3,7 +3,7 @@
 # And also: https://github.com/Misterio77/nix-config/blob/main/home/gabriel/features/desktop/common/firefox.nix
 { config, lib, pkgs, isHMStandaloneContext, ... }:
 
-# Your browser has the most vulnerable data on your computer, so it would make
+# Your browser has the most sensitive data on your computer, so it would make
 # sense to acknowledge yourself with available search engines, and disabled
 # firefox telemetry listed here.
 
