@@ -104,6 +104,22 @@
         "type": "github"
       }
     },
+    "dracula-gtk-theme-rnote": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754356741,
+        "narHash": "sha256-8p9IS5aMZGP/VCuFTjQU+D3wfFIwfT/lcY7ujUv3SRc=",
+        "owner": "dracula",
+        "repo": "gtk",
+        "rev": "646918e419c98747f4e6f8305c0ecaf6bbc860c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dracula",
+        "repo": "gtk",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -594,6 +610,7 @@
         "catppuccin": "catppuccin",
         "catppuccin-discord": "catppuccin-discord",
         "catppuccin-qt5ct": "catppuccin-qt5ct",
+        "dracula-gtk-theme-rnote": "dracula-gtk-theme-rnote",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "minegrub-world-sel-theme": "minegrub-world-sel-theme",

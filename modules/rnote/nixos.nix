@@ -17,8 +17,15 @@ in {
         name = "${rnote.name}-wrapped";
         nativeBuildInputs = [ makeWrapper ];
         paths = [ rnote ];
+
+        # Isolate Rnote from gtk-theme (~/.config)
+
+        # Do not use $HOME here, since this is ran in isolated environment
         postBuild = ''
-          wrapProgram $out/bin/rnote --set XDG_CONFIG_HOME "$HOME/.config/rnote"
+          wrapProgram $out/bin/rnote \
+            --run 'mkdir -p /home/${config.primaryUser}/.config/rnote-env/dconf' \
+            --run 'ln -fs /home/${config.primaryUser}/.config/dconf/user /home/${config.primaryUser}/.config/rnote-env/dconf/user' \
+            --set XDG_CONFIG_HOME "/home/${config.primaryUser}/.config/rnote-env"
         '';
       })
     ];

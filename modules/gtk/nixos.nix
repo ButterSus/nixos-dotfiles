@@ -21,5 +21,8 @@ in {
       # Settings editor
       nwg-look
     ];
+
+    # This service stores few application preferences
+    programs.dconf.enable = true;
   };
 }

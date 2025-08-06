@@ -50,6 +50,11 @@
       url = "github:catppuccin/qt5ct";
       flake = false;
     };
+
+    dracula-gtk-theme-rnote = {
+      url = "github:dracula/gtk";
+      flake = false;
+    };
     
     hyprland = {  # Use latest hyprland version to use most recent plugins
       type = "git";
