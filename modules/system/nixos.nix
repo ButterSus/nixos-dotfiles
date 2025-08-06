@@ -122,6 +122,7 @@ in {
     # Hibernate when running low
     services.upower = {
       enable = true;
+      usePercentageForPolicy = true;
       percentageCritical = 5;
       criticalPowerAction = "Hibernate";
     };
