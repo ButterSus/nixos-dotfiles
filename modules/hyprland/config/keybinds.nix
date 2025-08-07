@@ -44,6 +44,8 @@
   
   ++ lib.optional config.modules.qbittorrent.enable 
     "${mainMod} SHIFT, Q, exec, qbittorrent"
+  ++ lib.optional config.modules.element-desktop.enable 
+    "${mainMod} SHIFT, E, exec, element-desktop"
   ++ lib.optional config.modules.amnezia-vpn.enable 
     "${mainMod} SHIFT, A, exec, AmneziaVPN"
   ++ lib.optional config.modules.vesktop.enable 
