@@ -4,18 +4,18 @@
 }
 
 window#waybar {
-	background: #1e1e2e; /* base */
+	background: #11111b; /* base */
 	color: #cdd6f4;     /* text */
 }
 
 #custom-right-arrow-dark,
 #custom-left-arrow-dark {
-	color: #11111b; /* crust */
+	color: #1e1e2e; /* crust */
 }
 #custom-right-arrow-light,
 #custom-left-arrow-light {
-	color: #1e1e2e; /* base */
-	background: #11111b; /* crust */
+	color: #11111b; /* base */
+	background: #1e1e2e; /* crust */
 }
 
 #workspaces,
@@ -29,7 +29,7 @@ window#waybar {
 #battery,
 #disk,
 #tray {
-	background: #11111b; /* crust */
+	background: #1e1e2e; /* crust */
 }
 
 #workspaces button {
@@ -43,15 +43,12 @@ window#waybar {
 #workspaces button.focused,
 #workspaces button.active {
 	background: #89b4fa; /* blue */
-	color: #11111b; /* crust */
+	color: #1e1e2e; /* crust */
 	padding: 0 6px; /* add more horizontal padding */
 }
 #workspaces button:hover {
-	background: #f38ba8; /* red */
-}
-#workspaces button.focused:hover,
-#workspaces button.active:hover {
 	background: #cba6f7; /* mauve accent */
+	color: #1e1e2e; /* crust */
 }
 
 #pulseaudio {
