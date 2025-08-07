@@ -10,8 +10,6 @@
     environment.systemPackages = with pkgs; [
       iverilog
       surfer
-
-      rnote
     ];
 
     # My internal partition

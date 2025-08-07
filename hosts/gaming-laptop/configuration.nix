@@ -146,11 +146,12 @@
   };
   modules.zapret.enable = false;
   modules.amnezia-vpn.enable = true;
-  modules.vesktop.enable = true;       # Discord with Vencord
-  modules.materialgram.enable = true;  # Telegram client
-  modules.whatsie.enable = true;       # WhatsApp client
-  modules.youtube-music.enable = true; # Music? Yes, please!
-  modules.qbittorrent.enable = true;   # Torrent client
+  modules.vesktop.enable = true;         # Discord with Vencord
+  modules.element-desktop.enable = true; # Discord with Vencord
+  modules.materialgram.enable = true;    # Telegram client
+  modules.whatsie.enable = true;         # WhatsApp client
+  modules.youtube-music.enable = true;   # Music? Yes, please!
+  modules.qbittorrent.enable = true;     # Torrent client
   modules.gparted.enable = true;
   
   # Terminal
@@ -162,6 +163,7 @@
 
   # Development & Gaming
   modules.windsurf.enable = true;
+  modules.rnote.enable = true;
   modules.jetbrains-ide.enable = true;
   modules.zola.enable = true;
   modules.intellij-community = {
