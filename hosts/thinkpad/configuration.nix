@@ -120,6 +120,7 @@
       };
     };
     scale = 1.25;
+    cursor-size = 24;
   };
   modules.xdg.enable = true;
   

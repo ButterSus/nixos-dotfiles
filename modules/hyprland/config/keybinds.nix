@@ -81,7 +81,6 @@
     "${mainMod}      , C, killactive"
     "${mainMod} SHIFT, C, forcekillactive"
     "${mainMod}      , N, togglesplit"
-    
   ]
   ++ lib.optional config.modules.waybar.enable
     # Hyprland Other Actions

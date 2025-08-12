@@ -103,6 +103,12 @@ in {
       default = 1.0;
       description = "Scale for eDP-1 monitor";
     };
+
+    cursor-size = mkOption {
+      type = types.int;
+      default = 16;
+      description = "Cursor size";
+    };
   };
 
   config = mkIf cfg.enable (

@@ -23,7 +23,7 @@ in {
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
-    size = 16;
+    size = cfg.cursor-size;
   };
   
   # Wallpaper manager
