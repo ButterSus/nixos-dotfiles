@@ -7,6 +7,8 @@
   ];
 
   config = {
+    services.flatpak.enable = true;
+
     environment.systemPackages = with pkgs; [
       iverilog
       surfer
