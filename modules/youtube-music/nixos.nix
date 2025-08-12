@@ -1,4 +1,5 @@
-{ config, lib, pkgs, ... }:
+# We want newest versions to support builtin adblocker.
+{ config, lib, pkgs, pkgs-recent, ... }:
 
 let
   inherit (lib) mkIf;
@@ -12,7 +13,7 @@ in {
   config = mkIf cfg.enable {
     # System Packages
     environment.systemPackages = with pkgs; [
-      youtube-music
+      pkgs-recent.youtube-music
       
       # MPRIS shortcuts
       playerctl

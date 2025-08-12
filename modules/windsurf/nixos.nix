@@ -1,3 +1,4 @@
+# We want newest version for more recent AI features.
 { config, lib, pkgs, pkgs-recent, ... }:
 
 let
