@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, isHMStandaloneContext, ... }:
+{ config, lib, pkgs, pkgs-recent, inputs, isHMStandaloneContext, ... }:
 
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
@@ -21,6 +21,7 @@ let
 
     programs.vesktop = {
       enable = true;
+      package = pkgs-recent.vesktop;
 
       settings = {
         arRPC = true;

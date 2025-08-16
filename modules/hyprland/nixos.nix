@@ -37,5 +37,11 @@ in {
     services.hypridle = {
       enable = true;
     };
+
+    hardware = {
+      opengl = {
+        enable = true;
+      };
+    };
   };
 }
