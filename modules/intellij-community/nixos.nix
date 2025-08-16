@@ -17,11 +17,23 @@ in {
       # This way of adding plugins can easily break.
       # If it breaks, please install plugins via jetbrains sync
       # and replace the whole content below with just idea-community
-      (jetbrains.plugins.addPlugins jetbrains.idea-community-bin ([
-        "ideavim"
-        "catppuccin-theme"
-        "catppuccin-icons"
-      ] ++ cfg.extraPlugins))
+      (symlinkJoin {
+        inherit (jetbrains.idea-community-bin) pname version meta;
+        name = "${jetbrains.idea-community-bin.name}-wrapped";
+        nativeBuildInputs = [ makeWrapper ];
+        paths = [
+          (jetbrains.plugins.addPlugins jetbrains.idea-community-bin ([
+            "ideavim"
+            "catppuccin-theme"
+            "catppuccin-icons"
+          ] ++ cfg.extraPlugins))
+        ];
+
+        postBuild = ''
+          wrapProgram $out/bin/idea-community \
+            --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ flite ]}
+        '';
+      })
     ];
   };
 }
