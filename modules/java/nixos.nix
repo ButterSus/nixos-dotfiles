@@ -11,6 +11,11 @@ in {
   ];
 
   config = mkIf cfg.enable {
+    programs.java = {
+      enable = true;
+      package = pkgs.jdk21;
+    };
+
     # System Packages
     environment.systemPackages = with pkgs;
       lib.attrValues cfg.packages
