@@ -45,11 +45,31 @@ let
         useQuickCss = true;
         disableMinSize = true;
         plugins = {
+          BetterFolders.enabled = true;
+          BetterSettings.enabled = true;
+          BlurNSFW.enabled = true;
+          CrashHandler.enabled = true;
+          CustomRPC.enabled = true;
+          FakeNitro.enabled = true;
+          FriendsSince.enabled = true;
           MessageLogger = {
             enabled = true;
             ignoreSelf = true;
           };
-          FakeNitro.enabled = true;
+          NoF1.enabled = true;
+          NoServerEmojis.enabled = true;
+          PlainFolderIcon.enabled = true;
+          ServerInfo.enabled = true;
+          ServerListIndicators.enabled = true;
+          ShikiCodeblocks.enabled = true;
+          ShowHiddenChannels.enabled = true;
+          ShowHiddenThings.enabled = true;
+          SilentTyping.enabled = true;
+          TypingIndicator.enabled = true;
+          Unindent.enabled = true;
+          UserVoiceShow.enabled = true;
+          WebKeybinds.enabled = true;
+          WebScreenShareFixes.enabled = true;
         };
 
         # Catppuccin theme
