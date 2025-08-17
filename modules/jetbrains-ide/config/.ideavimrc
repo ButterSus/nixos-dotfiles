@@ -159,8 +159,8 @@ nmap <leader>lf <Action>(ReformatCode)
 vmap <leader>lf <Action>(ReformatCode)
 
 " Folding
-nnoremap Z <Action>(CollapseRegionRecursively)
-nnoremap z <Action>(ExpandRegionRecursively)
+nnoremap <leader>Z :action CollapseRegionRecursively<CR>
+nnoremap <leader>z :action ExpandRegionRecursively<CR>
 
 " Clear Search Highlight
 nmap <Esc> :noh<CR>
