@@ -69,7 +69,7 @@ let
         # selene
 
         # astrocommunity.pack.python
-        # basedpyright
+        basedpyright
         # black
         # isort
 

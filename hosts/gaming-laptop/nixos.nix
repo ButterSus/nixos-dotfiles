@@ -34,5 +34,22 @@
         RemainAfterExit = true;
       };
     };
+
+    # Android Debug Bridge
+    programs.adb.enable = true;
+    services.udev.extraRules =
+      let
+        # nix-shell -p usbutils --run "lsusb"
+        idVendor = "XXXX";
+        idProduct = "XXXX";
+      in
+      ''
+        SUBSYSTEM=="usb", ATTR{idVendor}=="${idVendor}", MODE="[]", GROUP="adbusers", TAG+="uaccess"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="${idVendor}", ATTR{idProduct}=="${idProduct}", SYMLINK+="android_adb"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="${idVendor}", ATTR{idProduct}=="${idProduct}", SYMLINK+="android_fastboot"
+      '';
+
+    # add user to adbusers group
+    users.users.${config.primaryUser}.extraGroups = [ "adbusers" ];
   };
 }
