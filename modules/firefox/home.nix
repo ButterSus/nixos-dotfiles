@@ -16,10 +16,12 @@ let
   # List of extensions, you can browse them here:
   # https://nur.nix-community.org/repos/rycee/
   extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    # Luckily, these extensions support storage.js -> declarative extension settings
     ublock-origin
     vimium-c
-    i-dont-care-about-cookies
     firefox-color
+
+    i-dont-care-about-cookies
 
     # NOTE: You'll manually need to override colors:
     # https://github.com/catppuccin/dark-reader?tab=readme-ov-file#usage
@@ -294,7 +296,7 @@ let
           # Force exclusion of private IPs from ICE candidates
           "media.peerconnection.ice.no_host" = true;
 
-          # Disable WebGL
+          # Disable WebGL (can expose your GPU)
           "webgl.disabled" = true;
 
           # Disable autoplay of HTML5 media: block all
@@ -469,6 +471,16 @@ let
           # about:debugging#/runtime/this-firefox
           settings = {
             # To find extension storage, look at <mozilla-folder>/firefox/<profile>/browser-extension-data/<extension-id>/storage.js
+
+            # Sidebery
+            "{3c078156-979c-498b-8990-85f7987dd929}".settings.settings = {
+              density = "compact";
+            };
+
+            # Vimium C
+            "vimium-c@gdh1995.cn".settings = {
+              keyMappings = "#!no-check\nunmap <c-e>\nunmap <c-y>";
+            };
           };
         };
         
