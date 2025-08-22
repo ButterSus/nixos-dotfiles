@@ -20,6 +20,7 @@ in {
       ncdu
       htop
       fastfetch
+      calc
     ];
 
     users.users.${config.primaryUser} = {
