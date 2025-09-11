@@ -77,4 +77,9 @@
   workspace = [
     "special:scratchpad, gapsout:40"
   ];
+
+  gestures = {
+    workspace_swipe = true;
+    workspace_swipe_fingers = 3;
+  };
 }
