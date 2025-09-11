@@ -13,6 +13,7 @@ in {
     # System Packages
     environment.systemPackages = with pkgs; [
       pwvucontrol
+      pulseaudio
     ];
 
     security.rtkit.enable = true;
