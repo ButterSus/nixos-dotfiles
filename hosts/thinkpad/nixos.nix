@@ -15,6 +15,13 @@
       iverilog
       surfer
       jupyter
+      python3
+      python3Packages.numpy
+      python3Packages.scipy
+      python3Packages.matplotlib
+      python3Packages.pandas
+      python3Packages.sympy
+      python3Packages.ipykernel
     ];
 
     # When pressing power key located on the right side,
