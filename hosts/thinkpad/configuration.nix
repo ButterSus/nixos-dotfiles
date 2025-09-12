@@ -166,6 +166,7 @@
   modules.rnote.enable = true;
 # modules.jetbrains-ide.enable = true;
   modules.zola.enable = true;
+  modules.obsidian.enable = true;
 # modules.intellij-community = {
 #   enable = true;
 #   extraPlugins = [
