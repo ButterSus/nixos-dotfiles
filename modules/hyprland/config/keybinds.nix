@@ -83,10 +83,13 @@
     "${mainMod}      , N, togglesplit"
   ]
   ++ lib.optional config.modules.waybar.enable
-    # Hyprland Other Actions
+    # Waybar Actions
     "${mainMod}, O, exec, pkill waybar || waybar"
   ++ [
-    "${mainMod}, M        , exit"
+    # Hyprland Exit
+    "${mainMod} SHIFT, M, exit"
+
+    # Other Actions
     "${mainMod}, X        , exec, hyprpicker --autocopy"
     "${mainMod}, G        , overview:toggle"
     "${mainMod}, Backspace, exec, hyprlock"
