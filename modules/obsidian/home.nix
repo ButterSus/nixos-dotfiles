@@ -5,7 +5,12 @@ let
   cfg = config.modules.obsidian;
 
   # Core home configuration for this module
-  moduleHomeConfig = {};
+  moduleHomeConfig = {
+    programs.obsidian = {
+      enable = true;
+      defaultSettings.themes = [ "catppuccin" ];
+    };
+  };
 
 in {
   # Module Options
