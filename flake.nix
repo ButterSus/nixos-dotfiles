@@ -68,6 +68,8 @@
       inputs.hyprland.follows = "hyprland";  # Don't duplicate
     };
 
+    iio-hyprland.url = "github:JeanSchoeller/iio-hyprland";
+
     textfox = {
       url = "github:ButterSus/textfox";
       inputs.nur.follows = "nur";

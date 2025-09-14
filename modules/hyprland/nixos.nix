@@ -22,6 +22,8 @@ in {
       brightnessctl    # Backlight control
       hyprshot         # Screenshot tool
       swappy           # Image editing tool
+      inputs.iio-hyprland.packages.${pkgs.system}.default
+      jq
     ];
 
     programs.hyprland = {
@@ -39,5 +41,6 @@ in {
     };
 
     hardware.graphics.enable = true;
+    hardware.sensor.iio.enable = true;
   };
 }

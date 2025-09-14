@@ -70,9 +70,10 @@
     disable_hyprland_logo = true;
   };
   
-  exec-once = lib.optionals config.modules.waybar.enable [
-    "waybar"
-  ];
+  exec-once = [ "iio-hyprland" ]
+    ++ lib.optionals config.modules.waybar.enable [
+      "waybar"
+    ];
 
   workspace = [
     "special:scratchpad, gapsout:40"

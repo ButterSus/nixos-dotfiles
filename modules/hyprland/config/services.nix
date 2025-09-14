@@ -60,5 +60,6 @@ in {
       ];
     };
   };
+
   catppuccin.hyprlock.enable = hyprlockEnabled;
 }
