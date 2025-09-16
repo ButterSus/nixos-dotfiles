@@ -13,7 +13,7 @@
   # Configure monitor layout
   monitor = [
     "eDP-1   , preferred, auto       , ${builtins.toString cfg.scale}"
-    "HDMI-A-1, preferred, auto-right , 1.0"
+    "HDMI-A-1, preferred, auto-up , 1.0"
   ];
 
   input = {
@@ -25,6 +25,12 @@
       disable_while_typing = false;  # I play games!
       tap-and-drag = true;
       drag_lock = 0;  # I hate you, "drag_lock = 2", you've been bullying me for 2 months.
+    };
+    touchdevice = {
+      output = "eDP-1";
+    };
+    tablet = {
+      output = "eDP-1";
     };
   };
 
