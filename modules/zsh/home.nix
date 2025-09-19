@@ -14,7 +14,7 @@ let
       history.size = 10000;
       oh-my-zsh = {
         enable = true;
-        plugins = cfg.extraPlugins;
+        plugins = cfg.extraPluginsOhMyZsh;
         theme = "ys";
         extraConfig = ''
           zstyle ':completion:*' insert-tab false
@@ -29,6 +29,12 @@ in {
     enable = mkEnableOption "Enable ZShell module";
 
     extraPlugins = mkOption {
+      type = types.listOf types.attrs;
+      default = [];
+      description = "Extra plugins to add to zsh";
+    };
+
+    extraPluginsOhMyZsh = mkOption {
       type = types.listOf types.str;
       default = [];
       description = "Extra plugins to add to oh-my-zsh";

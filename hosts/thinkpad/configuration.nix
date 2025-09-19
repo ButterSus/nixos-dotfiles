@@ -157,7 +157,7 @@
 # # Terminal
   modules.zsh = {
     enable = true;
-#   extraPlugins = [ "gradle" "bazel" ];
+#   extraPluginsOhMyZsh = [ "gradle" "bazel" ];
   };
   modules.alacritty.enable = true;  
 #

@@ -4,7 +4,9 @@ let
   inherit (lib) mkIf mkEnableOption mkOption types;
 
   # Core home configuration for user module
-  moduleHomeConfig = {};
+  moduleHomeConfig = {
+    catppuccin.zathura.enable = true;
+  };
 
 in {
   # Conditionally apply the configuration
