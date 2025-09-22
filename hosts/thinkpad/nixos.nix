@@ -22,6 +22,10 @@
       python3Packages.pandas
       python3Packages.sympy
       python3Packages.ipykernel
+      keepassxc
+      typst
+      zathura
+      libreoffice-qt
     ];
 
     # When pressing power key located on the right side,
