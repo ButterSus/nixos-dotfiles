@@ -20,6 +20,9 @@ let
           zstyle ':completion:*' insert-tab false
         '';
       };
+      shellAliases = {
+        nix-shell = "nix-shell --run zsh";
+      };
     };
   };
 
