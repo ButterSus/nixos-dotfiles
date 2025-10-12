@@ -26,6 +26,9 @@
       typst
       zathura
       libreoffice-qt
+      tigervnc
+      remmina
+      openvpn
     ];
 
     # When pressing power key located on the right side,
