@@ -1,27 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Import home.nix
   imports = [
     ./home.nix
   ];
 
   config = {
-    services.flatpak.enable = true;
-
-    networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
-
     environment.systemPackages = with pkgs; [
       iverilog
       surfer
-      jupyter
-      python3
-      python3Packages.numpy
-      python3Packages.scipy
-      python3Packages.matplotlib
-      python3Packages.pandas
-      python3Packages.sympy
-      python3Packages.ipykernel
       keepassxc
       typst
       zathura
@@ -29,10 +16,25 @@
       tigervnc
       remmina
       openvpn
-    ];
+      photoqt
+      gvfs
+      udisks2
+      polkit
 
-    # When pressing power key located on the right side,
-    # it will hibernate on short press instead of shutting down.
-    services.logind.powerKey = "hibernate";
+      # Python with Jupyter and math packages
+      (python3.withPackages (ps: with ps; [
+        jupyter
+        ipykernel
+        ipympl
+        numpy
+        scipy
+        matplotlib
+        pandas
+        sympy
+        scikit-learn
+        seaborn
+        plotly
+      ]))
+    ];
   };
 }

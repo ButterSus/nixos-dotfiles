@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-recent, ... }:
 
 let
   inherit (lib) mkIf;
@@ -11,7 +11,10 @@ in {
 
   config = mkIf cfg.enable {
     # System Options
-    programs.firefox.enable = true;
+    programs.firefox = {
+      enable = true;
+      package = pkgs-recent.firefox;
+    };
 
     xdg.mime.defaultApplications = {
       "application/pdf" = "firefox.desktop";

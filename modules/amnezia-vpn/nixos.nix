@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-recent, ... }:
 
 let
   inherit (lib) mkIf;
@@ -10,6 +10,9 @@ in {
   ];
 
   config = mkIf cfg.enable {
-    programs.amnezia-vpn.enable = true;
+    programs.amnezia-vpn = {
+      package = pkgs-recent.amnezia-vpn;
+      enable = true;
+    };
   };
 }

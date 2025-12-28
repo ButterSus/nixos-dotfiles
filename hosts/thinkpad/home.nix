@@ -14,7 +14,30 @@ let
         User buttersus
         IdentityFile ~/.ssh/borisblade.ru.id_rsa
     ";
+
+    home.packages = [
+      phpWithMbstring
+
+      # Create an executable for the h-m-m script
+      (pkgs.writeScriptBin "h-m-m" ''
+        #!/usr/bin/env bash
+        ${phpWithMbstring}/bin/php "${phpScript}" "$@"
+      '')
+    ];
   };
+
+  # Fetch the GitHub repository containing h-m-m
+  phpRepo = pkgs.fetchgit {
+    url = "https://github.com/nadrad/h-m-m.git";
+    rev = "f9ce96b719def746e7299d897ce43c9633b42c90";  # Commit hash
+    sha256 = "sha256-2+oXGYpaCqQG6+yh3/pMwQxIC39M7XTDRIEqWboVo0c=";  # Checksum
+  };
+
+  # Path to the h-m-m PHP script
+  phpScript = "${phpRepo}/h-m-m";
+
+  # PHP with mbstring extension
+  phpWithMbstring = pkgs.php.withExtensions ({ all, ... }: with all; [ mbstring ]);
 
 in {
   # Conditionally apply the configuration

@@ -59,7 +59,7 @@
   ++ lib.optional config.modules.youtube-music.enable 
     "${mainMod} SHIFT, Y, exec, youtube-music"
   ++ lib.optional config.modules.steam.enable 
-    "${mainMod} SHIFT, S, exec, steam"
+    "${mainMod} SHIFT, T, exec, steam"
   ++ lib.optional config.modules.nvim.enable 
     "${mainMod} SHIFT, N, exec, neovide"
   ++ lib.optional config.modules.kden-live.enable 

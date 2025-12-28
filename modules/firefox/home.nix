@@ -284,8 +284,8 @@ let
 
           # WARN: Please, disable WebRTC options below if audio/voice communication stopped working for you in services.
 
-          # Disable WebRTC
-          "media.peerconnection.enabled" = false;
+          # # Disable WebRTC
+          # "media.peerconnection.enabled" = false;
 
           # Force WebRTC inside the proxy
           "media.peerconnection.ice.proxy_only_if_behind_proxy" = true;
@@ -296,14 +296,14 @@ let
           # Force exclusion of private IPs from ICE candidates
           "media.peerconnection.ice.no_host" = true;
 
-          # Disable WebGL (can expose your GPU)
-          "webgl.disabled" = true;
+          # # Disable WebGL (can expose your GPU)
+          # "webgl.disabled" = true;
 
-          # Disable autoplay of HTML5 media: block all
-          "media.autoplay.default" = 5;
+          # # Disable autoplay of HTML5 media: block all
+          # "media.autoplay.default" = 5;
 
-          # Disable DRM Content
-          "media.eme.enabled" = false;
+          # # Disable DRM Content
+          # "media.eme.enabled" = false;
 
           # Always ask you where to save files
           "browser.download.useDownloadDir" = false;
@@ -412,8 +412,8 @@ let
           # Disable mousedown speculative connections on bookmarks and history
           "browser.places.speculativeConnect.enabled" = false;
 
-          # Disable IPv6
-          "network.dns.disableIPv6" = true;
+          # # Disable IPv6
+          # "network.dns.disableIPv6" = true;
 
           # Disable GIO protocols as a potential proxy bypass vectors
           "network.gio.supported-protocols" = "";
@@ -497,15 +497,15 @@ let
       };
     };
 
-    # Apply textfox firefox theme
-    textfox = {
-      enable = true;
-      profile = config.primaryUser;
-      config = {
-        displaySidebarTools = true;
-        displayNavButtons = true;
-      };
-    };
+    # # Apply textfox firefox theme
+    # textfox = {
+    #   enable = true;
+    #   profile = config.primaryUser;
+    #   config = {
+    #     displaySidebarTools = true;
+    #     displayNavButtons = true;
+    #   };
+    # };
 
     catppuccin.firefox.profiles.${config.primaryUser} = {
       enable = true;
