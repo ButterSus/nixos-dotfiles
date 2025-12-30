@@ -19,6 +19,12 @@ let
         Port 22
         User root
         IdentityFile ~/.ssh/beget.com.id_rsa
+
+      Host racknerd
+        Hostname 23.94.209.181
+        Port 3067
+        User root
+        IdentityFile ~/.ssh/racknerd.com.id_ed25519
     ";
 
     home.packages = [
