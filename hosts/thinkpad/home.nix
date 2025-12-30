@@ -13,6 +13,12 @@ let
         Port 23
         User buttersus
         IdentityFile ~/.ssh/borisblade.ru.id_rsa
+
+      Host beget
+        Hostname 85.198.85.154
+        Port 22
+        User root
+        IdentityFile ~/.ssh/beget.com.id_rsa
     ";
 
     home.packages = [

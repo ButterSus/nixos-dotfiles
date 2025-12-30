@@ -31,5 +31,7 @@ in {
         default = [ "hyprland" "gtk" ];
       };
     };
+
+    environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
   };
 }

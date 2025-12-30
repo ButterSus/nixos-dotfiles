@@ -45,7 +45,7 @@ let
         useQuickCss = true;
         disableMinSize = true;
         plugins = {
-          BetterFolders.enabled = true;
+          # BetterFolders.enabled = true;
           BetterSettings.enabled = true;
           BlurNSFW.enabled = true;
           CrashHandler.enabled = true;
