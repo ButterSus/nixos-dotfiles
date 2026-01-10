@@ -43,13 +43,42 @@ let
             snap_positions = false;
           };
           pens_config = {
+            brush_config = {
+              style = "solid";
+              solid_options = {
+                stroke_width = 2.0;
+              };
+            };
             selector_config = {
               style = "polygon";
               resize_lock_aspectratio = true;
             };
+            eraser_config = {
+              width = 4.0;
+            };
+          };
+          import_prefs = {
+            pdf_import_prefs = {
+              page_width_perc = 100;
+              page_spacing = "continuous";
+              pages_type = "vector";
+              bitmap_scalefactor = 1.8;
+              page_borders = true;
+              adjust_document = false;
+            };
           };
         };
+        inertial-scrolling = true;
         show-scrollbars = false;
+
+        # Brush sizes
+        brush-width-1 = 2.0;
+        brush-width-2 = 4.0;
+        brush-width-3 = 6.0;
+
+        eraser-width-1 = 4.0;
+        eraser-width-2 = 9.0;
+        eraser-width-3 = 24.0;
       };
     };
   };
