@@ -4,7 +4,7 @@
 # all module settings. This file can't contain any code
 # besides module options. 
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, pkgs-recent, lib, ... }:
 
 {
   primaryUser = "buttersus";
@@ -162,7 +162,11 @@
   modules.kitty.enable = true;  
 
   # Development & Gaming
-  modules.windsurf.enable = true;
+  modules.vscode = {
+    enable = true;
+    package = pkgs-recent.windsurf;
+    dataDirName = ".windsurf";
+  };
   modules.rnote.enable = true;
   modules.jetbrains-ide.enable = true;
   modules.zola.enable = true;

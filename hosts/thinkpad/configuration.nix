@@ -162,7 +162,7 @@
   modules.alacritty.enable = true;  
 #
   # Development & Gaming
-  modules.windsurf.enable = true;
+  modules.vscode.enable = true;
   modules.rnote.enable = true;
 # modules.jetbrains-ide.enable = true;
   modules.zola.enable = true;

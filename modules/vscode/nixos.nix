@@ -3,7 +3,7 @@
 
 let
   inherit (lib) mkIf;
-  cfg = config.modules.windsurf;
+  cfg = config.modules.vscode;
 in {
   # Import home.nix
   imports = [
@@ -13,7 +13,7 @@ in {
   config = mkIf cfg.enable {
     # System Packages
     environment.systemPackages = with pkgs; [
-      pkgs-recent.windsurf
+      cfg.package
 
       # For AI plugins
       nodejs

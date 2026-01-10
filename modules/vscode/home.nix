@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
-  cfg = config.modules.windsurf;
+  cfg = config.modules.vscode;
 
   # Core home configuration for this module
   moduleHomeConfig = {
@@ -10,7 +10,7 @@ let
       enable = true;
 
       # Its config location actually depends on this package.
-      package = pkgs-recent.windsurf;
+      package = cfg.package;
       
       # Let only NixOS manage extensions
       mutableExtensionsDir = false;
@@ -49,7 +49,7 @@ let
     };
     
     # OS-Keyring fix: https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/%40logins_39559/visual-studio-code-gnome-keyring-fix-for-codeium-and-probably-other-things-d3815217ef54&ved=2ahUKEwjjgorb34mOAxXCZ0EAHe6GHMQQFnoECBQQAQ&usg=AOvVaw1YYWRg8vb7N3DV2UsrETky
-    home.file.".windsurf/argv.json".text = builtins.toJSON ({
+    home.file."${cfg.dataDirName}/argv.json".text = builtins.toJSON ({
       # This field is needed to prevent error from vscode
       enable-crash-reporter = true;
     } // lib.optionalAttrs config.modules.gnome-keyring.enable {
@@ -60,8 +60,18 @@ let
 
 in {
   # Module Options
-  options.modules.windsurf = {
-    enable = mkEnableOption "Enable Windsurf module";
+  options.modules.vscode = {
+    enable = mkEnableOption "Enable VsCode module";
+
+    package = mkOption {
+      default = pkgs.vscode;
+      type = types.package;
+    };
+
+    dataDirName = mkOption {
+      type = types.str;
+      default = ".vscode";
+    };
   };
   
   # Conditionally apply the configuration

@@ -10,7 +10,7 @@
 
     # This input can be updated whenever you want,
     # it's used for proprietary software that requires the
-    # most recent version (e.g. windsurf)
+    # most recent version (e.g. vesktop)
     nixpkgs-recent.url = "github:nixos/nixpkgs/nixos-unstable";
 
     catppuccin.url = "github:catppuccin/nix";
