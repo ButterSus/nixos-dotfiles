@@ -1,6 +1,6 @@
 {
   description = "Minimal Modular NixOS Configuration";
-  
+
   inputs = {
     ## Main NixOS flakes
 
@@ -24,28 +24,28 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     ## Overlays
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     # Maybe, soon, I'll consider using stylix.
-    
+
     ## Additional flake inputs (no need to specify these in parameters)
-    minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";    
+    minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";
 
     sddm-astronaut-theme = {
       url = "github:Keyitdev/sddm-astronaut-theme";
       flake = false;
     };
-    
+
     catppuccin-discord = {
       url = "github:catppuccin/discord";
       flake = false;
     };
-    
+
     catppuccin-qt5ct = {
       url = "github:catppuccin/qt5ct";
       flake = false;
@@ -55,14 +55,14 @@
       url = "github:dracula/gtk";
       flake = false;
     };
-    
+
     hyprland = {  # Use latest hyprland version to use most recent plugins
       type = "git";
       submodules = true;
       url = "https://github.com/hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     Hyprspace = {
       url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";  # Don't duplicate
@@ -86,7 +86,7 @@
 
   outputs = { nixpkgs, nixpkgs-recent, home-manager, ... }@inputs: let
     lib = nixpkgs.lib;
-    
+
     overlays = with inputs; [
       nur.overlays.default
       nix-vscode-extensions.overlays.default
@@ -100,7 +100,7 @@
 
     mkSystem = { system, hostname }: lib.nixosSystem {
       inherit system;
-      specialArgs = { 
+      specialArgs = {
         inherit inputs hostname;
         pkgs-recent = import nixpkgs-recent {
           inherit system;
@@ -123,9 +123,13 @@
         (./hosts + "/${hostname}/hardware-configuration.nix")
         (./hosts + "/${hostname}/configuration.nix")
 
-        # Overlays
-        { nixpkgs.overlays = overlays; }
-        
+        {
+          # Overlays
+          nixpkgs.overlays = overlays;
+          # Allow unfree packages
+          nixpkgs.config.allowUnfree = true;
+        }
+
         # NixOS modules
         inputs.catppuccin.nixosModules.catppuccin
         inputs.sops-nix.nixosModules.sops
@@ -138,14 +142,14 @@
             inputs.sops-nix.homeManagerModules.sops
             inputs.textfox.homeManagerModules.default
           ];
-          
+
           modules.sops.defaultSopsFile = ./secrets/default.yaml;
-          
-          # Allow non-free packages
-          nixpkgs.config.allowUnfree = true;
+
+          # Allow non-free packages - now set at system level
+          # nixpkgs.config.allowUnfree = true;
         }
       ]
-      
+
       # Host-specific NixOS configuration (if exists)
       ++ lib.optional (builtins.pathExists (./hosts + "/${hostname}/nixos.nix"))
           (./hosts + "/${hostname}/nixos.nix");
@@ -153,7 +157,7 @@
 
     mkHomeConfiguration = { system, hostname }: home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = { 
+      extraSpecialArgs = {
         inherit inputs hostname;
         isHMStandaloneContext = true;
         pkgs-recent = import nixpkgs-recent {
@@ -168,7 +172,7 @@
 
         # Overlays
         { nixpkgs.overlays = overlays; }
-        
+
         # Home Manager modules
         {
           imports = [
@@ -176,14 +180,14 @@
             inputs.sops-nix.homeManagerModules.sops
             inputs.textfox.homeManagerModules.default
           ];
-          
+
           modules.sops.defaultSopsFile = ./secrets/default.yaml;
-          
+
           # Allow non-free packages
           nixpkgs.config.allowUnfree = true;
         }
       ]
-      
+
       # Host-specific Home Manager configuration (if exists)
       ++ lib.optional (builtins.pathExists (./hosts + "/${hostname}/home.nix"))
           (./hosts + "/${hostname}/home.nix");
