@@ -17,12 +17,21 @@ let
 
       profiles.default = {
         # List of extensions to install
-        extensions = with pkgs-recent.vscode-extensions; [
+        extensions = (with pkgs-recent.nix-vscode-extensions.vscode-marketplace; [
           bbenoist.nix
           asvetliakov.vscode-neovim
           catppuccin.catppuccin-vsc-icons
           catppuccin.catppuccin-vsc
-        ];
+          ms-toolsai.jupyter
+          hediet.vscode-drawio
+          nopeslide.vscode-drawio-plugin-rtl
+          nopeslide.vscode-drawio-plugin-wavedrom
+          kirozen.dokuwiki
+        ]) ++ (with pkgs-recent.vscode-extensions; [
+          # Otherwise these extensions require newer vscode version
+          github.copilot
+          github.copilot-chat
+        ]);
       
         userSettings = {
           "workbench.colorTheme" = "Catppuccin Mocha";
@@ -30,6 +39,7 @@ let
           "extensions.experimental.affinity" = {
             "asvetliakov.vscode-neovim" = 1;
           };
+          "extensions.autoUpdate" = false;
         };
 
         keybindings = [
@@ -64,7 +74,7 @@ in {
     enable = mkEnableOption "Enable VsCode module";
 
     package = mkOption {
-      default = pkgs.vscode;
+      default = pkgs-recent.vscode;
       type = types.package;
     };
 

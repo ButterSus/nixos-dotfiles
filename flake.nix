@@ -74,6 +74,14 @@
       url = "github:ButterSus/textfox";
       inputs.nur.follows = "nur";
     };
+
+    # Sometimes, it's useful to update nix flake to specific revision, in my case I did:
+    # 1. Manually edit entry in flake.lock "nix-vscode-extensions.locked.rev"
+    # 2. Update its narHash after you see error
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, nixpkgs-recent, home-manager, ... }@inputs: let
@@ -81,6 +89,7 @@
     
     overlays = with inputs; [
       nur.overlays.default
+      nix-vscode-extensions.overlays.default
     ];
 
     importModules = modulesPath: filename: let
