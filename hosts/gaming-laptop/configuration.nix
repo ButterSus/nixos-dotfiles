@@ -166,6 +166,7 @@
     enable = true;
     package = pkgs-recent.windsurf;
     dataDirName = ".windsurf";
+    executableName = "windsurf";
   };
   modules.rnote.enable = true;
   modules.jetbrains-ide.enable = true;

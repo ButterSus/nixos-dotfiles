@@ -40,6 +40,8 @@ let
             "asvetliakov.vscode-neovim" = 1;
           };
           "extensions.autoUpdate" = false;
+          "hediet.vscode-drawio.appearance" = "dark";
+          "security.workspace.trust.enabled" = false;
         };
 
         keybindings = [
@@ -81,6 +83,11 @@ in {
     dataDirName = mkOption {
       type = types.str;
       default = ".vscode";
+    };
+
+    executableName = mkOption {
+      type = types.str;
+      default = "code";
     };
   };
   
