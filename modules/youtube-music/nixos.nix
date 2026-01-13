@@ -13,7 +13,7 @@ in {
   config = mkIf cfg.enable {
     # System Packages
     environment.systemPackages = with pkgs; [
-      pkgs-recent.youtube-music
+      pkgs-recent.pear-desktop
       
       # MPRIS shortcuts
       playerctl
