@@ -37,7 +37,7 @@
   xwayland = {
     force_zero_scaling = true;
   };
-    
+
   general = {
     gaps_in = 5;
     gaps_out = 10;
@@ -60,22 +60,23 @@
       "specialWorkspace, 1, 6 , default, slidevert"
     ];
   };
-    
+
   dwindle = {
     pseudotile = true;
     preserve_split = true;
   };
-  
+
   debug = {
     disable_logs = false;
+    disable_scale_checks = true;
   };
-  
+
   misc = {
-    disable_splash_rendering = true;  
+    disable_splash_rendering = true;
     # Anime girls prohibited
     disable_hyprland_logo = true;
   };
-  
+
   exec-once = [ "iio-hyprland" ]
     ++ lib.optionals config.modules.waybar.enable [
       "waybar"
