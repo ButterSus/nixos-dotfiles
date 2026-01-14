@@ -53,17 +53,15 @@ let
     });
 
     # Smart vscode config activation:
-    # - If vscode config doesn't exist, copy from dotfiles to ~/.config/vscode-config
+    # - If vscode config doesn't exist, clone from GitHub vscode-config repo to ~/.config/vscode-config
     # - Symlink the files to VS Code's config dir
     # Therefore, config is fully mutable
     home.activation.vscodeConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
       config_dir="$HOME/.config/${config.modules.vscode.configDir}/User"
       vscode_config_dir="$HOME/.config/vscode-config"
-      dotfiles_dir="$HOME/.config/nixos-dotfiles"
       if [ ! -d "$vscode_config_dir" ]; then
-        echo "No VS Code config found, copying from dotfiles..."
-        mkdir -p "$vscode_config_dir"
-        cp -r "$dotfiles_dir/vscode-config"/* "$vscode_config_dir"/
+        echo "No VS Code config found, cloning from GitHub..."
+        git clone https://github.com/ButterSus/vscode-config.git "$vscode_config_dir"
         chmod -R u+w "$vscode_config_dir"
       fi
       # Symlink the config files
