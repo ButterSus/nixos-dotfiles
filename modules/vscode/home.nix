@@ -23,6 +23,7 @@ let
           catppuccin.catppuccin-vsc-icons
           catppuccin.catppuccin-vsc
           ms-toolsai.jupyter
+          ms-toolsai.jupyter-keymap
           hediet.vscode-drawio
           nopeslide.vscode-drawio-plugin-rtl
           nopeslide.vscode-drawio-plugin-wavedrom
